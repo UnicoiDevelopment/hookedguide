@@ -1,0 +1,125 @@
+import { StateFishingData } from '../types';
+
+export const maine: StateFishingData = {
+  slug: 'maine',
+  name: 'Maine',
+  abbreviation: 'ME',
+  region: 'northeast',
+  licenseUrl: 'https://www.maine.gov/ifw/fishing-boating/fishing/licenses-permits.html',
+  licenseInfo:
+    'Maine requires a fishing license for anyone 16 years and older for inland waters. No license is required for saltwater fishing. Residents and non-residents can purchase licenses online through the Maine Department of Inland Fisheries and Wildlife. Short-term licenses are available for visitors. A special permit is required for Atlantic salmon waters.',
+  freshwaterSpecies: [
+    'largemouth-bass',
+    'smallmouth-bass',
+    'brook-trout',
+    'brown-trout',
+    'rainbow-trout',
+    'northern-pike',
+    'yellow-perch',
+    'striped-bass',
+  ],
+  saltwaterSpecies: [
+    'striped-bass',
+    'atlantic-cod',
+    'pollock',
+    'mackerel',
+    'bluefish',
+  ],
+  topWaters: [
+    {
+      name: 'Moosehead Lake',
+      type: 'lake',
+      species: ['brook-trout', 'smallmouth-bass', 'largemouth-bass', 'yellow-perch'],
+    },
+    {
+      name: 'Sebago Lake',
+      type: 'lake',
+      species: ['largemouth-bass', 'smallmouth-bass', 'brown-trout', 'rainbow-trout'],
+    },
+    {
+      name: 'Kennebec River',
+      type: 'river',
+      species: ['smallmouth-bass', 'brook-trout', 'striped-bass', 'brown-trout'],
+    },
+    {
+      name: 'Penobscot River',
+      type: 'river',
+      species: ['smallmouth-bass', 'brook-trout', 'striped-bass'],
+    },
+    {
+      name: 'Grand Lake Stream',
+      type: 'river',
+      species: ['smallmouth-bass', 'brook-trout'],
+    },
+    {
+      name: 'Rangeley Lake',
+      type: 'lake',
+      species: ['brook-trout', 'brown-trout', 'rainbow-trout'],
+    },
+    {
+      name: 'Belgrade Lakes',
+      type: 'lake',
+      species: ['largemouth-bass', 'smallmouth-bass', 'yellow-perch', 'northern-pike'],
+    },
+  ],
+  seasonInfo:
+    'Maine fishing seasons are defined by ice-out dates and species. Ice-out typically occurs from mid-April in southern Maine to mid-May in the north. Open water trout and salmon season generally runs from April 1 through September 30. Bass season opens June 1 for harvest, though catch-and-release is allowed from April. Striped bass run along the coast from June through October. Ice fishing is a beloved tradition from January through March on many inland lakes.',
+  regulations: [
+    {
+      species: 'largemouth-bass',
+      bagLimit: '5 per day',
+      sizeLimit: '12 inches minimum',
+      season: 'June 1 - November 30 (harvest); catch and release April 1 - May 31',
+      notes: 'Catch and release only before June 1 to protect spawning fish.',
+    },
+    {
+      species: 'smallmouth-bass',
+      bagLimit: '5 per day',
+      sizeLimit: '12 inches minimum',
+      season: 'June 1 - November 30 (harvest); catch and release April 1 - May 31',
+      notes: 'Combined limit with largemouth bass.',
+    },
+    {
+      species: 'brook-trout',
+      bagLimit: '5 per day',
+      sizeLimit: '6 inches minimum (varies by water)',
+      season: 'April 1 - September 30 (general)',
+      notes: 'Many waters have special regulations. Wild brook trout are highly managed.',
+    },
+    {
+      species: 'brown-trout',
+      bagLimit: '2 per day',
+      sizeLimit: '12 inches minimum',
+      season: 'April 1 - September 30',
+      notes: 'More restrictive than brook trout limits.',
+    },
+    {
+      species: 'northern-pike',
+      bagLimit: '2 per day',
+      sizeLimit: 'No minimum',
+      season: 'Year-round',
+      notes: 'Considered invasive in some waters. Removal encouraged.',
+    },
+    {
+      species: 'striped-bass',
+      bagLimit: '1 per day',
+      sizeLimit: '28 inches minimum',
+      season: 'Year-round (peak June-October)',
+      notes: 'Slot limit may apply. Check current regulations.',
+    },
+  ],
+  stateRecord: [
+    { species: 'Largemouth Bass', weight: '11 lbs 10 oz', year: 1968, water: 'Moose Pond' },
+    { species: 'Smallmouth Bass', weight: '8 lbs', year: 1970, water: 'Thompson Lake' },
+    { species: 'Brook Trout', weight: '8 lbs 8 oz', year: 1955, water: 'Chase Pond' },
+    { species: 'Brown Trout', weight: '23 lbs 4 oz', year: 1958, water: 'Sebago Lake' },
+    { species: 'Rainbow Trout', weight: '10 lbs', year: 2007, water: 'Kennebago River' },
+    { species: 'Northern Pike', weight: '30 lbs 8 oz', year: 2010, water: 'Pushaw Lake' },
+    { species: 'Yellow Perch', weight: '2 lbs 14 oz', year: 1954, water: 'Mousam Lake' },
+    { species: 'Striped Bass', weight: '67 lbs 8 oz', year: 1994, water: 'Kennebec River' },
+  ],
+  imagePath: '/images/states/maine.jpg',
+  imageAlt: 'Pristine Moosehead Lake surrounded by dense Maine forest with mountain backdrop',
+  imageCredit: 'Photo via Unsplash',
+  lastUpdated: '2025-01-01',
+};

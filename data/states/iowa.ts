@@ -1,0 +1,127 @@
+import { StateFishingData } from '../types';
+
+export const iowa: StateFishingData = {
+  slug: 'iowa',
+  name: 'Iowa',
+  abbreviation: 'IA',
+  region: 'midwest',
+  licenseUrl: 'https://www.iowadnr.gov/Fishing/',
+  licenseInfo:
+    'Iowa requires a fishing license for anyone 16 years and older. Residents and non-residents can purchase licenses online through the Iowa DNR. A trout fee is required in addition to the fishing license for trout fishing in designated waters. Boundary water licenses are available for fishing the Mississippi and Missouri Rivers.',
+  freshwaterSpecies: [
+    'largemouth-bass',
+    'smallmouth-bass',
+    'channel-catfish',
+    'walleye',
+    'crappie',
+    'bluegill',
+    'yellow-perch',
+    'northern-pike',
+    'carp',
+  ],
+  saltwaterSpecies: [],
+  topWaters: [
+    {
+      name: 'Spirit Lake',
+      type: 'lake',
+      species: ['walleye', 'yellow-perch', 'smallmouth-bass', 'northern-pike'],
+    },
+    {
+      name: 'West Okoboji',
+      type: 'lake',
+      species: ['walleye', 'smallmouth-bass', 'yellow-perch', 'musky'],
+    },
+    {
+      name: 'Mississippi River',
+      type: 'river',
+      species: ['walleye', 'smallmouth-bass', 'channel-catfish', 'northern-pike', 'carp'],
+    },
+    {
+      name: 'Rathbun Lake',
+      type: 'reservoir',
+      species: ['crappie', 'walleye', 'channel-catfish', 'largemouth-bass'],
+    },
+    {
+      name: 'Clear Lake',
+      type: 'lake',
+      species: ['walleye', 'yellow-perch', 'largemouth-bass', 'bluegill'],
+    },
+    {
+      name: 'Saylorville Lake',
+      type: 'reservoir',
+      species: ['walleye', 'crappie', 'channel-catfish', 'largemouth-bass'],
+    },
+    {
+      name: 'Red Rock Reservoir',
+      type: 'reservoir',
+      species: ['crappie', 'walleye', 'channel-catfish', 'white-bass'],
+    },
+  ],
+  seasonInfo:
+    'Iowa fishing peaks from April through October. Walleye fishing is excellent from March through May, especially in the Iowa Great Lakes region and the Mississippi River tailwaters. Crappie and bluegill spawn from May through June. Bass fishing is best from May through September. Channel catfishing peaks in summer months. Ice fishing is a major tradition from December through February on Spirit Lake, West Okoboji, and Clear Lake.',
+  regulations: [
+    {
+      species: 'largemouth-bass',
+      bagLimit: '5 per day',
+      sizeLimit: '12 inches minimum',
+      season: 'Year-round',
+      notes: 'Some waters have special 15-inch or 18-inch minimum limits.',
+    },
+    {
+      species: 'smallmouth-bass',
+      bagLimit: '5 per day',
+      sizeLimit: '12 inches minimum',
+      season: 'Year-round',
+      notes: 'Combined with largemouth bass daily limit.',
+    },
+    {
+      species: 'walleye',
+      bagLimit: '5 per day',
+      sizeLimit: '15 inches minimum',
+      season: 'Year-round (check specific waters)',
+      notes: 'Spirit Lake and West Okoboji have special regulations. 3 per day on some waters.',
+    },
+    {
+      species: 'channel-catfish',
+      bagLimit: '8 per day',
+      sizeLimit: 'No minimum',
+      season: 'Year-round',
+      notes: 'Liberal limits across the state.',
+    },
+    {
+      species: 'crappie',
+      bagLimit: '25 per day',
+      sizeLimit: 'No minimum',
+      season: 'Year-round',
+      notes: 'Some waters have reduced limits.',
+    },
+    {
+      species: 'northern-pike',
+      bagLimit: '5 per day',
+      sizeLimit: '24 inches minimum',
+      season: 'Year-round',
+      notes: 'Only 1 over 30 inches on some lakes.',
+    },
+    {
+      species: 'bluegill',
+      bagLimit: '25 per day',
+      sizeLimit: 'No minimum',
+      season: 'Year-round',
+      notes: 'Excellent panfish opportunities statewide.',
+    },
+  ],
+  stateRecord: [
+    { species: 'Largemouth Bass', weight: '10 lbs 12 oz', year: 1984, water: 'Farm Pond' },
+    { species: 'Smallmouth Bass', weight: '7 lbs 12 oz', year: 1990, water: 'West Okoboji Lake' },
+    { species: 'Channel Catfish', weight: '38 lbs', year: 1966, water: 'Lake Manawa' },
+    { species: 'Walleye', weight: '14 lbs 2 oz', year: 1986, water: 'Des Moines River' },
+    { species: 'Crappie', weight: '4 lbs 9 oz', year: 1981, water: 'Green Castle Lake' },
+    { species: 'Northern Pike', weight: '25 lbs 4 oz', year: 1999, water: 'West Okoboji Lake' },
+    { species: 'Bluegill', weight: '3 lbs 2 oz', year: 1986, water: 'Farm Pond' },
+    { species: 'Yellow Perch', weight: '2 lbs 2 oz', year: 1973, water: 'East Okoboji Lake' },
+  ],
+  imagePath: '/images/states/iowa.jpg',
+  imageAlt: 'Calm waters of West Okoboji Lake at sunset with rolling Iowa hills in the background',
+  imageCredit: 'Photo via Unsplash',
+  lastUpdated: '2025-01-01',
+};

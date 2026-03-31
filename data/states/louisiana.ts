@@ -1,0 +1,142 @@
+import { StateFishingData } from '../types';
+
+export const louisiana: StateFishingData = {
+  slug: 'louisiana',
+  name: 'Louisiana',
+  abbreviation: 'LA',
+  region: 'southeast',
+  licenseUrl: 'https://www.wlf.louisiana.gov/page/recreational-fishing',
+  licenseInfo:
+    'Louisiana requires a basic fishing license for anyone 16 years and older. A saltwater license is required in addition to the basic license for saltwater fishing. Licenses can be purchased online through the Louisiana Department of Wildlife and Fisheries. Louisiana offers some of the most diverse fishing in the country, spanning freshwater bayous to deep Gulf waters.',
+  freshwaterSpecies: [
+    'largemouth-bass',
+    'crappie',
+    'channel-catfish',
+    'blue-catfish',
+    'bluegill',
+  ],
+  saltwaterSpecies: [
+    'redfish',
+    'speckled-trout',
+    'flounder',
+    'sheepshead',
+    'red-snapper',
+    'tarpon',
+    'king-mackerel',
+  ],
+  topWaters: [
+    {
+      name: 'Toledo Bend',
+      type: 'reservoir',
+      species: ['largemouth-bass', 'crappie', 'bluegill', 'channel-catfish'],
+    },
+    {
+      name: 'Calcasieu Lake',
+      type: 'estuary',
+      species: ['redfish', 'speckled-trout', 'flounder', 'sheepshead'],
+    },
+    {
+      name: 'Venice (offshore)',
+      type: 'ocean',
+      species: ['red-snapper', 'yellowfin-tuna', 'tarpon', 'king-mackerel'],
+    },
+    {
+      name: 'Caney Creek Reservoir',
+      type: 'reservoir',
+      species: ['largemouth-bass', 'crappie', 'bluegill'],
+    },
+    {
+      name: 'Atchafalaya Basin',
+      type: 'river',
+      species: ['largemouth-bass', 'crappie', 'blue-catfish', 'bluegill'],
+    },
+    {
+      name: 'Marsh Island',
+      type: 'estuary',
+      species: ['redfish', 'speckled-trout', 'flounder'],
+    },
+    {
+      name: 'Lake Pontchartrain',
+      type: 'estuary',
+      species: ['speckled-trout', 'redfish', 'sheepshead', 'flounder'],
+    },
+    {
+      name: 'Sabine Lake',
+      type: 'estuary',
+      species: ['redfish', 'speckled-trout', 'flounder', 'sheepshead'],
+    },
+    {
+      name: 'False River',
+      type: 'lake',
+      species: ['largemouth-bass', 'crappie', 'bluegill'],
+    },
+  ],
+  seasonInfo:
+    'Louisiana offers year-round fishing thanks to its mild climate. Redfish and speckled trout are available year-round in coastal marshes, with fall being the peak season from September through November. Largemouth bass fishing at Toledo Bend peaks from February through May. Red snapper season in the Gulf typically runs from June through mid-August. Tarpon fishing is best from June through September off the coast. Crappie fishing peaks from January through March. Winter months provide excellent trout fishing in coastal waters.',
+  regulations: [
+    {
+      species: 'largemouth-bass',
+      bagLimit: '10 per day',
+      sizeLimit: '14 inches minimum',
+      season: 'Year-round',
+      notes: 'Toledo Bend has specific tournament regulations.',
+    },
+    {
+      species: 'crappie',
+      bagLimit: '50 per day',
+      sizeLimit: 'No minimum',
+      season: 'Year-round',
+      notes: 'Very liberal limits. Some waters have reduced limits.',
+    },
+    {
+      species: 'redfish',
+      bagLimit: '5 per day',
+      sizeLimit: '16 to 27 inches (slot limit)',
+      season: 'Year-round',
+      notes: 'Only 1 fish over 27 inches allowed. No harvest of bull reds over 27 inches except 1.',
+    },
+    {
+      species: 'speckled-trout',
+      bagLimit: '25 per day',
+      sizeLimit: '12 inches minimum',
+      season: 'Year-round',
+      notes: 'Only 2 over 25 inches. Liberal limits compared to most Gulf states.',
+    },
+    {
+      species: 'red-snapper',
+      bagLimit: '2 per day',
+      sizeLimit: '16 inches minimum',
+      season: 'Seasonal (typically June-August)',
+      notes: 'Season set annually by LDWF. Check current dates before fishing.',
+    },
+    {
+      species: 'flounder',
+      bagLimit: '10 per day',
+      sizeLimit: '12 inches minimum',
+      season: 'Year-round',
+      notes: 'Fall flounder run from October through November is excellent.',
+    },
+    {
+      species: 'channel-catfish',
+      bagLimit: '50 per day',
+      sizeLimit: 'No minimum',
+      season: 'Year-round',
+      notes: 'Very liberal limits throughout the state.',
+    },
+  ],
+  stateRecord: [
+    { species: 'Largemouth Bass', weight: '15 lbs 14 oz', year: 1994, water: 'Caney Creek Reservoir' },
+    { species: 'Crappie', weight: '3 lbs 14 oz', year: 2000, water: 'Toledo Bend' },
+    { species: 'Channel Catfish', weight: '36 lbs', year: 1971, water: 'Bundicks Lake' },
+    { species: 'Blue Catfish', weight: '114 lbs', year: 1997, water: 'Mississippi River' },
+    { species: 'Redfish', weight: '51 lbs 4 oz', year: 2000, water: 'Calcasieu Lake' },
+    { species: 'Speckled Trout', weight: '12 lbs 4 oz', year: 1950, water: 'Lake Borgne' },
+    { species: 'Red Snapper', weight: '53 lbs', year: 1996, water: 'Gulf of Mexico' },
+    { species: 'Tarpon', weight: '215 lbs', year: 1960, water: 'Grand Isle' },
+    { species: 'Flounder', weight: '10 lbs 12 oz', year: 1983, water: 'Calcasieu Lake' },
+  ],
+  imagePath: '/images/states/louisiana.jpg',
+  imageAlt: 'Louisiana bayou with cypress trees draped in Spanish moss and calm brown water',
+  imageCredit: 'Photo via Unsplash',
+  lastUpdated: '2025-01-01',
+};

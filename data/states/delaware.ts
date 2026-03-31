@@ -1,0 +1,102 @@
+import type { StateFishingData } from '../types';
+
+export const delaware: StateFishingData = {
+  slug: 'delaware',
+  name: 'Delaware',
+  abbreviation: 'DE',
+  region: 'northeast',
+  licenseUrl: 'https://dnrec.alpha.delaware.gov/fish-wildlife/fishing/',
+  licenseInfo: 'Delaware requires a fishing license for anglers 16 and older. Resident and non-resident annual licenses are available, along with 7-day and 3-day tourist licenses. A trout stamp is required for trout fishing. Separate freshwater and saltwater licenses are available, or a combined license covers both.',
+  freshwaterSpecies: [
+    'largemouth-bass',
+    'channel-catfish',
+    'bluegill',
+    'crappie',
+  ],
+  saltwaterSpecies: [
+    'striped-bass',
+    'flounder',
+    'redfish',
+  ],
+  topWaters: [
+    {
+      name: 'Lums Pond',
+      type: 'lake',
+      species: ['largemouth-bass', 'channel-catfish', 'bluegill', 'crappie'],
+    },
+    {
+      name: 'Delaware Bay',
+      type: 'bay',
+      species: ['striped-bass', 'flounder', 'redfish'],
+    },
+    {
+      name: 'Indian River Bay',
+      type: 'bay',
+      species: ['flounder', 'redfish', 'striped-bass'],
+    },
+  ],
+  seasonInfo: 'Delaware offers year-round fishing opportunities despite its small size. Bass fishing in freshwater ponds and lakes is best from April through October. Saltwater fishing in Delaware Bay and the inland bays peaks from May through November. Flounder fishing is best from May through September. Striped bass runs occur in spring and fall. Ice fishing is limited but possible in cold winters.',
+  regulations: [
+    {
+      species: 'largemouth-bass',
+      bagLimit: '5 per day',
+      sizeLimit: '12.5 inches minimum',
+      season: 'Year-round',
+      notes: 'Delaware regulations are managed by DNREC Division of Fish and Wildlife. Always check the current Delaware Fishing Guide for the most up-to-date rules and limits.',
+    },
+    {
+      species: 'channel-catfish',
+      bagLimit: '10 per day',
+      sizeLimit: 'No minimum',
+      season: 'Year-round',
+      notes: '',
+    },
+    {
+      species: 'bluegill',
+      bagLimit: '25 per day',
+      sizeLimit: 'No minimum',
+      season: 'Year-round',
+      notes: '',
+    },
+    {
+      species: 'crappie',
+      bagLimit: '25 per day',
+      sizeLimit: 'No minimum',
+      season: 'Year-round',
+      notes: '',
+    },
+    {
+      species: 'striped-bass',
+      bagLimit: '2 per day (varies by season)',
+      sizeLimit: '20 inches minimum',
+      season: 'April 1 through December 31 (varies)',
+      notes: '',
+    },
+    {
+      species: 'flounder',
+      bagLimit: '4 per day',
+      sizeLimit: '19 inches minimum',
+      season: 'January 1 through December 31',
+      notes: '',
+    },
+    {
+      species: 'redfish',
+      bagLimit: '1 per day',
+      sizeLimit: '20-27 inches slot limit',
+      season: 'Year-round',
+      notes: '',
+    },
+  ],
+  stateRecord: [
+    { species: 'largemouth-bass', weight: '10 lbs 7 oz', year: 2000, water: 'Andrews Lake' },
+    { species: 'channel-catfish', weight: '20 lbs 2 oz', year: 1996, water: 'Becks Pond' },
+    { species: 'striped-bass', weight: '56 lbs 4 oz', year: 2014, water: 'Delaware Bay' },
+    { species: 'flounder', weight: '17 lbs 4 oz', year: 1975, water: 'Indian River Inlet' },
+    { species: 'bluegill', weight: '2 lbs 14 oz', year: 1986, water: 'Killens Pond' },
+    { species: 'crappie', weight: '4 lbs 2 oz', year: 2014, water: 'Becks Pond' },
+  ],
+  imagePath: '/images/states/delaware.jpg',
+  imageAlt: 'Sunrise over Delaware Bay with calm waters and fishing boats anchored near shore',
+  imageCredit: 'Photo via Unsplash',
+  lastUpdated: '2025-01-01',
+};
