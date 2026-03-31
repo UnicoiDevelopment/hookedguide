@@ -1,21 +1,26 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Barlow_Condensed, Inter } from 'next/font/google';
+import { ThemeProvider } from '@/components/providers/ThemeProvider';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
+import MobileNav from '@/components/layout/MobileNav';
 import "./globals.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+const barlowCondensed = Barlow_Condensed({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-heading',
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-body',
 });
 
 export const metadata: Metadata = {
   title: "HookedGuide — Your AI Fishing Guide",
   description: "Tell HookedGuide what you're fishing for and it tells you exactly what to use, how to rig it, and where to cast.",
+  metadataBase: new URL('https://hookedguide.com'),
 };
 
 export default function RootLayout({
@@ -24,11 +29,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${barlowCondensed.variable} ${inter.variable} antialiased`}>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+          <Header />
+          <main className="min-h-screen pb-16 md:pb-0">
+            {children}
+          </main>
+          <Footer />
+          <MobileNav />
+        </ThemeProvider>
       </body>
     </html>
   );

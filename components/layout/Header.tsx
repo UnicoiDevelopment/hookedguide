@@ -1,0 +1,172 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { useTheme } from 'next-themes';
+import { Anchor, Sun, Moon, Menu, X } from 'lucide-react';
+
+const navLinks = [
+  { label: 'Species', href: '/species' },
+  { label: 'Techniques', href: '/techniques' },
+  { label: 'Gear', href: '/gear' },
+  { label: 'Knots', href: '/knots' },
+  { label: 'Tool', href: '/tool' },
+  { label: 'Regulations', href: '/regulations' },
+];
+
+export default function Header() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileOpen]);
+
+  return (
+    <header className="sticky top-0 z-50 w-full border-b border-sand-200 dark:border-water-700 bg-sand-50/95 backdrop-blur dark:bg-water-900/95">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2">
+          <Anchor className="h-6 w-6 text-copper-500" />
+          <span className="font-heading text-xl font-bold text-water-800 dark:text-sand-100">
+            HookedGuide
+          </span>
+        </Link>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden items-center gap-6 md:flex">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="font-body text-sm font-medium text-water-700 transition-colors hover:text-copper-500 dark:text-sand-200 dark:hover:text-copper-400"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
+        {/* Desktop Actions */}
+        <div className="hidden items-center gap-3 md:flex">
+          <Link
+            href="/tool"
+            className="rounded-lg bg-copper-500 px-4 py-2 font-body text-sm font-medium text-white transition-colors hover:bg-copper-600"
+          >
+            What Should I Fish With?
+          </Link>
+
+          {/* Dark Mode Toggle */}
+          <button
+            type="button"
+            aria-label="Toggle dark mode"
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            className="rounded-lg p-2 text-water-600 transition-colors hover:bg-sand-200 dark:text-sand-200 dark:hover:bg-water-700"
+          >
+            {mounted && theme === 'dark' ? (
+              <Sun className="h-5 w-5" />
+            ) : (
+              <Moon className="h-5 w-5" />
+            )}
+          </button>
+        </div>
+
+        {/* Mobile Actions */}
+        <div className="flex items-center gap-2 md:hidden">
+          <button
+            type="button"
+            aria-label="Toggle dark mode"
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            className="rounded-lg p-2 text-water-600 transition-colors hover:bg-sand-200 dark:text-sand-200 dark:hover:bg-water-700"
+          >
+            {mounted && theme === 'dark' ? (
+              <Sun className="h-5 w-5" />
+            ) : (
+              <Moon className="h-5 w-5" />
+            )}
+          </button>
+
+          <button
+            type="button"
+            aria-label="Open menu"
+            onClick={() => setMobileOpen(true)}
+            className="rounded-lg p-2 text-water-600 transition-colors hover:bg-sand-200 dark:text-sand-200 dark:hover:bg-water-700"
+          >
+            <Menu className="h-6 w-6" />
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Drawer Overlay */}
+      {mobileOpen && (
+        <div
+          className="fixed inset-0 z-50 bg-black/40 md:hidden"
+          onClick={() => setMobileOpen(false)}
+        />
+      )}
+
+      {/* Mobile Drawer */}
+      <div
+        className={`fixed right-0 top-0 z-50 h-full w-72 transform bg-white shadow-xl transition-transform duration-300 ease-in-out dark:bg-water-800 md:hidden ${
+          mobileOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
+        <div className="flex items-center justify-between border-b border-sand-200 px-4 py-4 dark:border-water-700">
+          <Link
+            href="/"
+            onClick={() => setMobileOpen(false)}
+            className="flex items-center gap-2"
+          >
+            <Anchor className="h-5 w-5 text-copper-500" />
+            <span className="font-heading text-lg font-bold text-water-800 dark:text-sand-100">
+              HookedGuide
+            </span>
+          </Link>
+          <button
+            type="button"
+            aria-label="Close menu"
+            onClick={() => setMobileOpen(false)}
+            className="rounded-lg p-2 text-water-600 hover:bg-sand-200 dark:text-sand-200 dark:hover:bg-water-700"
+          >
+            <X className="h-5 w-5" />
+          </button>
+        </div>
+
+        <nav className="flex flex-col gap-1 p-4">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setMobileOpen(false)}
+              className="rounded-lg px-3 py-2.5 font-body text-sm font-medium text-water-700 transition-colors hover:bg-sand-100 dark:text-sand-200 dark:hover:bg-water-700"
+            >
+              {link.label}
+            </Link>
+          ))}
+
+          <div className="my-2 border-t border-sand-200 dark:border-water-700" />
+
+          <Link
+            href="/tool"
+            onClick={() => setMobileOpen(false)}
+            className="rounded-lg bg-copper-500 px-4 py-2.5 text-center font-body text-sm font-medium text-white transition-colors hover:bg-copper-600"
+          >
+            What Should I Fish With?
+          </Link>
+        </nav>
+      </div>
+    </header>
+  );
+}
