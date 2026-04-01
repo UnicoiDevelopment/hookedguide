@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
 import Link from 'next/link';
 import {
   Search,
+  ChevronDown,
   ChevronLeft,
   ChevronRight,
   Target,
@@ -1282,6 +1283,116 @@ export default function RecommendationTool() {
                     )}
                   </div>
                 </div>
+
+                {/* Technical Details */}
+                {result.technicalDetails && (
+                  <div className="mt-8 space-y-4">
+                    {/* Rigging Details */}
+                    <details className="group rounded-lg border border-sand-200 dark:border-water-700 overflow-hidden">
+                      <summary className="flex items-center justify-between px-6 py-4 cursor-pointer bg-sand-50 dark:bg-water-800 font-heading font-semibold text-lg text-water-800 dark:text-sand-100 hover:bg-sand-100 dark:hover:bg-water-700">
+                        <span>Rigging Details</span>
+                        <ChevronDown className="w-5 h-5 transition-transform group-open:rotate-180" />
+                      </summary>
+                      <div className="px-6 py-4 space-y-3 text-sm">
+                        <div className="grid grid-cols-2 gap-4">
+                          <div><span className="font-semibold text-water-600 dark:text-sand-300">Hook:</span> {result.technicalDetails.rigging.hookType}</div>
+                          <div><span className="font-semibold text-water-600 dark:text-sand-300">Size:</span> {result.technicalDetails.rigging.hookSize}</div>
+                          <div><span className="font-semibold text-water-600 dark:text-sand-300">Weight:</span> {result.technicalDetails.rigging.weightType} — {result.technicalDetails.rigging.weightSize}</div>
+                          {result.technicalDetails.rigging.leaderLength && (
+                            <div><span className="font-semibold text-water-600 dark:text-sand-300">Leader:</span> {result.technicalDetails.rigging.leaderLength}</div>
+                          )}
+                        </div>
+                        <p className="text-water-600 dark:text-sand-300 italic">{result.technicalDetails.rigging.weightNotes}</p>
+                        <h4 className="font-heading font-semibold mt-4 text-water-800 dark:text-sand-100">How to Rig It</h4>
+                        <ol className="list-decimal list-inside space-y-2 text-water-700 dark:text-sand-200">
+                          {result.technicalDetails.rigging.riggingSteps.map((step, i) => (
+                            <li key={i}>{step}</li>
+                          ))}
+                        </ol>
+                      </div>
+                    </details>
+
+                    {/* Presentation */}
+                    <details className="group rounded-lg border border-sand-200 dark:border-water-700 overflow-hidden">
+                      <summary className="flex items-center justify-between px-6 py-4 cursor-pointer bg-sand-50 dark:bg-water-800 font-heading font-semibold text-lg text-water-800 dark:text-sand-100 hover:bg-sand-100 dark:hover:bg-water-700">
+                        <span>Presentation Guide</span>
+                        <ChevronDown className="w-5 h-5 transition-transform group-open:rotate-180" />
+                      </summary>
+                      <div className="px-6 py-4 space-y-3 text-sm text-water-700 dark:text-sand-200">
+                        <div className="grid gap-3">
+                          <div><span className="font-semibold text-water-800 dark:text-sand-100">Cast:</span> {result.technicalDetails.presentation.castTarget}</div>
+                          <div><span className="font-semibold text-water-800 dark:text-sand-100">Angle:</span> {result.technicalDetails.presentation.castAngle}</div>
+                          <div><span className="font-semibold text-water-800 dark:text-sand-100">The Fall:</span> {result.technicalDetails.presentation.letItFall}</div>
+                          <div><span className="font-semibold text-water-800 dark:text-sand-100">Retrieve:</span> {result.technicalDetails.presentation.retrieve}</div>
+                          <div><span className="font-semibold text-water-800 dark:text-sand-100">Speed:</span> {result.technicalDetails.presentation.speed}</div>
+                          <div><span className="font-semibold text-water-800 dark:text-sand-100">Cadence:</span> {result.technicalDetails.presentation.cadence}</div>
+                          <div><span className="font-semibold text-water-800 dark:text-sand-100">Hookset:</span> {result.technicalDetails.presentation.hookset}</div>
+                          <div><span className="font-semibold text-water-800 dark:text-sand-100">After hookset:</span> {result.technicalDetails.presentation.afterHookset}</div>
+                        </div>
+                        <div className="mt-3 p-3 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-lg">
+                          <p className="font-semibold text-amber-800 dark:text-amber-300">Common mistake:</p>
+                          <p className="text-amber-700 dark:text-amber-400">{result.technicalDetails.presentation.commonMistake}</p>
+                        </div>
+                      </div>
+                    </details>
+
+                    {/* Color Strategy */}
+                    <details className="group rounded-lg border border-sand-200 dark:border-water-700 overflow-hidden">
+                      <summary className="flex items-center justify-between px-6 py-4 cursor-pointer bg-sand-50 dark:bg-water-800 font-heading font-semibold text-lg text-water-800 dark:text-sand-100 hover:bg-sand-100 dark:hover:bg-water-700">
+                        <span>Color Strategy</span>
+                        <ChevronDown className="w-5 h-5 transition-transform group-open:rotate-180" />
+                      </summary>
+                      <div className="px-6 py-4 space-y-3 text-sm text-water-700 dark:text-sand-200">
+                        <div><span className="font-semibold text-water-800 dark:text-sand-100">Primary:</span> {result.technicalDetails.colorStrategy.primaryColor} — {result.technicalDetails.colorStrategy.whyThisColor}</div>
+                        <div><span className="font-semibold text-water-800 dark:text-sand-100">Alternate:</span> {result.technicalDetails.colorStrategy.alternateColor} — {result.technicalDetails.colorStrategy.whenToSwitch}</div>
+                        <h4 className="font-heading font-semibold mt-3 text-water-800 dark:text-sand-100">Color Rules</h4>
+                        <ul className="space-y-1">
+                          {result.technicalDetails.colorStrategy.colorRules.map((rule, i) => (
+                            <li key={i} className="flex items-start gap-2"><span className="text-copper-500 mt-0.5">•</span> {rule}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </details>
+
+                    {/* Depth & Positioning */}
+                    <details className="group rounded-lg border border-sand-200 dark:border-water-700 overflow-hidden">
+                      <summary className="flex items-center justify-between px-6 py-4 cursor-pointer bg-sand-50 dark:bg-water-800 font-heading font-semibold text-lg text-water-800 dark:text-sand-100 hover:bg-sand-100 dark:hover:bg-water-700">
+                        <span>Depth & Positioning</span>
+                        <ChevronDown className="w-5 h-5 transition-transform group-open:rotate-180" />
+                      </summary>
+                      <div className="px-6 py-4 space-y-3 text-sm text-water-700 dark:text-sand-200">
+                        <div><span className="font-semibold text-water-800 dark:text-sand-100">Target depth:</span> {result.technicalDetails.depthStrategy.targetDepth}</div>
+                        <div><span className="font-semibold text-water-800 dark:text-sand-100">How to find it:</span> {result.technicalDetails.depthStrategy.howToFindIt}</div>
+                        <div><span className="font-semibold text-water-800 dark:text-sand-100">Structure:</span> {result.technicalDetails.depthStrategy.structure}</div>
+                        <div><span className="font-semibold text-water-800 dark:text-sand-100">Positioning:</span> {result.technicalDetails.depthStrategy.positioning}</div>
+                        <div><span className="font-semibold text-water-800 dark:text-sand-100">Visual cues:</span> {result.technicalDetails.depthStrategy.visualCues}</div>
+                      </div>
+                    </details>
+
+                    {/* Rod & Reel Why */}
+                    <details className="group rounded-lg border border-sand-200 dark:border-water-700 overflow-hidden">
+                      <summary className="flex items-center justify-between px-6 py-4 cursor-pointer bg-sand-50 dark:bg-water-800 font-heading font-semibold text-lg text-water-800 dark:text-sand-100 hover:bg-sand-100 dark:hover:bg-water-700">
+                        <span>Why This Setup</span>
+                        <ChevronDown className="w-5 h-5 transition-transform group-open:rotate-180" />
+                      </summary>
+                      <div className="px-6 py-4 space-y-3 text-sm text-water-700 dark:text-sand-200">
+                        <div><span className="font-semibold text-water-800 dark:text-sand-100">Rod:</span> {result.technicalDetails.rodReelSetup.whyThisRod}</div>
+                        <div><span className="font-semibold text-water-800 dark:text-sand-100">Reel:</span> {result.technicalDetails.rodReelSetup.whyThisRatio}</div>
+                        <div><span className="font-semibold text-water-800 dark:text-sand-100">Line:</span> {result.technicalDetails.lineSetup.mainLine.whyThisWeight}</div>
+                        {result.technicalDetails.lineSetup.leader && (
+                          <div><span className="font-semibold text-water-800 dark:text-sand-100">Leader:</span> {result.technicalDetails.lineSetup.leader.whyLeader}</div>
+                        )}
+                        <div><span className="font-semibold text-water-800 dark:text-sand-100">Size:</span> {result.technicalDetails.sizeStrategy.whyThisSize}</div>
+                        <p className="text-xs text-water-500 dark:text-sand-300 italic mt-2">Upsize when: {result.technicalDetails.sizeStrategy.upsizeWhen}</p>
+                        <p className="text-xs text-water-500 dark:text-sand-300 italic">Downsize when: {result.technicalDetails.sizeStrategy.downsizeWhen}</p>
+                      </div>
+                    </details>
+                  </div>
+                )}
+
+                <Link href={`/rig-builder?from=guide&species=${species}`} className="inline-flex items-center gap-2 mt-4 text-copper-500 hover:text-copper-600 font-medium">
+                  Build This Rig <ArrowRight className="w-4 h-4" />
+                </Link>
 
                 {/* Tips */}
                 {result.tips.length > 0 && (

@@ -1,6 +1,7 @@
 import type {
   DetailedRecommendationInput,
   DetailedRecommendationOutput,
+  TechnicalRecommendation,
   MoonPhase,
   WaterBodyType,
   WaterClarity,
@@ -12,6 +13,7 @@ import type {
   FrontalSystem,
   PressureTrend,
 } from '../types';
+import { technicalDetails } from './technical-details';
 import { temperatureMaps, type TempBehavior } from './temperature-maps';
 import { saltwaterTemperatureMaps } from './temperature-maps-saltwater';
 import { weatherRules, type WeatherRule } from './weather-rules';
@@ -755,6 +757,42 @@ export function getDetailedRecommendation(
   // 9. Ensure no empty arrays for required fields
   if (rec.tips.length === 0) {
     rec.tips = [`Target ${species.replace(/-/g, ' ')} with patience and pay attention to subtle bites.`];
+  }
+
+  // 11. Look up and attach technical details
+  const techSlug = rec.primary.technique.slug;
+  const speciesTechKey = `${techSlug}:${input.species}`;
+  const techDetail = technicalDetails[speciesTechKey] || technicalDetails[techSlug];
+  if (techDetail) {
+    // Clone to avoid mutating the source
+    const details = JSON.parse(JSON.stringify(techDetail)) as TechnicalRecommendation;
+
+    // Adjust color strategy based on conditions
+    const clarity = input.waterBody.clarity;
+    const sky = input.weather.sky;
+    if (clarity === 'muddy') {
+      details.colorStrategy.primaryColor = details.colorStrategy.dirtyWaterColor;
+      details.colorStrategy.whyThisColor = `Muddy water — dark colors create the strongest silhouette. ${details.colorStrategy.whyThisColor}`;
+    } else if (clarity === 'crystal-clear') {
+      details.colorStrategy.primaryColor = details.colorStrategy.clearWaterColor;
+      details.colorStrategy.whyThisColor = `Crystal clear water demands natural, translucent colors. ${details.colorStrategy.whyThisColor}`;
+    }
+
+    // Adjust depth from temp behavior
+    if (tempBehavior) {
+      details.depthStrategy.targetDepth = tempBehavior.depth;
+    }
+
+    // Select seasonal adjustment
+    const monthToSeason: Record<number, string> = { 1:'winter',2:'winter',3:'spring',4:'spring',5:'spring',6:'summer',7:'summer',8:'summer',9:'fall',10:'fall',11:'fall',12:'winter' };
+    const currentSeason = monthToSeason[input.month] || 'summer';
+    if (details.seasonalAdjustments[currentSeason]) {
+      const seasonal = details.seasonalAdjustments[currentSeason];
+      // Prepend seasonal tip to the main tips
+      rec.tips = [seasonal.tip, ...rec.tips].slice(0, 12);
+    }
+
+    rec.technicalDetails = details;
   }
 
   return rec;

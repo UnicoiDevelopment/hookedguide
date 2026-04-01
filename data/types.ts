@@ -242,4 +242,94 @@ export interface DetailedRecommendationOutput {
     notes: string;
     disclaimerUrl: string;
   };
+  technicalDetails?: TechnicalRecommendation;
+}
+
+// === TECHNICAL RECOMMENDATION DETAILS ===
+export interface TechnicalRecommendation {
+  rigging: {
+    hookType: string;
+    hookBrand?: string;
+    hookSize: string;
+    weightType: string;
+    weightSize: string;
+    weightNotes: string;
+    leaderLength?: string;
+    leaderMaterial?: string;
+    swivel?: string;
+    riggingSteps: string[];
+  };
+  lineSetup: {
+    mainLine: {
+      type: string;
+      brand?: string;
+      weight: string;
+      whyThisWeight: string;
+    };
+    leader?: {
+      type: string;
+      weight: string;
+      length: string;
+      connection: string;
+      whyLeader: string;
+    };
+  };
+  rodReelSetup: {
+    rodLength: string;
+    rodPower: string;
+    rodAction: string;
+    whyThisRod: string;
+    reelType: string;
+    reelGearRatio: string;
+    whyThisRatio: string;
+    reelBrakeNotes?: string;
+  };
+  presentation: {
+    castTarget: string;
+    castAngle: string;
+    letItFall: string;
+    retrieve: string;
+    speed: string;
+    cadence: string;
+    hookset: string;
+    afterHookset: string;
+    commonMistake: string;
+  };
+  depthStrategy: {
+    targetDepth: string;
+    howToFindIt: string;
+    structure: string;
+    positioning: string;
+    electronics?: string;
+    visualCues: string;
+  };
+  colorStrategy: {
+    primaryColor: string;
+    whyThisColor: string;
+    alternateColor: string;
+    whenToSwitch: string;
+    clearWaterColor: string;
+    dirtyWaterColor: string;
+    colorRules: string[];
+  };
+  sizeStrategy: {
+    recommendedSize: string;
+    whyThisSize: string;
+    upsizeWhen: string;
+    downsizeWhen: string;
+    matchTheHatch: string;
+  };
+  scentStrategy?: {
+    useScent: boolean;
+    recommendation: string;
+    products: string[];
+  };
+  seasonalAdjustments: Record<string, {
+    weight: string;
+    bait: string;
+    color: string;
+    depth: string;
+    speed: string;
+    tip: string;
+  }>;
 }

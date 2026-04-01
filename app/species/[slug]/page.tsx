@@ -20,6 +20,7 @@ import SeasonBadge from "@/components/ui/SeasonBadge";
 import RelatedContent from "@/components/ui/RelatedContent";
 import AdPlacement from "@/components/ads/AdPlacement";
 import AffiliateRecommendation from "@/components/gear/AffiliateRecommendation";
+import { technicalDetails } from "@/data/recommendations/technical-details";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -236,32 +237,56 @@ export default async function SpeciesPage({ params }: PageProps) {
             </section>
 
             {/* Best Techniques */}
-            <section>
-              <h2 className="font-heading text-2xl md:text-3xl font-bold mb-4">
+            <section id="techniques" className="mt-10">
+              <h2 className="font-heading text-2xl font-bold text-water-800 dark:text-sand-100 mb-4">
                 Best Techniques
               </h2>
-              <ul className="space-y-3">
-                {species.bestTechniques.map((technique) => {
-                  const techniqueSlug = toSlug(technique);
-                  const techniqueName = technique
-                    .replace(/-/g, " ")
-                    .replace(/\b\w/g, (c) => c.toUpperCase());
+              <div className="space-y-4">
+                {species.bestTechniques.slice(0, 5).map((technique, i) => {
+                  const slug = technique.toLowerCase().replace(/\s+/g, '-');
+                  const techKey = `${slug}:${species.slug}`;
+                  const techDetail = technicalDetails[techKey] || technicalDetails[slug];
                   return (
-                    <li key={technique}>
-                      <Link
-                        href={`/techniques/${techniqueSlug}`}
-                        className="text-water-600 dark:text-water-400 hover:underline font-medium"
-                      >
-                        {techniqueName}
-                      </Link>
-                      <span className="text-muted-foreground">
-                        {" "}
-                        — a proven method for targeting {species.name.toLowerCase()}.
-                      </span>
-                    </li>
+                    <div key={i} className="border border-sand-200 dark:border-water-700 rounded-lg overflow-hidden">
+                      <div className="p-4 flex items-center justify-between">
+                        <div>
+                          <Link href={`/techniques/${slug}`} className="font-heading font-semibold text-lg text-water-800 dark:text-sand-100 hover:text-copper-500">
+                            {i + 1}. {technique}
+                          </Link>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <Link href={`/rig-builder?species=${species.slug}`} className="text-xs text-copper-500 hover:text-copper-600 font-medium">
+                            Build this rig →
+                          </Link>
+                        </div>
+                      </div>
+                      {techDetail && (
+                        <details className="group border-t border-sand-200 dark:border-water-700">
+                          <summary className="px-4 py-3 cursor-pointer text-sm font-medium text-copper-500 hover:text-copper-600 flex items-center gap-1">
+                            Show setup details
+                          </summary>
+                          <div className="px-4 pb-4 text-sm space-y-2 text-water-700 dark:text-sand-200">
+                            <div className="grid grid-cols-2 gap-2">
+                              <div><span className="font-semibold">Hook:</span> {techDetail.rigging.hookType}</div>
+                              <div><span className="font-semibold">Weight:</span> {techDetail.rigging.weightType} {techDetail.rigging.weightSize}</div>
+                              <div><span className="font-semibold">Line:</span> {techDetail.lineSetup.mainLine.type} {techDetail.lineSetup.mainLine.weight}</div>
+                              <div><span className="font-semibold">Rod:</span> {techDetail.rodReelSetup.rodLength} {techDetail.rodReelSetup.rodPower} {techDetail.rodReelSetup.rodAction}</div>
+                              <div><span className="font-semibold">Reel:</span> {techDetail.rodReelSetup.reelType} {techDetail.rodReelSetup.reelGearRatio}</div>
+                              <div><span className="font-semibold">Color:</span> {techDetail.colorStrategy.primaryColor}</div>
+                              <div><span className="font-semibold">Bait size:</span> {techDetail.sizeStrategy.recommendedSize}</div>
+                            </div>
+                            <p className="text-xs italic text-water-500 dark:text-sand-300 mt-2">{techDetail.presentation.commonMistake}</p>
+                            <div className="flex gap-3 mt-2">
+                              <Link href={`/techniques/${slug}`} className="text-xs text-copper-500 hover:underline">Full technique guide →</Link>
+                              <Link href={`/rig-builder?species=${species.slug}`} className="text-xs text-copper-500 hover:underline">Build this rig →</Link>
+                            </div>
+                          </div>
+                        </details>
+                      )}
+                    </div>
                   );
                 })}
-              </ul>
+              </div>
             </section>
 
             {/* Mid-content ad */}
