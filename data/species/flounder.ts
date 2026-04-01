@@ -101,7 +101,7 @@ export const flounder: Species = {
         'Flounder often grab bait by the tail first and take time to turn and swallow it headfirst. The most common mistake is setting the hook too quickly. When you feel the initial thump, lower your rod tip, feed slack, and wait 5-10 seconds before slowly reeling tight and setting the hook with a sweep.',
     },
   ],
-  imagePath: '/images/species/flounder.jpg',
+  imagePath: '/images/species/flounder-id.jpg',
   imageAlt: 'Flat-bodied flounder with camouflage coloring lying on sandy bottom',
   imageCredit: 'Photo via Unsplash',
 };

@@ -85,7 +85,7 @@ export const smallmouthBass: Species = {
         'A 6\'6" to 7\' medium-power, fast-action spinning rod paired with a 2500-size spinning reel is the most versatile smallmouth setup. Spool with 6-8 lb fluorocarbon or 10-15 lb braid with a 6-8 lb fluoro leader. For crankbaits and jerkbaits, a medium-power baitcasting rod with 10-12 lb fluorocarbon works well. Lighter setups are preferred for smallmouth because they tend to be line-shy in clear water.',
     },
   ],
-  imagePath: '/images/species/smallmouth-bass.jpg',
+  imagePath: '/images/species/smallmouth-bass-id.jpg',
   imageAlt: 'Smallmouth bass showing its characteristic bronze coloring and vertical barring pattern',
   imageCredit: 'Photo via Unsplash',
 };

@@ -108,7 +108,7 @@ export const northernPike: Species = {
         'Late fall (October and November) and the immediate post-ice-out period in spring produce the largest pike. In fall, pike feed aggressively before winter and are at their heaviest weights. In early spring, pre-spawn females are laden with eggs and at peak size. Summer fishing tends to produce more but smaller fish, while ice fishing can occasionally yield trophy specimens on tip-ups.',
     },
   ],
-  imagePath: '/images/species/northern-pike.jpg',
+  imagePath: '/images/species/northern-pike-id.jpg',
   imageAlt: 'A northern pike with olive-green coloring and light spots displayed alongside a fishing rod',
   imageCredit: 'Photo via Unsplash',
 };

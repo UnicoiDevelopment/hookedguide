@@ -91,7 +91,7 @@ export const channelCatfish: Species = {
         'Channel catfish are excellent table fare with firm, white, mild-flavored meat. Fish from clean, flowing water taste best. The most popular preparation is deep-fried fillets or nuggets coated in seasoned cornmeal. They are also good blackened, grilled, or baked. Smaller channel cats (1-5 lbs) generally taste better than large ones. Remove the red lateral line meat to reduce any fishy taste. Farm-raised channel catfish from the grocery store is the same species.',
     },
   ],
-  imagePath: '/images/species/channel-catfish.jpg',
+  imagePath: '/images/species/channel-catfish-id.jpg',
   imageAlt: 'Channel catfish showing its spotted sides and deeply forked tail',
   imageCredit: 'Photo via Unsplash',
 };

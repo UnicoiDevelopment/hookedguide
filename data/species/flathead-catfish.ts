@@ -88,7 +88,7 @@ export const flatheadCatfish: Species = {
         'The world record flathead catfish is 123 lbs from Elk City Reservoir, Kansas. Fish over 50 pounds are caught regularly in quality rivers like the Mississippi, Missouri, Ohio, and their major tributaries. The average flathead is 3-20 pounds, but fish over 30 pounds are realistic targets in good habitat. Flatheads grow slowly but can live 25+ years, reaching trophy size only in waters with abundant forage and minimal harvest pressure.',
     },
   ],
-  imagePath: '/images/species/flathead-catfish.jpg',
+  imagePath: '/images/species/flathead-catfish-id.jpg',
   imageAlt: 'Flathead catfish showing its distinctive flattened head and mottled yellow-brown coloring',
   imageCredit: 'Photo via Unsplash',
 };

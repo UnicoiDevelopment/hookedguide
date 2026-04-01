@@ -104,7 +104,7 @@ export const yellowPerch: Species = {
         'Yellow perch are best prepared simply to let their delicate, sweet flavor shine. The classic preparation is a perch fry — fillets dipped in egg wash, coated in seasoned flour or breadcrumbs, and pan-fried in butter until golden. Perch can also be baked, broiled, or sauteed. The fillets are small and thin, so they cook quickly. Avoid heavy sauces or overpowering seasonings that mask the fish\'s natural flavor. A perch fry is a beloved tradition across the upper Midwest.',
     },
   ],
-  imagePath: '/images/species/yellow-perch.jpg',
+  imagePath: '/images/species/yellow-perch-id.jpg',
   imageAlt: 'A golden yellow perch with dark vertical bars held by an angler on a lake',
   imageCredit: 'Photo via Unsplash',
 };

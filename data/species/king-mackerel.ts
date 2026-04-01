@@ -96,7 +96,7 @@ export const kingMackerel: Species = {
         'King mackerel fishing is best from April through October along the Gulf and Atlantic coasts. The peak varies by location: South Florida year-round, Gulf Coast May-September, Carolinas June-October. Fall migration runs concentrate fish and can produce excellent fishing from September through November.',
     },
   ],
-  imagePath: '/images/species/king-mackerel.jpg',
+  imagePath: '/images/species/king-mackerel-id.jpg',
   imageAlt: 'Sleek king mackerel with steel-blue back and silver sides held on a charter boat',
   imageCredit: 'Photo via Unsplash',
 };

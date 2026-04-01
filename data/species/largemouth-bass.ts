@@ -96,7 +96,7 @@ export const largemouthBass: Species = {
         'Largemouth bass have mild, white, flaky meat that is perfectly edible. Fish from clean, cold water tend to taste best. Bass from warm, muddy water can have a somewhat muddy flavor. Most bass anglers practice catch and release, especially for larger fish, to maintain healthy populations. If you keep bass to eat, smaller fish (12-15 inches) generally taste better than large ones.',
     },
   ],
-  imagePath: '/images/species/largemouth-bass.jpg',
+  imagePath: '/images/species/largemouth-bass-id.jpg',
   imageAlt: 'Largemouth bass being held by an angler showing its distinctive large jaw and dark lateral stripe',
   imageCredit: 'Photo via Unsplash',
 };

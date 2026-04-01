@@ -70,8 +70,16 @@ export default function Home() {
   return (
     <div>
       {/* 1. Full-viewport Hero */}
-      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-water-900/80 via-water-800/60 to-water-900/90">
-        <div className="text-center px-4">
+      <section
+        className="relative min-h-screen flex items-center justify-center"
+        style={{
+          backgroundImage: 'url(/images/hero/hero-main.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-water-900/70 via-water-900/50 to-water-900/90" />
+        <div className="relative z-10 text-center px-4">
           <h1 className="font-heading text-4xl md:text-6xl font-bold text-copper-500 tracking-widest uppercase">
             HOOKEDGUIDE
           </h1>

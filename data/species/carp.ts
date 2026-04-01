@@ -128,7 +128,7 @@ export const carp: Species = {
         'Yes, fly fishing for carp has become one of the fastest-growing niches in fly fishing. Sight fishing for carp on shallow flats is often compared to stalking bonefish on saltwater flats. An 8-weight fly rod with a floating line and a long leader is the standard setup. Effective flies include woolly buggers, San Juan worms, crayfish patterns, and small nymphs in sizes 8 to 12. Carp are extremely spooky on the flats, requiring delicate presentations and long, accurate casts.',
     },
   ],
-  imagePath: '/images/species/carp.jpg',
+  imagePath: '/images/species/carp-id.jpg',
   imageAlt: 'A large golden-bronze common carp with prominent scales held by an angler near a lake',
   imageCredit: 'Photo via Unsplash',
 };

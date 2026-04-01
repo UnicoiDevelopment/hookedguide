@@ -80,7 +80,7 @@ export const spottedBass: Species = {
         'Drop-shotting is arguably the single most effective technique for spotted bass because they often suspend off the bottom over deep structure. Deep-diving crankbaits along bluff walls and ledges are also excellent. In winter, vertical jigging with blade baits and jigging spoons over schools of fish located on electronics is deadly. Spotted bass respond well to finesse presentations because they often inhabit clear water.',
     },
   ],
-  imagePath: '/images/species/spotted-bass.jpg',
+  imagePath: '/images/species/spotted-bass-id.jpg',
   imageAlt: 'Spotted bass showing the characteristic rows of spots below the lateral line',
   imageCredit: 'Photo via Unsplash',
 };

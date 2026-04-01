@@ -95,7 +95,7 @@ export const sheepshead: Species = {
         'The best sheepshead fishing is late winter through spring (January-April) when fish concentrate around structure for spawning. However, sheepshead can be caught year-round in most Gulf and Atlantic states. Fall also provides a secondary peak in feeding activity.',
     },
   ],
-  imagePath: '/images/species/sheepshead.jpg',
+  imagePath: '/images/species/sheepshead-id.jpg',
   imageAlt: 'Sheepshead with distinctive black and white vertical stripes held near dock pilings',
   imageCredit: 'Photo via Unsplash',
 };

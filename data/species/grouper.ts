@@ -96,7 +96,7 @@ export const grouper: Species = {
         'Heavy tackle is essential. Use a stout conventional rod rated for 50-80 lb line with a powerful reel. Spool with 65-80 lb braided line and use a 60-100 lb fluorocarbon leader. Heavy-duty circle hooks in 6/0-9/0 sizes are standard. You need enough backbone to turn a fish away from structure immediately.',
     },
   ],
-  imagePath: '/images/species/grouper.jpg',
+  imagePath: '/images/species/grouper-id.jpg',
   imageAlt: 'Large grouper with distinctive mottled brown coloring held near rocky reef structure',
   imageCredit: 'Photo via Unsplash',
 };

@@ -96,7 +96,7 @@ export const redSnapper: Species = {
         'A descending device is a weighted tool that returns a fish to depth after being brought up from deep water. Red snapper suffer barotrauma (expanded swim bladder, bulging eyes) from the pressure change and cannot swim back down on their own. NOAA now requires anglers to have a descending device or venting tool on board when fishing for reef species.',
     },
   ],
-  imagePath: '/images/species/red-snapper.jpg',
+  imagePath: '/images/species/red-snapper-id.jpg',
   imageAlt: 'Bright red snapper with vivid pinkish-red coloring held over deep blue water',
   imageCredit: 'Photo via Unsplash',
 };

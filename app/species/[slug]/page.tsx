@@ -155,13 +155,13 @@ export default async function SpeciesPage({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
-      {/* Hero */}
+      {/* Hero — use action photo if available, fall back to ID photo */}
       <HeroSection
         title={species.name}
         subtitle={species.scientificName}
         overlay={true}
         {...(species.imagePath
-          ? { backgroundImage: species.imagePath }
+          ? { backgroundImage: species.imagePath.replace('-id.jpg', '-action.jpg') }
           : {})}
       />
 

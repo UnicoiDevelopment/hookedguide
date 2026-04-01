@@ -98,7 +98,7 @@ export const musky: Species = {
         'The figure-eight is a boat-side maneuver where, at the end of each retrieve, the angler plunges the rod tip into the water and traces a wide figure-eight pattern with the lure. This triggers strikes from muskies that have followed the lure to the boat without committing. It is estimated that 15 to 25 percent of all musky catches come on the figure-eight. The key is making wide, smooth turns and keeping the lure moving at a consistent speed.',
     },
   ],
-  imagePath: '/images/species/musky.jpg',
+  imagePath: '/images/species/musky-id.jpg',
   imageAlt: 'A large muskellunge with dark vertical bars on a greenish body held by an angler at boatside',
   imageCredit: 'Photo via Unsplash',
 };

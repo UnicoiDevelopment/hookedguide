@@ -97,7 +97,7 @@ export const rainbowTrout: Species = {
         'Top rainbow trout fisheries include the White River system in Arkansas (world-class tailrace fishery), the San Juan River in New Mexico, the South Holston and Clinch Rivers in Tennessee, the Green River in Utah, the upper Sacramento and McCloud Rivers in California, and nearly any mountain stream in the Great Smoky Mountains. Western states like Montana, Idaho, Colorado, and Oregon have abundant wild trout streams. The Great Lakes tributaries offer outstanding steelhead runs.',
     },
   ],
-  imagePath: '/images/species/rainbow-trout.jpg',
+  imagePath: '/images/species/rainbow-trout-id.jpg',
   imageAlt: 'Rainbow trout showing its vibrant pink lateral stripe and spotted pattern in clear stream water',
   imageCredit: 'Photo via Unsplash',
 };

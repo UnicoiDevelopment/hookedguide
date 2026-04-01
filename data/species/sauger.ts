@@ -105,7 +105,7 @@ export const sauger: Species = {
         'Vertical jigging with a jig and minnow combination is the most consistent sauger technique. Use a 1/8 to 3/8 ounce jig head tipped with a live fathead or shiner minnow, bounced slowly along the bottom near channel edges, wing dams, or dam tailraces. Keep your jig in contact with or very close to the bottom — sauger are strict bottom feeders and rarely chase baits more than a few inches off the substrate. A sensitive rod with a braided main line helps detect the often subtle sauger bite.',
     },
   ],
-  imagePath: '/images/species/sauger.jpg',
+  imagePath: '/images/species/sauger-id.jpg',
   imageAlt: 'A sauger with dark saddle markings and spotted dorsal fin held by an angler on a river',
   imageCredit: 'Photo via Unsplash',
 };

@@ -108,7 +108,7 @@ export const stripedBass: Species = {
         'For freshwater reservoir stripers, a medium-heavy baitcasting setup with 20 to 30 pound braided line handles most situations. For live bait fishing, circle hooks in 5/0 to 8/0 are preferred. For surf fishing, a 10 to 11 foot surf rod with a large spinning reel spooled with 30 to 50 pound braid is standard. Use a monofilament or fluorocarbon leader of 30 to 50 pounds. Umbrella rigs, large swimbaits, and topwater plugs all require stout gear to handle these powerful fish.',
     },
   ],
-  imagePath: '/images/species/striped-bass.jpg',
+  imagePath: '/images/species/striped-bass-id.jpg',
   imageAlt: 'A silvery striped bass with prominent horizontal stripes held by an angler near the water',
   imageCredit: 'Photo via Unsplash',
 };

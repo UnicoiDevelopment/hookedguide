@@ -87,7 +87,7 @@ export const blueCatfish: Species = {
         'Fighting a large blue catfish requires heavy tackle. Use a 7-8 foot heavy-power rod with a baitcasting reel spooled with 50-80 lb braided line and a 40-60 lb mono or fluoro leader. When a big blue hits, let the rod load before setting the hook. They fight with powerful head shakes and bulldogging runs toward the bottom. Keep steady pressure and do not try to horse them in. Large blues can fight for 10-20 minutes. Use a large landing net or lip grips for boating.',
     },
   ],
-  imagePath: '/images/species/blue-catfish.jpg',
+  imagePath: '/images/species/blue-catfish-id.jpg',
   imageAlt: 'Large blue catfish showing its characteristic slate-blue coloring and straight anal fin',
   imageCredit: 'Photo via Unsplash',
 };

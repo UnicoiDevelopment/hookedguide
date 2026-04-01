@@ -97,7 +97,7 @@ export const redfish: Species = {
         'Yes, redfish are excellent table fare with firm, white, mild-flavored flesh. Slot-size fish (18-27 inches) taste best. They are famously prepared "blackened" Cajun style but are also delicious grilled, broiled, or baked. Larger bull reds over 30 inches tend to have coarser flesh and are best released.',
     },
   ],
-  imagePath: '/images/species/redfish.jpg',
+  imagePath: '/images/species/redfish-id.jpg',
   imageAlt: 'Angler holding a bronze-colored redfish with a visible black tail spot on a shallow grass flat',
   imageCredit: 'Photo via Unsplash',
 };

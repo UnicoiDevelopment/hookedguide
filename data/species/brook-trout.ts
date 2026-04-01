@@ -102,7 +102,7 @@ export const brookTrout: Species = {
         'Brook trout are widely considered one of the finest-tasting freshwater fish. Their flesh is delicate, mildly flavored, and ranges from white to pink depending on diet. They are excellent pan-fried in butter with simple seasoning. Due to conservation concerns with native populations, many anglers practice catch and release, especially in waters with wild, self-sustaining populations.',
     },
   ],
-  imagePath: '/images/species/brook-trout.jpg',
+  imagePath: '/images/species/brook-trout-id.jpg',
   imageAlt: 'A vibrant brook trout with worm-like markings on its back and red spots with blue halos',
   imageCredit: 'Photo via Unsplash',
 };

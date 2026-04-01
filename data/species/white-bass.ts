@@ -102,7 +102,7 @@ export const whiteBass: Species = {
         'White bass are significantly smaller (rarely exceeding 4 pounds vs. 50+ for stripers), deeper-bodied, and more laterally compressed. Their horizontal stripes are usually faint, broken, and incomplete — particularly below the lateral line — while striped bass have bold, unbroken stripes that extend the full length of the body. White bass also have a single tooth patch on the tongue, while striped bass have two parallel tooth patches. If in doubt, the body shape is the easiest distinction: white bass are chunky while striped bass are streamlined.',
     },
   ],
-  imagePath: '/images/species/white-bass.jpg',
+  imagePath: '/images/species/white-bass-id.jpg',
   imageAlt: 'A silvery white bass with faint horizontal stripes held by an angler on a reservoir',
   imageCredit: 'Photo via Unsplash',
 };

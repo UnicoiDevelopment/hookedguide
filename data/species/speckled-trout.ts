@@ -96,7 +96,7 @@ export const speckledTrout: Species = {
         'A medium-light to medium spinning rod in the 7-foot range paired with a 2500-3000 size reel spooled with 10-15 lb braided line and a 15-20 lb fluorocarbon leader is ideal. This setup handles everything from popping corks and live bait to soft plastics and topwater plugs.',
     },
   ],
-  imagePath: '/images/species/speckled-trout.jpg',
+  imagePath: '/images/species/speckled-trout-id.jpg',
   imageAlt: 'Speckled trout with distinctive black spots held over seagrass flats',
   imageCredit: 'Photo via Unsplash',
 };

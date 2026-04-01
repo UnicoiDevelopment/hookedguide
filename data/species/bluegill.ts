@@ -86,7 +86,7 @@ export const bluegill: Species = {
         'An ultralight spinning rod (4\'6" to 5\'6") paired with a 1000-size spinning reel spooled with 2-4 lb monofilament is ideal for bluegill fishing. This light setup lets you feel every bite and enjoy the fight of these scrappy little fish. A fly rod setup (3-5 weight, 7-8 feet) is also excellent and many anglers consider fly fishing for bluegill with poppers and small flies to be one of the most fun experiences in freshwater fishing.',
     },
   ],
-  imagePath: '/images/species/bluegill.jpg',
+  imagePath: '/images/species/bluegill-id.jpg',
   imageAlt: 'Colorful bluegill sunfish showing its distinctive dark ear flap and orange breast',
   imageCredit: 'Photo via Unsplash',
 };

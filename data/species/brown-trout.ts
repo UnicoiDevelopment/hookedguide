@@ -115,7 +115,7 @@ export const brownTrout: Species = {
         'There is no single best fly, as it depends on the season and conditions. A Woolly Bugger in olive or black is arguably the most versatile year-round pattern. For dry fly fishing, an Elk Hair Caddis or Parachute Adams covers most situations. Nymphing with a Pheasant Tail or Hare\'s Ear in sizes 14-18 is consistently productive. For trophy browns, large articulated streamers fished on sinking lines can trigger aggressive strikes.',
     },
   ],
-  imagePath: '/images/species/brown-trout.jpg',
+  imagePath: '/images/species/brown-trout-id.jpg',
   imageAlt: 'A brown trout with golden-brown coloring and distinctive red spots held above a clear stream',
   imageCredit: 'Photo via Unsplash',
 };

@@ -89,7 +89,7 @@ export const walleye: Species = {
         'Walleye has sweet, mild, flaky white meat that is widely considered the best-tasting freshwater fish. The classic preparation is a simple beer batter or light breading pan-fried in butter until golden. Walleye is also excellent baked, broiled, grilled on a cedar plank, or prepared as fish tacos. The fillets are delicate, so avoid heavy sauces that mask the natural flavor. Shore lunch tradition in Canada and Minnesota involves frying fresh-caught walleye fillets in a cast-iron skillet over a campfire, which many anglers consider the ultimate outdoor meal.',
     },
   ],
-  imagePath: '/images/species/walleye.jpg',
+  imagePath: '/images/species/walleye-id.jpg',
   imageAlt: 'Walleye held at water level showing its distinctive reflective golden eyes and olive-green body',
   imageCredit: 'Photo via Unsplash',
 };

@@ -85,7 +85,7 @@ export const crappie: Species = {
         'Crappie have sweet, mild, white flesh that is considered among the best-tasting freshwater fish. The most popular preparation is a simple pan-fry: coat fillets in seasoned cornmeal or fish breading and fry in oil at 350-375F for 2-3 minutes per side until golden. They are also excellent blackened, baked, or in fish tacos. Crappie fillets are thin and cook quickly, so avoid overcooking. Fresh crappie can also be eaten as sashimi in clean-water fisheries.',
     },
   ],
-  imagePath: '/images/species/crappie.jpg',
+  imagePath: '/images/species/crappie-id.jpg',
   imageAlt: 'Black crappie showing its distinctive speckled pattern held over calm lake water',
   imageCredit: 'Photo via Unsplash',
 };

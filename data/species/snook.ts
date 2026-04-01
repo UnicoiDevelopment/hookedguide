@@ -87,7 +87,7 @@ export const snook: Species = {
         'Snook are excellent table fare with firm, white, delicate meat that is often compared to the best grouper. The skin has a soapy taste and should always be removed before cooking. Snook fillets are delicious grilled, blackened, or pan-seared. However, harvest regulations are strict, so many anglers practice catch and release.',
     },
   ],
-  imagePath: '/images/species/snook.jpg',
+  imagePath: '/images/species/snook-id.jpg',
   imageAlt: 'Silver snook with prominent black lateral line held near mangrove shoreline',
   imageCredit: 'Photo via Unsplash',
 };

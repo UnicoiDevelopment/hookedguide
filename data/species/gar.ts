@@ -100,7 +100,7 @@ export const gar: Species = {
         'Alligator gar are dramatically larger (up to 300+ pounds vs. 50 pounds for longnose) and have a much broader, shorter snout resembling an alligator. Alligator gar have two rows of teeth on each side of the upper jaw, while longnose gar have a single row. Longnose gar have a much longer, narrower snout and are more widely distributed, found from the Great Lakes to the Gulf Coast. Alligator gar are restricted primarily to the lower Mississippi basin, Gulf Coast drainages, and Texas rivers.',
     },
   ],
-  imagePath: '/images/species/gar.jpg',
+  imagePath: '/images/species/gar-id.jpg',
   imageAlt: 'A longnose gar with an elongated snout and armored scales near the surface of a river',
   imageCredit: 'Photo via Unsplash',
 };

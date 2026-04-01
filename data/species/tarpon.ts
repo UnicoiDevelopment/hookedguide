@@ -87,7 +87,7 @@ export const tarpon: Species = {
         'Tarpon earned the nickname "silver king" due to their enormous, mirror-like silver scales that flash brilliantly in the sunlight, especially during their spectacular aerial displays. Their regal size, power, and the reverence anglers hold for them further cement the royal title.',
     },
   ],
-  imagePath: '/images/species/tarpon.jpg',
+  imagePath: '/images/species/tarpon-id.jpg',
   imageAlt: 'Large silver tarpon leaping out of the water with scales flashing in sunlight',
   imageCredit: 'Photo via Unsplash',
 };

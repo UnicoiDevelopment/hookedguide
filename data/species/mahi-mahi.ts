@@ -96,7 +96,7 @@ export const mahiMahi: Species = {
         'A medium-heavy spinning or conventional rod rated for 20-40 lb line works well for most mahi-mahi fishing. Use 30-40 lb braided main line with a 40-60 lb fluorocarbon leader. For trolling, standard offshore trolling rods with 30-50 lb class reels are appropriate. Fly anglers use 9-10 weight outfits.',
     },
   ],
-  imagePath: '/images/species/mahi-mahi.jpg',
+  imagePath: '/images/species/mahi-mahi-id.jpg',
   imageAlt: 'Brilliantly colored mahi-mahi with electric blue and golden-yellow coloring alongside a boat',
   imageCredit: 'Photo via Unsplash',
 };
