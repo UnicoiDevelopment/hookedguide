@@ -54,10 +54,6 @@ export default function AffiliateDisclosurePage() {
             HookedGuide earns from qualifying purchases.
           </li>
           <li>
-            <strong>Enigma Fishing</strong> — We are an affiliate partner of
-            Enigma Fishing.
-          </li>
-          <li>
             <strong>Mustad</strong> — We participate in the Mustad affiliate
             program.
           </li>

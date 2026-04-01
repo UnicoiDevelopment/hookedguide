@@ -1,44 +1,33 @@
 import Link from "next/link";
-import HeroSection from "@/components/ui/HeroSection";
+import type { Metadata } from "next";
+import { ChevronDown, Fish, Thermometer, Target } from "lucide-react";
 import SpeciesCard from "@/components/species/SpeciesCard";
-import TechniqueCard from "@/components/techniques/TechniqueCard";
 import AdPlacement from "@/components/ads/AdPlacement";
 import { allSpecies } from "@/data/species";
-import { allTechniques } from "@/data/techniques";
 import { allReviews } from "@/data/gear/reviews";
 import { stateMetadata } from "@/data/states";
 
-export const metadata = {
-  title: "HookedGuide — Your AI Fishing Guide | Species, Techniques & Gear",
+export const metadata: Metadata = {
+  title: "HookedGuide — Fish Smarter. | Species, Techniques & Gear",
   description:
-    "Your AI fishing guide. Species guides, gear recommendations, and fishing intelligence for every state. Find the best techniques, lures, and tackle.",
-  alternates: {
-    canonical: "https://hookedguide.com",
-  },
+    "Fish Smarter. Species guides, gear recommendations, and fishing intelligence for every state. Ask the Guide for personalized recommendations.",
+  alternates: { canonical: "https://hookedguide.com" },
   openGraph: {
-    title: "HookedGuide — Your AI Fishing Guide | Species, Techniques & Gear",
+    title: "HookedGuide — Fish Smarter.",
     description:
-      "Your AI fishing guide. Species guides, gear recommendations, and fishing intelligence for every state. Find the best techniques, lures, and tackle.",
+      "Fish Smarter. Species guides, gear recommendations, and fishing intelligence for every state.",
     url: "https://hookedguide.com",
   },
   twitter: {
-    title: "HookedGuide — Your AI Fishing Guide | Species, Techniques & Gear",
+    title: "HookedGuide — Fish Smarter.",
     description:
-      "Your AI fishing guide. Species guides, gear recommendations, and fishing intelligence for every state. Find the best techniques, lures, and tackle.",
+      "Fish Smarter. Species guides, gear recommendations, and fishing intelligence for every state.",
   },
 };
 
-function getCurrentSeason(): "spring" | "summer" | "fall" | "winter" {
-  const month = new Date().getMonth(); // 0-indexed
-  if (month >= 2 && month <= 4) return "spring";
-  if (month >= 5 && month <= 7) return "summer";
-  if (month >= 8 && month <= 10) return "fall";
-  return "winter";
-}
-
 function renderStars(rating: number): string {
   const full = Math.round(rating);
-  return "★".repeat(full) + "☆".repeat(5 - full);
+  return "\u2605".repeat(full) + "\u2606".repeat(5 - full);
 }
 
 const popularSpeciesSlugs = [
@@ -52,27 +41,24 @@ const popularSpeciesSlugs = [
   "smallmouth-bass",
 ];
 
-const popularTechniqueSlugs = [
-  "texas-rig",
-  "topwater",
-  "drop-shot",
-  "crankbait",
-  "jigging",
-  "live-bait",
+const testimonials = [
+  {
+    quote: "Finally, a fishing tool that actually understands conditions.",
+    author: "Placeholder Angler",
+  },
+  {
+    quote: "The Guide nailed my setup. Caught my PB on the first trip.",
+    author: "Placeholder Angler",
+  },
+  {
+    quote: "Better recommendations than most fishing buddies I know.",
+    author: "Placeholder Angler",
+  },
 ];
 
 export default function Home() {
-  const season = getCurrentSeason();
-  const seasonLabel = season.charAt(0).toUpperCase() + season.slice(1);
-
   const popularSpecies = popularSpeciesSlugs
     .map((slug) => allSpecies.find((s) => s.slug === slug))
-    .filter(Boolean);
-
-  const seasonalPicks = allSpecies.slice(0, 4);
-
-  const popularTechniques = popularTechniqueSlugs
-    .map((slug) => allTechniques.find((t) => t.slug === slug))
     .filter(Boolean);
 
   const featuredReviews = allReviews.slice(0, 4);
@@ -83,27 +69,87 @@ export default function Home() {
 
   return (
     <div>
-      {/* 1. Hero Section */}
-      <HeroSection
-        title="Your AI Fishing Guide"
-        subtitle="Species guides, gear recommendations, and fishing intelligence for every state."
-        cta={{ label: "What Should I Fish With?", href: "/tool" }}
-        backgroundGradient="bg-gradient-to-br from-water-700 via-water-500 to-forest-600"
-      />
-      <div className="bg-gradient-to-br from-water-700 via-water-500 to-forest-600 -mt-8 pb-8 text-center">
-        <Link
-          href="/species"
-          className="text-white hover:text-white/80 transition-colors text-sm font-medium"
-        >
-          Explore Species &rarr;
-        </Link>
-      </div>
+      {/* 1. Full-viewport Hero */}
+      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-water-900/80 via-water-800/60 to-water-900/90">
+        <div className="text-center px-4">
+          <h1 className="font-heading text-4xl md:text-6xl font-bold text-copper-500 tracking-widest uppercase">
+            HOOKEDGUIDE
+          </h1>
+          <p className="font-body text-xl md:text-2xl font-light text-white mt-4">
+            Fish Smarter.
+          </p>
+          <div className="mt-8 flex gap-4 justify-center">
+            <Link
+              href="/guide"
+              className="bg-copper-500 text-white px-8 py-3 rounded-lg font-medium hover:bg-copper-600 transition-colors"
+            >
+              Ask the Guide
+            </Link>
+            <Link
+              href="/rig-builder"
+              className="border border-white/40 text-white px-8 py-3 rounded-lg font-medium hover:bg-white/10 transition-colors"
+            >
+              Build a Rig
+            </Link>
+          </div>
+        </div>
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+          <ChevronDown className="w-8 h-8 text-white/60" />
+        </div>
+      </section>
 
-      {/* 2. Popular Species Section */}
-      <section className="py-12 md:py-16">
+      {/* 2. How It Works */}
+      <section className="py-16 bg-white dark:bg-water-900">
+        <div className="max-w-5xl mx-auto px-4">
+          <h2 className="font-heading uppercase tracking-wider text-water-500 text-center text-sm font-semibold mb-8">
+            HOW IT WORKS
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center p-6">
+              <Fish className="w-10 h-10 text-copper-500 mx-auto mb-4" />
+              <h3 className="font-heading font-semibold text-water-900 dark:text-white mb-2">
+                Tell us what you&apos;re after
+              </h3>
+              <p className="text-sm text-water-600 dark:text-water-300">
+                Select your target species, location, and conditions.
+              </p>
+            </div>
+            <div className="text-center p-6">
+              <Thermometer className="w-10 h-10 text-copper-500 mx-auto mb-4" />
+              <h3 className="font-heading font-semibold text-water-900 dark:text-white mb-2">
+                We analyze the conditions
+              </h3>
+              <p className="text-sm text-water-600 dark:text-water-300">
+                Water temp, weather, time of day, moon phase — it all matters.
+              </p>
+            </div>
+            <div className="text-center p-6">
+              <Target className="w-10 h-10 text-copper-500 mx-auto mb-4" />
+              <h3 className="font-heading font-semibold text-water-900 dark:text-white mb-2">
+                Get your exact setup
+              </h3>
+              <p className="text-sm text-water-600 dark:text-water-300">
+                Technique, lure, line, rod — everything you need, down to the
+                color.
+              </p>
+            </div>
+          </div>
+          <div className="mt-8 text-center">
+            <Link
+              href="/guide"
+              className="text-copper-500 font-medium hover:text-copper-600 transition-colors"
+            >
+              Ask the Guide &rarr;
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Popular Species */}
+      <section className="py-16 bg-sand-50 dark:bg-water-800">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="font-heading font-semibold uppercase text-water-500 tracking-wider mb-8">
-            Popular Species
+          <h2 className="font-heading uppercase tracking-wider text-water-500 text-center text-sm font-semibold mb-8">
+            POPULAR SPECIES
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {popularSpecies.map((species) => (
@@ -113,7 +159,7 @@ export default function Home() {
           <div className="mt-8 text-center">
             <Link
               href="/species"
-              className="text-water-600 hover:text-water-700 font-medium transition-colors"
+              className="text-copper-500 font-medium hover:text-copper-600 transition-colors"
             >
               View All Species &rarr;
             </Link>
@@ -121,87 +167,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. Ad Placement */}
-      <AdPlacement id="ad-below-hero" />
-
-      {/* 4. Seasonal Spotlight */}
-      <section className="py-12 md:py-16 bg-sand-50 dark:bg-water-900">
+      {/* 4. Featured Gear */}
+      <section className="py-16 bg-white dark:bg-water-900">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="font-heading font-semibold uppercase text-water-500 tracking-wider mb-8">
-            Fishing This {seasonLabel}
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {seasonalPicks.map((species) => (
-              <SpeciesCard key={species.slug} species={species} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 5. Technique Highlights */}
-      <section className="py-12 md:py-16">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="font-heading font-semibold uppercase text-water-500 tracking-wider mb-8">
-            Popular Techniques
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {popularTechniques.map((technique) => (
-              <TechniqueCard key={technique!.slug} technique={technique!} />
-            ))}
-          </div>
-          <div className="mt-8 text-center">
-            <Link
-              href="/techniques"
-              className="text-water-600 hover:text-water-700 font-medium transition-colors"
-            >
-              View All Techniques &rarr;
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. Ad Placement */}
-      <AdPlacement id="ad-mid-content" />
-
-      {/* 7. Find Your State */}
-      <section className="py-12 md:py-16 bg-sand-50 dark:bg-water-900">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="font-heading font-semibold uppercase text-water-500 tracking-wider mb-8">
-            Fishing Regulations by State
-          </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-3">
-            {sortedStates.map((state) => (
-              <Link
-                key={state.slug}
-                href={`/regulations/${state.slug}`}
-                className="text-sm text-water-700 dark:text-water-300 hover:text-copper-600 dark:hover:text-copper-400 transition-colors"
-              >
-                {state.name}{" "}
-                <span className="text-water-400 dark:text-water-500">
-                  ({state.abbreviation})
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 8. Gear Reviews */}
-      <section className="py-12 md:py-16">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="font-heading font-semibold uppercase text-water-500 tracking-wider mb-8">
-            Gear Reviews
+          <h2 className="font-heading uppercase tracking-wider text-water-500 text-center text-sm font-semibold mb-8">
+            FEATURED GEAR
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {featuredReviews.map((review) => (
               <Link
                 key={review.slug}
-                href={`/gear/${review.slug}`}
-                className="block bg-white dark:bg-water-800 rounded-lg shadow-sm hover:shadow-md transition-shadow p-5"
+                href={`/gear/reviews/${review.slug}`}
+                className="block bg-sand-50 dark:bg-water-800 rounded-lg p-6 hover:shadow-md transition-shadow"
               >
-                <p className="text-xs font-medium uppercase text-water-400 dark:text-water-500 tracking-wide mb-1">
-                  {review.category}
-                </p>
                 <h3 className="font-heading font-semibold text-water-900 dark:text-white mb-1">
                   {review.productName}
                 </h3>
@@ -219,43 +197,68 @@ export default function Home() {
           </div>
           <div className="mt-8 text-center">
             <Link
-              href="/gear"
-              className="text-water-600 hover:text-water-700 font-medium transition-colors"
+              href="/gear/reviews"
+              className="text-copper-500 font-medium hover:text-copper-600 transition-colors"
             >
-              View All Gear &rarr;
+              See All Gear Reviews &rarr;
             </Link>
           </div>
         </div>
       </section>
 
-      {/* 9. Newsletter CTA */}
-      <section className="bg-gradient-to-r from-copper-600 to-copper-500 py-12 md:py-16">
-        <div className="max-w-2xl mx-auto px-4 text-center">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">
-            Never miss a bite.
+      {/* 5. Testimonials */}
+      <section className="py-16 bg-sand-50 dark:bg-water-800">
+        <div className="max-w-5xl mx-auto px-4">
+          <h2 className="font-heading uppercase tracking-wider text-water-500 text-center text-sm font-semibold mb-8">
+            WHAT ANGLERS ARE SAYING
           </h2>
-          <p className="text-white/80 mb-8">
-            Get fishing tips, gear reviews, and seasonal advice delivered to
-            your inbox.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Your email address"
-              className="flex-1 px-4 py-3 rounded-lg text-water-900 placeholder-water-400 focus:outline-none focus:ring-2 focus:ring-white"
-              aria-label="Email address"
-            />
-            <button
-              type="button"
-              className="px-6 py-3 bg-water-800 text-white font-medium rounded-lg hover:bg-water-900 transition-colors"
-            >
-              Subscribe
-            </button>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {testimonials.map((t, i) => (
+              <div
+                key={i}
+                className="bg-white dark:bg-water-700 rounded-lg p-6"
+              >
+                <p className="italic text-water-700 dark:text-water-200 mb-4">
+                  &ldquo;{t.quote}&rdquo;
+                </p>
+                <p className="text-sm font-medium text-water-500 dark:text-water-400">
+                  &mdash; {t.author}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* 10. Ad Placement */}
+      {/* 6. Explore by State */}
+      <section className="py-16 bg-white dark:bg-water-900">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="font-heading uppercase tracking-wider text-water-500 text-center text-sm font-semibold mb-4">
+            EXPLORE BY STATE
+          </h2>
+          <p className="text-center text-water-600 dark:text-water-300 mb-8">
+            Find regulations, top waters, and species in your state
+          </p>
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
+            {sortedStates.map((state) => (
+              <Link
+                key={state.slug}
+                href={`/regulations/${state.slug}`}
+                className="block text-center bg-sand-50 dark:bg-water-800 rounded-lg p-2 hover:shadow-sm hover:bg-sand-100 dark:hover:bg-water-700 transition-all"
+              >
+                <span className="block text-sm font-semibold text-water-700 dark:text-water-200">
+                  {state.abbreviation}
+                </span>
+                <span className="block text-xs text-water-500 dark:text-water-400">
+                  {state.name}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 7. Ad Placement */}
       <AdPlacement id="ad-footer" />
     </div>
   );

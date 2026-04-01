@@ -6,26 +6,22 @@ import { usePathname } from 'next/navigation';
 import {
   House,
   Fish,
+  Compass,
   Wrench,
-  Package,
   Menu,
   X,
   BookOpen,
+  Package,
   Scale,
   Info,
-  Mail,
 } from 'lucide-react';
 
 const moreLinks = [
-  { label: 'Home', href: '/', icon: House },
-  { label: 'Species', href: '/species', icon: Fish },
   { label: 'Techniques', href: '/techniques', icon: BookOpen },
   { label: 'Gear', href: '/gear', icon: Package },
   { label: 'Knots', href: '/knots', icon: BookOpen },
-  { label: 'What Should I Fish With?', href: '/tool', icon: Wrench },
   { label: 'Regulations', href: '/regulations', icon: Scale },
   { label: 'About', href: '/about', icon: Info },
-  { label: 'Contact', href: '/contact', icon: Mail },
 ];
 
 export default function MobileNav() {
@@ -55,6 +51,25 @@ export default function MobileNav() {
             <span className="font-body text-[10px] font-medium">Home</span>
           </Link>
 
+          {/* The Guide - Prominent Center */}
+          <Link
+            href="/guide"
+            className="flex flex-col items-center gap-0.5 px-2 py-1"
+          >
+            <span
+              className={`flex h-10 w-10 items-center justify-center rounded-full shadow-md ${
+                isActive('/guide')
+                  ? 'bg-copper-600'
+                  : 'bg-copper-500'
+              } text-white transition-colors`}
+            >
+              <Compass className="h-5 w-5" />
+            </span>
+            <span className="font-body text-[10px] font-medium text-copper-500">
+              The Guide
+            </span>
+          </Link>
+
           {/* Species */}
           <Link
             href="/species"
@@ -68,36 +83,17 @@ export default function MobileNav() {
             <span className="font-body text-[10px] font-medium">Species</span>
           </Link>
 
-          {/* Tool - Prominent Center Button */}
+          {/* Rig Builder */}
           <Link
-            href="/tool"
-            className="flex flex-col items-center gap-0.5 px-2 py-1"
-          >
-            <span
-              className={`flex h-10 w-10 items-center justify-center rounded-full shadow-md ${
-                isActive('/tool')
-                  ? 'bg-copper-600'
-                  : 'bg-copper-500'
-              } text-white transition-colors`}
-            >
-              <Wrench className="h-5 w-5" />
-            </span>
-            <span className="font-body text-[10px] font-medium text-copper-500">
-              Tool
-            </span>
-          </Link>
-
-          {/* Gear */}
-          <Link
-            href="/gear"
+            href="/rig-builder"
             className={`flex flex-col items-center gap-0.5 px-2 py-1 ${
-              isActive('/gear')
+              isActive('/rig-builder')
                 ? 'text-copper-500'
                 : 'text-water-500 dark:text-sand-300'
             }`}
           >
-            <Package className="h-5 w-5" />
-            <span className="font-body text-[10px] font-medium">Gear</span>
+            <Wrench className="h-5 w-5" />
+            <span className="font-body text-[10px] font-medium">Rig</span>
           </Link>
 
           {/* More */}
@@ -169,7 +165,6 @@ export default function MobileNav() {
           </div>
         </nav>
 
-        {/* Safe area padding for devices with home indicator */}
         <div className="h-safe-area pb-6" />
       </div>
     </>

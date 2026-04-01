@@ -120,73 +120,6 @@ export const affiliateProducts: AffiliateProduct[] = [
     price: '$3.99'
   },
 
-  // Enigma Fishing Products (20% commission, priority: 20)
-  {
-    id: 'enigma-baitcasting-rod-mh',
-    name: 'Enigma Fishing IPPON Series Baitcasting Rod — Medium Heavy',
-    description: 'Tournament-quality baitcasting rod with Fuji guides and Toray carbon blank. Perfect for Texas rigs, jigs, and spinnerbaits.',
-    brand: 'Enigma Fishing',
-    program: 'enigma',
-    commission: 20,
-    affiliateUrl: '',
-    imageAlt: 'Enigma Fishing IPPON Baitcasting Rod Medium Heavy',
-    tags: ['rod', 'baitcasting', 'bass', 'medium-heavy', 'texas-rig', 'jig', 'spinnerbait'],
-    priority: 20,
-    price: '$149.99'
-  },
-  {
-    id: 'enigma-spinning-rod-ml',
-    name: 'Enigma Fishing IPPON Series Spinning Rod — Medium Light',
-    description: 'Sensitive spinning rod for finesse techniques. Great for drop shot, ned rig, crappie, and trout.',
-    brand: 'Enigma Fishing',
-    program: 'enigma',
-    commission: 20,
-    affiliateUrl: '',
-    imageAlt: 'Enigma Fishing IPPON Spinning Rod Medium Light',
-    tags: ['rod', 'spinning', 'crappie', 'trout', 'panfish', 'medium-light', 'drop-shot', 'ned-rig', 'finesse'],
-    priority: 20,
-    price: '$129.99'
-  },
-  {
-    id: 'enigma-baitcasting-reel',
-    name: 'Enigma Fishing Opus Baitcasting Reel',
-    description: 'Smooth 7.3:1 gear ratio baitcasting reel with 20 lb drag. Carbon fiber drag system.',
-    brand: 'Enigma Fishing',
-    program: 'enigma',
-    commission: 20,
-    affiliateUrl: '',
-    imageAlt: 'Enigma Fishing Opus Baitcasting Reel',
-    tags: ['reel', 'baitcasting', 'bass', 'medium-heavy'],
-    priority: 20,
-    price: '$179.99'
-  },
-  {
-    id: 'enigma-spinning-reel',
-    name: 'Enigma Fishing Centris Spinning Reel — 2500',
-    description: 'Lightweight spinning reel with smooth drag system. Perfect for finesse bass, trout, and crappie.',
-    brand: 'Enigma Fishing',
-    program: 'enigma',
-    commission: 20,
-    affiliateUrl: '',
-    imageAlt: 'Enigma Fishing Centris Spinning Reel 2500',
-    tags: ['reel', 'spinning', 'trout', 'crappie', 'bass', 'finesse'],
-    priority: 20,
-    price: '$149.99'
-  },
-  {
-    id: 'enigma-fluorocarbon-line',
-    name: 'Enigma Fishing Fluorocarbon Line 12 lb',
-    description: '100% fluorocarbon with low stretch and near-invisible underwater. Ideal main line for bass.',
-    brand: 'Enigma Fishing',
-    program: 'enigma',
-    commission: 20,
-    affiliateUrl: '',
-    imageAlt: 'Enigma Fishing Fluorocarbon Line 12lb',
-    tags: ['line', 'fluorocarbon', 'bass', 'walleye', 'clear-water'],
-    priority: 20,
-    price: '$19.99'
-  },
-
   // Pure Fishing / Berkley Products (10% commission, priority: 10)
   {
     id: 'berkley-powerbait-trout',
@@ -390,7 +323,7 @@ export const affiliateProducts: AffiliateProduct[] = [
   {
     id: 'garmin-echomap',
     name: 'Garmin ECHOMAP UHD2 63sv',
-    description: 'Advanced fish finder with SideVü and ClearVü scanning sonar plus detailed mapping. For serious anglers.',
+    description: 'Advanced fish finder with SideVu and ClearVu scanning sonar plus detailed mapping. For serious anglers.',
     brand: 'Garmin',
     program: 'bass-pro',
     commission: 5,

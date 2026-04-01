@@ -20,10 +20,10 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "HookedGuide — Your AI Fishing Guide",
+    default: "HookedGuide — Fish Smarter.",
     template: "%s | HookedGuide",
   },
-  description: "Your AI fishing guide. Species guides, gear recommendations, and fishing intelligence for every state. Find the best techniques, lures, and tackle.",
+  description: "Fish Smarter. Species guides, gear recommendations, and fishing intelligence for every state. Find the best techniques, lures, and tackle.",
   metadataBase: new URL('https://hookedguide.com'),
   openGraph: {
     siteName: 'HookedGuide',
@@ -43,7 +43,7 @@ const organizationJsonLd = {
   "@type": "Organization",
   name: "HookedGuide",
   url: "https://hookedguide.com",
-  description: "Your AI Fishing Guide — Species guides, gear recommendations, and fishing intelligence for every state.",
+  description: "Fish Smarter. Species guides, gear recommendations, and fishing intelligence for every state.",
   logo: "https://hookedguide.com/logo.png",
 };
 

@@ -5,7 +5,7 @@ export const gearCategories: GearCategory[] = [
     slug: 'best-bass-rods-2026',
     name: 'Best Bass Rods 2026',
     description: 'Our picks for the best bass fishing rods in 2026, covering baitcasting and spinning setups for every budget and technique.',
-    products: ['enigma-baitcasting-rod-mh', 'shakespeare-ugly-stik'],
+    products: ['shakespeare-ugly-stik'],
     faq: [
       { question: 'What power and action rod is best for bass fishing?', answer: 'A medium-heavy power, fast action rod is the most versatile bass rod. It handles Texas rigs, jigs, spinnerbaits, and most other bass techniques.' },
       { question: 'Should I use a baitcasting or spinning rod for bass?', answer: 'Baitcasting rods are preferred for most bass techniques due to better accuracy and power. Spinning rods are better for finesse techniques like drop shot and ned rig.' },
@@ -16,7 +16,7 @@ export const gearCategories: GearCategory[] = [
     slug: 'best-spinning-reels-2026',
     name: 'Best Spinning Reels 2026',
     description: 'Top spinning reels for freshwater and saltwater fishing, from budget-friendly to premium options.',
-    products: ['enigma-spinning-reel', 'penn-battle-iii', 'penn-slammer-iv'],
+    products: ['penn-battle-iii', 'penn-slammer-iv'],
     faq: [
       { question: 'What size spinning reel do I need?', answer: 'Size 2500 for bass/trout/crappie, 3000-4000 for inshore saltwater, 5000+ for offshore and surf fishing.' },
       { question: 'What gear ratio is best for a spinning reel?', answer: '6.2:1 is the most versatile. Higher ratios (7:1+) for finesse, lower (5.2:1) for cranking and saltwater.' },
@@ -27,7 +27,7 @@ export const gearCategories: GearCategory[] = [
     slug: 'best-baitcasting-reels-2026',
     name: 'Best Baitcasting Reels 2026',
     description: 'The best baitcasting reels for bass fishing and beyond, with options for beginners through pros.',
-    products: ['enigma-baitcasting-reel', 'abu-garcia-revo-reel'],
+    products: ['abu-garcia-revo-reel'],
     faq: [
       { question: 'Why do baitcasting reels backlash?', answer: 'Backlash occurs when the spool spins faster than line leaves. Modern reels have braking systems to minimize this. Start with brakes set high and reduce as you improve.' },
       { question: 'What gear ratio should I choose?', answer: '7.1:1 is versatile for most bass techniques. 6.3:1 for crankbaits and spinnerbaits. 8.1:1+ for pitching, flipping, and topwater.' },
@@ -60,7 +60,7 @@ export const gearCategories: GearCategory[] = [
     slug: 'best-fluorocarbon-line',
     name: 'Best Fishing Line (Fluorocarbon)',
     description: 'Top fluorocarbon lines for clear water fishing, leader material, and main line applications.',
-    products: ['enigma-fluorocarbon-line', 'berkley-trilene-fluorocarbon'],
+    products: ['berkley-trilene-fluorocarbon'],
     faq: [
       { question: 'When should I use fluorocarbon?', answer: 'Use fluorocarbon in clear water, for finesse techniques, and as leader material with braided main line. Its near-invisibility gives you an edge with line-shy fish.' },
       { question: 'Can I use fluorocarbon as a main line?', answer: 'Yes, on baitcasting reels. It is stiffer than mono and can cause issues on spinning reels. Many anglers use braid with a fluorocarbon leader instead.' },
@@ -79,17 +79,6 @@ export const gearCategories: GearCategory[] = [
     ]
   },
   {
-    slug: 'best-crappie-jigs',
-    name: 'Best Crappie Jigs',
-    description: 'The most effective crappie jigs, tubes, and hair jigs for catching slabs year-round.',
-    products: ['mustad-jig-head-1-8', 'mustad-aberdeen-hook-2'],
-    faq: [
-      { question: 'What size jig is best for crappie?', answer: '1/16 oz is the most versatile crappie jig weight. Use 1/32 oz for shallow/calm water, 1/8 oz for deeper water or current.' },
-      { question: 'What color crappie jig works best?', answer: 'Chartreuse, white, and pink are top producers in most water. Use brighter colors in stained water and more natural colors (silver, smoke) in clear water.' },
-      { question: 'Tube jig or hair jig for crappie?', answer: 'Both work great. Tubes have more action and allow color variety. Hair jigs have a subtler fall and excel in cold water. Carry both.' },
-    ]
-  },
-  {
     slug: 'best-bass-lures',
     name: 'Best Bass Lures',
     description: 'Essential bass lures every angler needs in their tackle box, from soft plastics to hard baits.',
@@ -98,39 +87,6 @@ export const gearCategories: GearCategory[] = [
       { question: 'What is the single best bass lure?', answer: 'A green pumpkin soft plastic worm on a Texas rig. It catches bass in every state, every season, and every water type. If you only carry one lure, this is it.' },
       { question: 'How many bass lures do I really need?', answer: 'Start with 5 essentials: soft plastic worm (Texas rig), spinnerbait, square bill crankbait, topwater popper, and a jig. These cover 90% of bass fishing situations.' },
       { question: 'What lure color works in any water?', answer: 'Green pumpkin is the most versatile soft plastic color. For hard baits: shad/silver in clear water, chartreuse/white in stained water.' },
-    ]
-  },
-  {
-    slug: 'best-catfish-bait',
-    name: 'Best Catfish Bait',
-    description: 'Proven catfish baits from stink bait to cut bait, covering channel cats, blues, and flatheads.',
-    products: ['mustad-circle-hook-8-0', 'mustad-circle-hook-4-0'],
-    faq: [
-      { question: 'What is the best bait for channel catfish?', answer: 'Stink bait/punch bait for numbers, fresh cut shad for larger fish. Chicken liver is a classic bank fishing option. All work best in water above 65F.' },
-      { question: 'What bait catches the biggest catfish?', answer: 'Fresh cut skipjack herring is the top trophy catfish bait. For flatheads, live bluegill or live shad is king — flatheads strongly prefer live bait.' },
-      { question: 'Should I use circle hooks for catfish?', answer: 'Yes. Circle hooks are far better for catfish — they result in corner-of-mouth hookups, making catch and release safer and hookset easier.' },
-    ]
-  },
-  {
-    slug: 'best-fly-rod-beginners',
-    name: 'Best Fly Fishing Rod for Beginners',
-    description: 'Entry-level fly rods and outfits that make learning to fly fish easier without breaking the bank.',
-    products: ['frabill-landing-net', 'simms-g3-waders'],
-    faq: [
-      { question: 'What weight fly rod should a beginner start with?', answer: 'A 5-weight, 9-foot rod is the best all-around starter. It handles trout, panfish, and small bass. A 4-weight is better if you only fish small streams.' },
-      { question: 'Should I buy a fly rod combo or build my own setup?', answer: 'Start with a combo outfit ($150-300). It ensures your rod, reel, and line are properly matched. Build custom setups once you know your preferences.' },
-      { question: 'How hard is fly fishing to learn?', answer: 'The basic overhead cast takes a few hours to learn. Becoming proficient takes a season of practice. Taking a casting lesson dramatically accelerates learning.' },
-    ]
-  },
-  {
-    slug: 'best-fishing-coolers',
-    name: 'Best Coolers for Fishing',
-    description: 'Rugged coolers built for fishing trips, from hard-sided boat coolers to portable soft coolers for wading.',
-    products: ['yeti-tundra-45', 'yeti-hopper-flip-12'],
-    faq: [
-      { question: 'Is YETI worth the price?', answer: 'YETI coolers are extremely durable and hold ice for days. If you fish frequently and need reliable ice retention, yes. For occasional use, budget rotomolded coolers work fine.' },
-      { question: 'Hard cooler or soft cooler for fishing?', answer: 'Hard coolers for boats and trucks — better ice retention and can double as a seat. Soft coolers for kayaks, wading, and portability.' },
-      { question: 'How long will a YETI keep ice?', answer: 'A YETI Tundra 45 keeps ice 3-5 days in typical conditions. Pre-chill the cooler, use block ice, and keep it in shade for maximum retention.' },
     ]
   },
   {
@@ -145,24 +101,14 @@ export const gearCategories: GearCategory[] = [
     ]
   },
   {
-    slug: 'best-tackle-bags',
-    name: 'Best Tackle Bags',
-    description: 'Tackle bags, boxes, and storage systems to keep your gear organized and accessible on the water.',
-    products: ['plano-tackle-box', 'piscifun-tackle-bag'],
+    slug: 'best-fishing-coolers',
+    name: 'Best Coolers for Fishing',
+    description: 'Rugged coolers built for fishing trips, from hard-sided boat coolers to portable soft coolers for wading.',
+    products: ['yeti-tundra-45', 'yeti-hopper-flip-12'],
     faq: [
-      { question: 'Tackle bag or tackle box?', answer: 'Bags are more versatile — they hold utility boxes plus extras like pliers, line, and snacks. Hard boxes protect lures better and work well in boats. Many anglers use both.' },
-      { question: 'How should I organize my tackle?', answer: 'Separate by technique or species. One tray for Texas rig supplies, one for crankbaits, etc. Label your trays and keep your most-used items on top.' },
-    ]
-  },
-  {
-    slug: 'best-fishing-apparel',
-    name: 'Best Fishing Apparel',
-    description: 'Sun-protective shirts, quick-dry shorts, hats, and layers designed for long days on the water.',
-    products: ['columbia-pfg-shirt', 'columbia-pfg-shorts', 'columbia-pfg-hat', 'columbia-terminal-tackle-hoodie'],
-    faq: [
-      { question: 'Do I need special fishing clothes?', answer: 'UPF-rated shirts and hats make a huge difference for sun protection. Quick-dry fabrics keep you comfortable. Regular clothes work but fishing apparel is worth it for frequent anglers.' },
-      { question: 'What UPF rating should fishing shirts have?', answer: 'UPF 30 is good, UPF 50 is ideal. Both block 97%+ of UV rays. Light colors stay cooler but dark colors offer slightly better UV protection.' },
-      { question: 'What should I wear fishing in summer?', answer: 'Long-sleeve UPF shirt (lighter than sunscreen reapplication), quick-dry shorts, wide-brim hat, polarized sunglasses, and buff/neck gaiter for sun protection.' },
+      { question: 'Is YETI worth the price?', answer: 'YETI coolers are extremely durable and hold ice for days. If you fish frequently and need reliable ice retention, yes. For occasional use, budget rotomolded coolers work fine.' },
+      { question: 'Hard cooler or soft cooler for fishing?', answer: 'Hard coolers for boats and trucks — better ice retention and can double as a seat. Soft coolers for kayaks, wading, and portability.' },
+      { question: 'How long will a YETI keep ice?', answer: 'A YETI Tundra 45 keeps ice 3-5 days in typical conditions. Pre-chill the cooler, use block ice, and keep it in shade for maximum retention.' },
     ]
   },
 ];

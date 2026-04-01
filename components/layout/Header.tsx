@@ -6,12 +6,12 @@ import { useTheme } from 'next-themes';
 import { Anchor, Sun, Moon, Menu, X } from 'lucide-react';
 
 const navLinks = [
+  { label: 'The Guide', href: '/guide', highlight: true },
   { label: 'Species', href: '/species' },
   { label: 'Techniques', href: '/techniques' },
+  { label: 'Rig Builder', href: '/rig-builder' },
   { label: 'Gear', href: '/gear' },
   { label: 'Knots', href: '/knots' },
-  { label: 'Tool', href: '/tool' },
-  { label: 'Regulations', href: '/regulations' },
 ];
 
 export default function Header() {
@@ -23,7 +23,6 @@ export default function Header() {
     setMounted(true);
   }, []);
 
-  // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (mobileOpen) {
       document.body.style.overflow = 'hidden';
@@ -52,7 +51,11 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="font-body text-sm font-medium text-water-700 transition-colors hover:text-copper-500 dark:text-sand-200 dark:hover:text-copper-400"
+              className={
+                link.highlight
+                  ? 'rounded-lg border border-copper-500 px-3 py-1.5 font-body text-sm font-semibold text-copper-500 transition-colors hover:bg-copper-500 hover:text-white dark:text-copper-400 dark:hover:bg-copper-500 dark:hover:text-white'
+                  : 'font-body text-sm font-medium text-water-700 transition-colors hover:text-copper-500 dark:text-sand-200 dark:hover:text-copper-400'
+              }
             >
               {link.label}
             </Link>
@@ -62,13 +65,12 @@ export default function Header() {
         {/* Desktop Actions */}
         <div className="hidden items-center gap-3 md:flex">
           <Link
-            href="/tool"
+            href="/guide"
             className="rounded-lg bg-copper-500 px-4 py-2 font-body text-sm font-medium text-white transition-colors hover:bg-copper-600"
           >
-            What Should I Fish With?
+            Ask the Guide
           </Link>
 
-          {/* Dark Mode Toggle */}
           <button
             type="button"
             aria-label="Toggle dark mode"
@@ -150,7 +152,11 @@ export default function Header() {
               key={link.href}
               href={link.href}
               onClick={() => setMobileOpen(false)}
-              className="rounded-lg px-3 py-2.5 font-body text-sm font-medium text-water-700 transition-colors hover:bg-sand-100 dark:text-sand-200 dark:hover:bg-water-700"
+              className={
+                link.highlight
+                  ? 'rounded-lg px-3 py-2.5 font-body text-sm font-semibold text-copper-500 transition-colors hover:bg-copper-50 dark:text-copper-400 dark:hover:bg-water-700'
+                  : 'rounded-lg px-3 py-2.5 font-body text-sm font-medium text-water-700 transition-colors hover:bg-sand-100 dark:text-sand-200 dark:hover:bg-water-700'
+              }
             >
               {link.label}
             </Link>
@@ -159,11 +165,11 @@ export default function Header() {
           <div className="my-2 border-t border-sand-200 dark:border-water-700" />
 
           <Link
-            href="/tool"
+            href="/guide"
             onClick={() => setMobileOpen(false)}
             className="rounded-lg bg-copper-500 px-4 py-2.5 text-center font-body text-sm font-medium text-white transition-colors hover:bg-copper-600"
           >
-            What Should I Fish With?
+            Ask the Guide
           </Link>
         </nav>
       </div>

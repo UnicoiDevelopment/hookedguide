@@ -331,7 +331,7 @@ export default function RecommendationTool() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
-    name: 'What Should I Fish With? — Fishing Recommendation Tool',
+    name: 'The Guide — Fishing Recommendation Tool',
     description:
       'Get personalized fishing recommendations based on species, water conditions, weather, and moon phase. We\'ll tell you exactly what technique, bait, and gear to use.',
     url: 'https://hookedguide.com/tool',
@@ -359,7 +359,7 @@ export default function RecommendationTool() {
       <section className="bg-gradient-to-br from-water-800 via-water-600 to-water-700 py-10 md:py-14">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h1 className="font-heading text-3xl md:text-4xl font-bold text-white mb-3">
-            What Should I Fish With?
+            The Guide
           </h1>
           <p className="text-white/80 text-lg max-w-2xl mx-auto">
             Tell us your species, conditions, and we&apos;ll build a complete game plan — technique, lure, gear, and feeding windows.
