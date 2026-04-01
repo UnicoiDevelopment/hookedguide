@@ -23,6 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/privacy`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.2 },
     { url: `${baseUrl}/terms`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.2 },
     { url: `${baseUrl}/disclosure`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.2 },
+    { url: `${baseUrl}/credits`, lastModified: new Date(), changeFrequency: 'yearly' as const, priority: 0.2 },
   ];
 
   const seasonPages: MetadataRoute.Sitemap = ['spring', 'summer', 'fall', 'winter'].map(s => ({

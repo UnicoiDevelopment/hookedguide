@@ -24,6 +24,7 @@ const infoLinks = [
   { label: 'Privacy Policy', href: '/privacy' },
   { label: 'Terms', href: '/terms' },
   { label: 'Affiliate Disclosure', href: '/disclosure' },
+  { label: 'Image Credits', href: '/credits' },
 ];
 
 // Cross-links commented out per brand revision — can re-enable later
