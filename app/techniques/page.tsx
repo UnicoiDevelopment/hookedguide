@@ -12,6 +12,17 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://hookedguide.com/techniques",
   },
+  openGraph: {
+    title: "Fishing Techniques — Step-by-Step Guides | HookedGuide",
+    description:
+      "Browse 20 proven fishing techniques with step-by-step guides, required gear, pro tips, and common mistakes to avoid. From Texas rigs to fly fishing basics.",
+    url: "https://hookedguide.com/techniques",
+  },
+  twitter: {
+    title: "Fishing Techniques — Step-by-Step Guides | HookedGuide",
+    description:
+      "Browse 20 proven fishing techniques with step-by-step guides, required gear, pro tips, and common mistakes to avoid. From Texas rigs to fly fishing basics.",
+  },
 };
 
 export default function TechniquesIndexPage() {

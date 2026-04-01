@@ -9,6 +9,20 @@ export const metadata: Metadata = {
   title: 'Fishing Knots Guide — How to Tie 15 Essential Knots | HookedGuide',
   description:
     'Learn to tie 15 essential fishing knots with step-by-step instructions. Includes the Palomar, Improved Clinch, Uni knot, and more for every line type and situation.',
+  alternates: {
+    canonical: 'https://hookedguide.com/knots',
+  },
+  openGraph: {
+    title: 'Fishing Knots Guide — How to Tie 15 Essential Knots | HookedGuide',
+    description:
+      'Learn to tie 15 essential fishing knots with step-by-step instructions. Includes the Palomar, Improved Clinch, Uni knot, and more for every line type and situation.',
+    url: 'https://hookedguide.com/knots',
+  },
+  twitter: {
+    title: 'Fishing Knots Guide — How to Tie 15 Essential Knots | HookedGuide',
+    description:
+      'Learn to tie 15 essential fishing knots with step-by-step instructions. Includes the Palomar, Improved Clinch, Uni knot, and more for every line type and situation.',
+  },
 };
 
 const popularSlugs = ['palomar-knot', 'improved-clinch-knot', 'uni-knot'];

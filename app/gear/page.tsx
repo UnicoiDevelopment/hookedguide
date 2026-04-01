@@ -7,6 +7,22 @@ import { allReviews } from '@/data/gear/reviews';
 
 export const metadata: Metadata = {
   title: 'Fishing Gear Reviews & Buyer\'s Guides (2026) | HookedGuide',
+  description:
+    'Expert fishing gear reviews and buyer\'s guides. Find the best rods, reels, lures, and tackle for every species and technique.',
+  alternates: {
+    canonical: 'https://hookedguide.com/gear',
+  },
+  openGraph: {
+    title: 'Fishing Gear Reviews & Buyer\'s Guides (2026) | HookedGuide',
+    description:
+      'Expert fishing gear reviews and buyer\'s guides. Find the best rods, reels, lures, and tackle for every species and technique.',
+    url: 'https://hookedguide.com/gear',
+  },
+  twitter: {
+    title: 'Fishing Gear Reviews & Buyer\'s Guides (2026) | HookedGuide',
+    description:
+      'Expert fishing gear reviews and buyer\'s guides. Find the best rods, reels, lures, and tackle for every species and technique.',
+  },
 };
 
 function StarRating({ rating }: { rating: number }) {

@@ -45,11 +45,23 @@ export async function generateMetadata({
     ? ` Bag limit: ${regulation.bagLimit}.`
     : "";
 
+  const title = `${species.name} Fishing in ${state.name} — Regulations, Tips & Where to Fish | HookedGuide`;
+  const description = `Guide to ${species.name.toLowerCase()} fishing in ${state.name}.${bagLimitSnippet} Best waters and season info.`;
+
   return {
-    title: `${species.name} Fishing in ${state.name} — Regulations, Tips & Where to Fish | HookedGuide`,
-    description: `Guide to ${species.name.toLowerCase()} fishing in ${state.name}.${bagLimitSnippet} Best waters and season info.`,
+    title,
+    description,
     alternates: {
       canonical: `https://hookedguide.com/species/${slug}/${stateSlug}`,
+    },
+    openGraph: {
+      title,
+      description,
+      url: `https://hookedguide.com/species/${slug}/${stateSlug}`,
+    },
+    twitter: {
+      title,
+      description,
     },
   };
 }

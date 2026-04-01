@@ -46,6 +46,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     alternates: {
       canonical: `https://hookedguide.com/species/${slug}`,
     },
+    openGraph: {
+      title,
+      description,
+      url: `https://hookedguide.com/species/${slug}`,
+    },
+    twitter: {
+      title,
+      description,
+    },
   };
 }
 

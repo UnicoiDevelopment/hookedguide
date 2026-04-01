@@ -24,9 +24,25 @@ export function generateMetadata({
 }): Metadata {
   const state = allStates.find((s) => s.slug === params.state);
   if (!state) return {};
+
+  const title = `Fishing Regulations in ${state.name} (2026) — License, Limits & Seasons | HookedGuide`;
+  const description = `Complete fishing regulations for ${state.name} including license info, bag limits, size limits, seasons, and top fishing waters.`;
+
   return {
-    title: `Fishing Regulations in ${state.name} (2026) — License, Limits & Seasons | HookedGuide`,
-    description: `Complete fishing regulations for ${state.name} including license info, bag limits, size limits, seasons, and top fishing waters.`,
+    title,
+    description,
+    alternates: {
+      canonical: `https://hookedguide.com/regulations/${params.state}`,
+    },
+    openGraph: {
+      title,
+      description,
+      url: `https://hookedguide.com/regulations/${params.state}`,
+    },
+    twitter: {
+      title,
+      description,
+    },
   };
 }
 

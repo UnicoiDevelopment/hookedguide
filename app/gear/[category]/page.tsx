@@ -20,8 +20,25 @@ export function generateMetadata({
 }): Metadata {
   const category = gearCategories.find((c) => c.slug === params.category);
   if (!category) return {};
+
+  const title = `Best ${category.name} (2026) — Reviews & Buyer's Guide | HookedGuide`;
+  const description = category.description;
+
   return {
-    title: `Best ${category.name} (2026) — Reviews & Buyer's Guide | HookedGuide`,
+    title,
+    description,
+    alternates: {
+      canonical: `https://hookedguide.com/gear/${params.category}`,
+    },
+    openGraph: {
+      title,
+      description,
+      url: `https://hookedguide.com/gear/${params.category}`,
+    },
+    twitter: {
+      title,
+      description,
+    },
   };
 }
 

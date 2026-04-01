@@ -12,6 +12,20 @@ export const metadata = {
   title: "HookedGuide — Your AI Fishing Guide | Species, Techniques & Gear",
   description:
     "Your AI fishing guide. Species guides, gear recommendations, and fishing intelligence for every state. Find the best techniques, lures, and tackle.",
+  alternates: {
+    canonical: "https://hookedguide.com",
+  },
+  openGraph: {
+    title: "HookedGuide — Your AI Fishing Guide | Species, Techniques & Gear",
+    description:
+      "Your AI fishing guide. Species guides, gear recommendations, and fishing intelligence for every state. Find the best techniques, lures, and tackle.",
+    url: "https://hookedguide.com",
+  },
+  twitter: {
+    title: "HookedGuide — Your AI Fishing Guide | Species, Techniques & Gear",
+    description:
+      "Your AI fishing guide. Species guides, gear recommendations, and fishing intelligence for every state. Find the best techniques, lures, and tackle.",
+  },
 };
 
 function getCurrentSeason(): "spring" | "summer" | "fall" | "winter" {

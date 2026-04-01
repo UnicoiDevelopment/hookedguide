@@ -38,6 +38,7 @@ const freeToolsSites = [
   { label: 'SymbolCrunch', href: 'https://symbolcrunch.com' },
   { label: 'RandoFox', href: 'https://randofox.com' },
   { label: 'LifestyleCalc', href: 'https://lifestylecalc.com' },
+  { label: 'ParlayMath', href: 'https://parlaymath.com' },
 ];
 
 function FooterColumn({
@@ -108,7 +109,7 @@ export default function Footer() {
           </p>
           <p className="font-body text-xs text-sand-300">
             <Link
-              href="/ftc-disclosure"
+              href="/disclosure"
               className="underline transition-colors hover:text-copper-400"
             >
               FTC Disclosure

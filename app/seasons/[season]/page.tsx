@@ -252,9 +252,25 @@ export function generateMetadata({
   const season = params.season as Season;
   const config = seasonConfig[season];
   if (!config) return {};
+
+  const title = `${config.label} Fishing Guide (2026) — Best Species, Techniques & Tips | HookedGuide`;
+  const description = config.description;
+
   return {
-    title: `${config.label} Fishing Guide (2026) — Best Species, Techniques & Tips | HookedGuide`,
-    description: config.description,
+    title,
+    description,
+    alternates: {
+      canonical: `https://hookedguide.com/seasons/${params.season}`,
+    },
+    openGraph: {
+      title,
+      description,
+      url: `https://hookedguide.com/seasons/${params.season}`,
+    },
+    twitter: {
+      title,
+      description,
+    },
   };
 }
 

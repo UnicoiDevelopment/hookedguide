@@ -20,8 +20,25 @@ export function generateMetadata({
 }): Metadata {
   const review = allReviews.find((r) => r.slug === params.slug);
   if (!review) return {};
+
+  const title = `${review.productName} Review (2026) — Is It Worth It? | HookedGuide`;
+  const description = `In-depth review of the ${review.productName} by ${review.brand}. Rating: ${review.rating}/5. Pros, cons, specs, and who it's best for.`;
+
   return {
-    title: `${review.productName} Review (2026) — Is It Worth It? | HookedGuide`,
+    title,
+    description,
+    alternates: {
+      canonical: `https://hookedguide.com/gear/reviews/${params.slug}`,
+    },
+    openGraph: {
+      title,
+      description,
+      url: `https://hookedguide.com/gear/reviews/${params.slug}`,
+    },
+    twitter: {
+      title,
+      description,
+    },
   };
 }
 

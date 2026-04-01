@@ -63,6 +63,15 @@ export async function generateMetadata({
     alternates: {
       canonical: `https://hookedguide.com/techniques/${slug}`,
     },
+    openGraph: {
+      title,
+      description,
+      url: `https://hookedguide.com/techniques/${slug}`,
+    },
+    twitter: {
+      title,
+      description,
+    },
   };
 }
 

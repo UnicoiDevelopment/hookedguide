@@ -42,9 +42,24 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const lineTypesStr = knot.lineTypes.map((lt) => lineTypeLabels[lt] || lt).join(', ');
 
+  const title = `How to Tie a ${knot.name} — Step-by-Step with Diagrams | HookedGuide`;
+  const description = `Learn to tie the ${knot.name} with ${knot.strengthRating}% line strength. Difficulty: ${knot.difficulty}/5. Works with ${lineTypesStr}. Step-by-step instructions, tips, and FAQs.`;
+
   return {
-    title: `How to Tie a ${knot.name} — Step-by-Step with Diagrams | HookedGuide`,
-    description: `Learn to tie the ${knot.name} with ${knot.strengthRating}% line strength. Difficulty: ${knot.difficulty}/5. Works with ${lineTypesStr}. Step-by-step instructions, tips, and FAQs.`,
+    title,
+    description,
+    alternates: {
+      canonical: `https://hookedguide.com/knots/${params.slug}`,
+    },
+    openGraph: {
+      title,
+      description,
+      url: `https://hookedguide.com/knots/${params.slug}`,
+    },
+    twitter: {
+      title,
+      description,
+    },
   };
 }
 

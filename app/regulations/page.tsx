@@ -9,6 +9,20 @@ export const metadata: Metadata = {
   title: 'Fishing Regulations by State (2026) — License & Limits | HookedGuide',
   description:
     'Find fishing rules, license info, and bag limits for all 50 states. Stay compliant with the latest fishing regulations.',
+  alternates: {
+    canonical: 'https://hookedguide.com/regulations',
+  },
+  openGraph: {
+    title: 'Fishing Regulations by State (2026) — License & Limits | HookedGuide',
+    description:
+      'Find fishing rules, license info, and bag limits for all 50 states. Stay compliant with the latest fishing regulations.',
+    url: 'https://hookedguide.com/regulations',
+  },
+  twitter: {
+    title: 'Fishing Regulations by State (2026) — License & Limits | HookedGuide',
+    description:
+      'Find fishing rules, license info, and bag limits for all 50 states. Stay compliant with the latest fishing regulations.',
+  },
 };
 
 const regionColors: Record<string, string> = {
