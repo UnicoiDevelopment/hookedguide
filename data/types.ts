@@ -158,3 +158,88 @@ export interface GearReview {
   affiliateProductId: string;
   faq: { question: string; answer: string }[];
 }
+
+// === DETAILED RECOMMENDATION ENGINE ===
+export type SkyCondition = 'clear' | 'partly-cloudy' | 'overcast' | 'light-rain' | 'heavy-rain' | 'snow' | 'fog';
+export type WindSpeed = 'calm' | 'light' | 'moderate' | 'strong';
+export type WindDirection = 'N' | 'NE' | 'E' | 'SE' | 'S' | 'SW' | 'W' | 'NW';
+export type FrontalSystem = 'pre-frontal' | 'post-frontal' | 'stable' | 'during-front';
+export type PressureTrend = 'rising' | 'falling' | 'steady' | 'rapidly-falling';
+export type WaterBodyType = 'pond' | 'small-lake' | 'medium-lake' | 'large-reservoir' | 'major-reservoir' | 'creek' | 'small-river' | 'large-river' | 'saltwater-inshore' | 'saltwater-offshore' | 'canal';
+export type WaterClarity = 'crystal-clear' | 'clear' | 'stained' | 'muddy';
+export type CoverType = 'grass' | 'wood' | 'rock' | 'docks' | 'open-water' | 'mixed';
+export type DepthAvailable = 'shallow' | 'medium' | 'deep';
+export type MoonPhase = 'new' | 'waxing-crescent' | 'first-quarter' | 'waxing-gibbous' | 'full' | 'waning-gibbous' | 'last-quarter' | 'waning-crescent';
+
+export interface DetailedRecommendationInput {
+  species: string;
+  waterTemp: number;
+  state?: string;
+  waterBody: {
+    type: WaterBodyType;
+    clarity: WaterClarity;
+    coverType: CoverType;
+    depthAvailable: DepthAvailable;
+  };
+  month: number;
+  hourOfDay: number;
+  weather: {
+    sky: SkyCondition;
+    wind: WindSpeed;
+    windDirection: WindDirection;
+    frontalSystem: FrontalSystem;
+    pressureTrend: PressureTrend;
+  };
+  moonPhase?: MoonPhase;
+  date?: string;
+}
+
+export interface DetailedRecommendationOutput {
+  primary: {
+    technique: { name: string; slug: string; why: string };
+    presentation: { speed: string; action: string; depth: string };
+    lure: {
+      type: string;
+      specificLure: string;
+      color: string;
+      size: string;
+      why: string;
+      tags: string[];
+    };
+    line: { type: string; weight: string; why: string };
+    rodReel: {
+      rodLength: string;
+      rodPower: string;
+      rodAction: string;
+      reelType: string;
+      reelSpeed: string;
+      why: string;
+      tags: string[];
+    };
+    hookType: string;
+    hookSize: string;
+    targetDepth: string;
+    targetStructure: string;
+    castDirection: string;
+  };
+  alternate: {
+    technique: { name: string; slug: string; why: string };
+    lure: { type: string; specificLure: string; color: string; size: string; tags: string[] };
+  };
+  tips: string[];
+  warnings: string[];
+  confidence: 'very-high' | 'high' | 'medium' | 'low';
+  confidenceNotes: string;
+  feedingWindow: {
+    description: string;
+    peakTimes: string[];
+    moonFeedingPeriods?: string[];
+  };
+  regulations?: {
+    bagLimit: string;
+    sizeLimit: string;
+    season: string;
+    notes: string;
+    disclaimerUrl: string;
+  };
+}

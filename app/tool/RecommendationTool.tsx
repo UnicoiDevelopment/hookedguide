@@ -3,19 +3,6 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import Link from 'next/link';
 import {
-  Waves,
-  Droplets,
-  Circle,
-  Mountain,
-  Ship,
-  Leaf,
-  Sun,
-  TreePine,
-  Snowflake,
-  Sunrise,
-  SunDim,
-  Sunset,
-  Moon,
   Search,
   ChevronLeft,
   ChevronRight,
@@ -27,16 +14,47 @@ import {
   RotateCcw,
   ExternalLink,
   AlertTriangle,
+  Waves,
+  Droplets,
+  Sun,
+  CloudSun,
+  Cloud,
+  CloudRain,
+  CloudLightning,
+  Snowflake,
+  CloudFog,
+  Wind,
+  TreePine,
+  Compass,
+  CircleDot,
+  Home,
+  Minimize2,
+  Maximize2,
+  MoveHorizontal,
+  Navigation,
+  TrendingUp,
+  TrendingDown,
+  Minus,
+  ChevronsDown,
+  Clock,
 } from 'lucide-react';
 import { allSpecies } from '@/data/species';
 import { allStates } from '@/data/states';
-import { getRecommendation } from '@/data/recommendations/engine';
+import { getDetailedRecommendation } from '@/data/recommendations/detailed-engine';
 import { getMatchingProducts } from '@/lib/affiliate-matcher';
 import type {
-  WaterType,
-  Season,
-  TimeOfDay,
-  RecommendationOutput,
+  DetailedRecommendationInput,
+  DetailedRecommendationOutput,
+  SkyCondition,
+  WindSpeed,
+  WindDirection,
+  FrontalSystem,
+  PressureTrend,
+  WaterBodyType,
+  WaterClarity,
+  CoverType,
+  DepthAvailable,
+  MoonPhase,
 } from '@/data/types';
 
 const POPULAR_SLUGS = [
@@ -48,54 +66,47 @@ const POPULAR_SLUGS = [
   'rainbow-trout',
 ];
 
-function getCurrentSeason(): Season {
-  const month = new Date().getMonth();
-  if (month >= 2 && month <= 4) return 'spring';
-  if (month >= 5 && month <= 7) return 'summer';
-  if (month >= 8 && month <= 10) return 'fall';
-  return 'winter';
+const MONTH_NAMES = [
+  'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+];
+
+function getMoonPhase(date: Date): MoonPhase {
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const c = Math.floor(365.25 * year);
+  const e = Math.floor(30.6 * month);
+  const jd = c + e + day - 694039.09;
+  const phase = jd / 29.5305882;
+  const phaseIndex = Math.round((phase - Math.floor(phase)) * 8) % 8;
+  const phases: MoonPhase[] = ['new', 'waxing-crescent', 'first-quarter', 'waxing-gibbous', 'full', 'waning-gibbous', 'last-quarter', 'waning-crescent'];
+  return phases[phaseIndex];
 }
 
-const WATER_TYPES: { value: WaterType; label: string; icon: typeof Waves }[] = [
-  { value: 'lake', label: 'Lake', icon: Waves },
-  { value: 'river', label: 'River', icon: Droplets },
-  { value: 'pond', label: 'Pond', icon: Circle },
-  { value: 'reservoir', label: 'Reservoir', icon: Mountain },
-  { value: 'saltwater', label: 'Saltwater', icon: Ship },
-];
-
-const SEASONS: { value: Season; label: string; icon: typeof Leaf; color: string }[] = [
-  { value: 'spring', label: 'Spring', icon: Leaf, color: 'bg-green-100 text-green-800 border-green-300' },
-  { value: 'summer', label: 'Summer', icon: Sun, color: 'bg-amber-100 text-amber-800 border-amber-300' },
-  { value: 'fall', label: 'Fall', icon: TreePine, color: 'bg-orange-100 text-orange-800 border-orange-300' },
-  { value: 'winter', label: 'Winter', icon: Snowflake, color: 'bg-blue-100 text-blue-800 border-blue-300' },
-];
-
-const TIMES: { value: TimeOfDay; label: string; sublabel: string; icon: typeof Sun }[] = [
-  { value: 'dawn', label: 'Dawn', sublabel: '5 - 7 AM', icon: Sunrise },
-  { value: 'morning', label: 'Morning', sublabel: '7 - 11 AM', icon: Sun },
-  { value: 'midday', label: 'Midday', sublabel: '11 AM - 2 PM', icon: Sun },
-  { value: 'afternoon', label: 'Afternoon', sublabel: '2 - 5 PM', icon: SunDim },
-  { value: 'dusk', label: 'Dusk', sublabel: '5 - 8 PM', icon: Sunset },
-  { value: 'night', label: 'Night', sublabel: '8 PM - 5 AM', icon: Moon },
-];
+function formatHour(hour: number): string {
+  if (hour === 0 || hour === 24) return '12:00 AM';
+  if (hour === 12) return '12:00 PM';
+  if (hour < 12) return `${hour}:00 AM`;
+  return `${hour - 12}:00 PM`;
+}
 
 const FAQ_ITEMS = [
   {
     q: 'How does this tool work?',
-    a: 'Our recommendation engine analyzes your target species, location, water conditions, season, and time of day to suggest the best technique, lure, line, and gear combination.',
+    a: 'Our recommendation engine analyzes your target species, location, water body details, temperature, weather conditions, moon phase, and time of day to suggest the best technique, lure, line, and gear combination. It considers species behavior patterns, seasonal movements, temperature triggers, frontal systems, and regional preferences.',
   },
   {
     q: 'Is this really AI?',
-    a: 'Our engine uses a sophisticated rule-based system built from expert angler knowledge, not a language model. It considers species behavior patterns, seasonal movements, water temperature triggers, and regional preferences.',
+    a: 'Our engine uses a sophisticated rule-based system built from expert angler knowledge, not a language model. It considers over 30 variables including species-specific temperature maps, weather impact rules, moon feeding periods, and water body adjustments to deliver highly targeted recommendations.',
   },
   {
     q: 'How accurate are the recommendations?',
-    a: 'High confidence recommendations (when you provide water temperature) are very accurate. The engine accounts for species-specific seasonal patterns, water type adjustments, and temperature triggers.',
+    a: 'Very-high confidence recommendations (when you provide detailed conditions) are extremely accurate. The more information you provide — especially water temperature, weather conditions, and moon phase — the more precise the recommendation. Our engine accounts for frontal system impacts, barometric pressure trends, and species-specific feeding windows.',
   },
   {
     q: 'Can I use this on my phone while fishing?',
-    a: 'Yes! This tool is designed to work great on mobile. Bookmark your results URL to save your recommendation for later.',
+    a: 'Yes! This tool is designed to work great on mobile. Bookmark your results URL to save your recommendation for later reference on the water.',
   },
 ];
 
@@ -103,15 +114,16 @@ export default function RecommendationTool() {
   const [step, setStep] = useState(1);
   const [species, setSpecies] = useState('');
   const [state, setState] = useState('');
-  const [waterType, setWaterType] = useState<WaterType>('lake');
-  const [season, setSeason] = useState<Season>('spring');
-  const [timeOfDay, setTimeOfDay] = useState<TimeOfDay>('morning');
-  const [waterTemp, setWaterTemp] = useState<number | null>(null);
-  const [tempSlider, setTempSlider] = useState(60);
-  const [result, setResult] = useState<RecommendationOutput | null>(null);
+  const [waterBody, setWaterBody] = useState<{ type: WaterBodyType; clarity: WaterClarity; coverType: CoverType; depthAvailable: DepthAvailable }>({ type: 'medium-lake', clarity: 'stained', coverType: 'mixed', depthAvailable: 'medium' });
+  const [waterTemp, setWaterTemp] = useState(65);
+  const [month, setMonth] = useState(new Date().getMonth() + 1);
+  const [hourOfDay, setHourOfDay] = useState(7);
+  const [weather, setWeather] = useState<{ sky: SkyCondition; wind: WindSpeed; windDirection: WindDirection; frontalSystem: FrontalSystem; pressureTrend: PressureTrend }>({ sky: 'partly-cloudy', wind: 'light', windDirection: 'S', frontalSystem: 'stable', pressureTrend: 'steady' });
+  const [moonPhase, setMoonPhase] = useState<MoonPhase>('first-quarter');
+  const [result, setResult] = useState<DetailedRecommendationOutput | null>(null);
   const [loading, setLoading] = useState(false);
-  const [speciesSearch, setSpeciesSearch] = useState('');
-  const [stateSearch, setStateSearch] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
+
   const [initialized, setInitialized] = useState(false);
 
   // Sort species: popular first, then alphabetical
@@ -126,41 +138,38 @@ export default function RecommendationTool() {
   }, []);
 
   const filteredSpecies = useMemo(() => {
-    if (!speciesSearch.trim()) return sortedSpecies;
-    const q = speciesSearch.toLowerCase();
+    if (!searchQuery.trim()) return sortedSpecies;
+    const q = searchQuery.toLowerCase();
     return sortedSpecies.filter(
       (s) => s.name.toLowerCase().includes(q) || s.type.toLowerCase().includes(q)
     );
-  }, [speciesSearch, sortedSpecies]);
+  }, [searchQuery, sortedSpecies]);
 
   const filteredStates = useMemo(() => {
-    if (!stateSearch.trim()) return allStates;
-    const q = stateSearch.toLowerCase();
+    if (!searchQuery.trim()) return allStates;
+    const q = searchQuery.toLowerCase();
     return allStates.filter(
       (s) =>
         s.name.toLowerCase().includes(q) || s.abbreviation.toLowerCase().includes(q)
     );
-  }, [stateSearch]);
+  }, [searchQuery]);
 
   const selectedSpecies = useMemo(
     () => allSpecies.find((s) => s.slug === species),
     [species]
   );
 
-  const currentSeason = useMemo(() => getCurrentSeason(), []);
+  const currentMonth = useMemo(() => new Date().getMonth() + 1, []);
+
+  // Auto-detect moon phase on mount
+  useEffect(() => {
+    setMoonPhase(getMoonPhase(new Date()));
+  }, []);
 
   const computeResult = useCallback(
-    (sp: string, st: string, wt: WaterType, se: Season, tod: TimeOfDay, temp: number | null) => {
+    (input: DetailedRecommendationInput) => {
       try {
-        const rec = getRecommendation({
-          species: sp,
-          state: st || undefined,
-          waterType: wt,
-          season: se,
-          timeOfDay: tod,
-          waterTemp: temp ?? undefined,
-        });
-        return rec;
+        return getDetailedRecommendation(input);
       } catch {
         return null;
       }
@@ -174,25 +183,71 @@ export default function RecommendationTool() {
     const params = new URLSearchParams(window.location.search);
     const pSpecies = params.get('species');
     const pState = params.get('state');
-    const pWater = params.get('water') as WaterType | null;
-    const pSeason = params.get('season') as Season | null;
-    const pTime = params.get('time') as TimeOfDay | null;
+    const pWaterType = params.get('waterType') as WaterBodyType | null;
+    const pClarity = params.get('clarity') as WaterClarity | null;
+    const pCover = params.get('cover') as CoverType | null;
+    const pDepth = params.get('depth') as DepthAvailable | null;
     const pTemp = params.get('temp');
+    const pMonth = params.get('month');
+    const pHour = params.get('hour');
+    const pSky = params.get('sky') as SkyCondition | null;
+    const pWind = params.get('wind') as WindSpeed | null;
+    const pWindDir = params.get('windDir') as WindDirection | null;
+    const pFrontal = params.get('frontal') as FrontalSystem | null;
+    const pPressure = params.get('pressure') as PressureTrend | null;
+    const pMoon = params.get('moon') as MoonPhase | null;
 
-    if (pSpecies && pWater && pSeason && pTime) {
-      const tempVal = pTemp ? parseInt(pTemp, 10) : null;
+    if (pSpecies && pWaterType && pMonth && pHour && pSky) {
+      const tempVal = pTemp ? parseInt(pTemp, 10) : 65;
+      const monthVal = pMonth ? parseInt(pMonth, 10) : new Date().getMonth() + 1;
+      const hourVal = pHour ? parseInt(pHour, 10) : 7;
+
       setSpecies(pSpecies);
       setState(pState || '');
-      setWaterType(pWater);
-      setSeason(pSeason);
-      setTimeOfDay(pTime);
-      setWaterTemp(isNaN(tempVal as number) ? null : tempVal);
-      if (tempVal && !isNaN(tempVal)) setTempSlider(tempVal);
+      setWaterBody({
+        type: pWaterType || 'medium-lake',
+        clarity: pClarity || 'stained',
+        coverType: pCover || 'mixed',
+        depthAvailable: pDepth || 'medium',
+      });
+      setWaterTemp(isNaN(tempVal) ? 65 : tempVal);
+      setMonth(isNaN(monthVal) ? new Date().getMonth() + 1 : monthVal);
+      setHourOfDay(isNaN(hourVal) ? 7 : hourVal);
+      setWeather({
+        sky: pSky || 'partly-cloudy',
+        wind: pWind || 'light',
+        windDirection: pWindDir || 'S',
+        frontalSystem: pFrontal || 'stable',
+        pressureTrend: pPressure || 'steady',
+      });
+      if (pMoon) setMoonPhase(pMoon);
 
-      const rec = computeResult(pSpecies, pState || '', pWater, pSeason, pTime, isNaN(tempVal as number) ? null : tempVal);
+      const input: DetailedRecommendationInput = {
+        species: pSpecies,
+        state: pState || undefined,
+        waterTemp: isNaN(tempVal) ? 65 : tempVal,
+        waterBody: {
+          type: pWaterType || 'medium-lake',
+          clarity: pClarity || 'stained',
+          coverType: pCover || 'mixed',
+          depthAvailable: pDepth || 'medium',
+        },
+        month: isNaN(monthVal) ? new Date().getMonth() + 1 : monthVal,
+        hourOfDay: isNaN(hourVal) ? 7 : hourVal,
+        weather: {
+          sky: pSky || 'partly-cloudy',
+          wind: pWind || 'light',
+          windDirection: pWindDir || 'S',
+          frontalSystem: pFrontal || 'stable',
+          pressureTrend: pPressure || 'steady',
+        },
+        moonPhase: pMoon || undefined,
+      };
+
+      const rec = computeResult(input);
       if (rec) {
         setResult(rec);
-        setStep(7);
+        setStep(9);
       }
     }
     setInitialized(true);
@@ -200,19 +255,38 @@ export default function RecommendationTool() {
 
   function handleSubmit() {
     setLoading(true);
-    const rec = computeResult(species, state, waterType, season, timeOfDay, waterTemp);
+    const input: DetailedRecommendationInput = {
+      species,
+      state: state || undefined,
+      waterTemp,
+      waterBody,
+      month,
+      hourOfDay,
+      weather,
+      moonPhase,
+    };
+    const rec = computeResult(input);
     setTimeout(() => {
       setResult(rec);
-      setStep(7);
+      setStep(9);
       setLoading(false);
 
       const params = new URLSearchParams();
       params.set('species', species);
       if (state) params.set('state', state);
-      params.set('water', waterType);
-      params.set('season', season);
-      params.set('time', timeOfDay);
-      if (waterTemp !== null) params.set('temp', String(waterTemp));
+      params.set('waterType', waterBody.type);
+      params.set('clarity', waterBody.clarity);
+      params.set('cover', waterBody.coverType);
+      params.set('depth', waterBody.depthAvailable);
+      params.set('temp', String(waterTemp));
+      params.set('month', String(month));
+      params.set('hour', String(hourOfDay));
+      params.set('sky', weather.sky);
+      params.set('wind', weather.wind);
+      params.set('windDir', weather.windDirection);
+      params.set('frontal', weather.frontalSystem);
+      params.set('pressure', weather.pressureTrend);
+      params.set('moon', moonPhase);
       window.history.replaceState({}, '', `${window.location.pathname}?${params.toString()}`);
     }, 800);
   }
@@ -221,20 +295,20 @@ export default function RecommendationTool() {
     setStep(1);
     setSpecies('');
     setState('');
-    setWaterType('lake');
-    setSeason('spring');
-    setTimeOfDay('morning');
-    setWaterTemp(null);
-    setTempSlider(60);
+    setWaterBody({ type: 'medium-lake', clarity: 'stained', coverType: 'mixed', depthAvailable: 'medium' });
+    setWaterTemp(65);
+    setMonth(new Date().getMonth() + 1);
+    setHourOfDay(7);
+    setWeather({ sky: 'partly-cloudy', wind: 'light', windDirection: 'S', frontalSystem: 'stable', pressureTrend: 'steady' });
+    setMoonPhase(getMoonPhase(new Date()));
     setResult(null);
-    setSpeciesSearch('');
-    setStateSearch('');
+    setSearchQuery('');
     window.history.replaceState({}, '', window.location.pathname);
   }
 
   function goBack() {
-    if (step > 1 && step <= 6) setStep(step - 1);
-    if (step === 7) setStep(6);
+    if (step > 1 && step <= 8) setStep(step - 1);
+    if (step === 9) setStep(7);
   }
 
   // Matching products for results
@@ -242,24 +316,24 @@ export default function RecommendationTool() {
     if (!result) return [];
     const tags = [
       species,
-      result.technique.slug,
-      result.alternateTechnique.slug,
-      ...result.lure.tags,
-      result.line.type.toLowerCase(),
-      ...result.rodReel.tags,
+      result.primary.technique.slug,
+      result.alternate.technique.slug,
+      ...result.primary.lure.tags,
+      result.primary.line.type.toLowerCase(),
+      ...result.primary.rodReel.tags,
     ];
     return getMatchingProducts(tags, 3).filter((p) => p.affiliateUrl !== '');
   }, [result, species]);
 
   const tempColor =
-    tempSlider < 50 ? 'text-blue-500' : tempSlider <= 70 ? 'text-green-600' : 'text-red-500';
+    waterTemp < 50 ? 'text-blue-500' : waterTemp <= 70 ? 'text-green-600' : 'text-red-500';
 
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
     name: 'What Should I Fish With? — Fishing Recommendation Tool',
     description:
-      'Get personalized fishing recommendations. Select your species, location, season, and conditions — we\'ll tell you exactly what technique, bait, and gear to use.',
+      'Get personalized fishing recommendations based on species, water conditions, weather, and moon phase. We\'ll tell you exactly what technique, bait, and gear to use.',
     url: 'https://hookedguide.com/tool',
     applicationCategory: 'UtilityApplication',
     operatingSystem: 'All',
@@ -288,17 +362,17 @@ export default function RecommendationTool() {
             What Should I Fish With?
           </h1>
           <p className="text-white/80 text-lg max-w-2xl mx-auto">
-            Tell us what you&apos;re after and we&apos;ll recommend exactly what to use.
+            Tell us your species, conditions, and we&apos;ll build a complete game plan — technique, lure, gear, and feeding windows.
           </p>
         </div>
       </section>
 
       <div className="max-w-4xl mx-auto px-4 py-8">
         {/* Progress indicator */}
-        {step < 7 && (
-          <div className="flex items-center justify-center gap-2 mb-8">
-            {[1, 2, 3, 4, 5, 6].map((s) => (
-              <div key={s} className="flex items-center gap-2">
+        {step < 9 && !loading && (
+          <div className="flex items-center justify-center gap-1.5 mb-8">
+            {[1, 2, 3, 4, 5, 6, 7, 8].map((s) => (
+              <div key={s} className="flex items-center gap-1.5">
                 <div
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
                     s < step
@@ -308,9 +382,9 @@ export default function RecommendationTool() {
                       : 'bg-gray-300'
                   }`}
                 />
-                {s < 6 && (
+                {s < 8 && (
                   <div
-                    className={`w-6 h-0.5 transition-colors duration-300 ${
+                    className={`w-4 h-0.5 transition-colors duration-300 ${
                       s < step ? 'bg-copper-500' : 'bg-gray-300'
                     }`}
                   />
@@ -321,7 +395,7 @@ export default function RecommendationTool() {
         )}
 
         {/* Back button */}
-        {step > 1 && step <= 6 && (
+        {step > 1 && step <= 8 && !loading && (
           <button
             onClick={goBack}
             className="flex items-center gap-1 text-water-600 hover:text-water-800 mb-4 text-sm font-medium transition-colors"
@@ -344,8 +418,8 @@ export default function RecommendationTool() {
               <input
                 type="text"
                 placeholder="Search species..."
-                value={speciesSearch}
-                onChange={(e) => setSpeciesSearch(e.target.value)}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-copper-500 focus:border-transparent text-water-900 bg-white"
               />
             </div>
@@ -356,6 +430,7 @@ export default function RecommendationTool() {
                   key={s.slug}
                   onClick={() => {
                     setSpecies(s.slug);
+                    setSearchQuery('');
                     setStep(2);
                   }}
                   className="group relative flex flex-col items-start p-4 rounded-lg border border-gray-200 bg-white hover:border-copper-500 hover:shadow-md transition-all duration-200 text-left"
@@ -374,7 +449,7 @@ export default function RecommendationTool() {
                   >
                     {s.type}
                   </span>
-                  {POPULAR_SLUGS.includes(s.slug) && !speciesSearch && (
+                  {POPULAR_SLUGS.includes(s.slug) && !searchQuery && (
                     <span className="absolute top-2 right-2 text-[10px] font-bold text-copper-500 uppercase tracking-wide">
                       Popular
                     </span>
@@ -400,8 +475,8 @@ export default function RecommendationTool() {
               <input
                 type="text"
                 placeholder="Search states..."
-                value={stateSearch}
-                onChange={(e) => setStateSearch(e.target.value)}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-copper-500 focus:border-transparent text-water-900 bg-white"
               />
             </div>
@@ -412,6 +487,7 @@ export default function RecommendationTool() {
                   key={s.slug}
                   onClick={() => {
                     setState(s.slug);
+                    setSearchQuery('');
                     setStep(3);
                   }}
                   className="w-full flex items-center justify-between px-4 py-3 hover:bg-copper-50 border-b border-gray-100 last:border-b-0 transition-colors text-left"
@@ -425,6 +501,7 @@ export default function RecommendationTool() {
             <button
               onClick={() => {
                 setState('');
+                setSearchQuery('');
                 setStep(3);
               }}
               className="w-full py-3 rounded-lg border-2 border-dashed border-gray-300 text-gray-500 hover:border-copper-400 hover:text-copper-600 transition-colors font-medium"
@@ -434,132 +511,167 @@ export default function RecommendationTool() {
           </div>
         )}
 
-        {/* STEP 3: Water Type */}
+        {/* STEP 3: Water Details */}
         {step === 3 && (
           <div className="animate-in fade-in duration-300">
             <h2 className="font-heading text-2xl font-bold text-water-900 mb-2">
-              What type of water?
+              Tell us about the water
             </h2>
-            <p className="text-gray-600 mb-6">Choose the body of water you&apos;ll be fishing.</p>
+            <p className="text-gray-600 mb-8">Describe the body of water you&apos;ll be fishing.</p>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {WATER_TYPES.map((w) => {
-                const Icon = w.icon;
-                return (
-                  <button
-                    key={w.value}
-                    onClick={() => {
-                      setWaterType(w.value);
-                      setStep(4);
-                    }}
-                    className="flex flex-col items-center justify-center gap-3 p-6 rounded-xl border-2 border-gray-200 bg-white hover:border-copper-500 hover:shadow-lg transition-all duration-200 group"
-                  >
-                    <Icon className="w-10 h-10 text-water-500 group-hover:text-copper-500 transition-colors" />
-                    <span className="font-semibold text-water-900 group-hover:text-copper-600 transition-colors text-lg">
-                      {w.label}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        )}
-
-        {/* STEP 4: Season */}
-        {step === 4 && (
-          <div className="animate-in fade-in duration-300">
-            <h2 className="font-heading text-2xl font-bold text-water-900 mb-2">
-              What time of year?
-            </h2>
-            <p className="text-gray-600 mb-6">Season affects fish behavior and the best approach.</p>
-
-            <div className="grid grid-cols-2 gap-4">
-              {SEASONS.map((s) => {
-                const Icon = s.icon;
-                const isCurrent = s.value === currentSeason;
-                return (
-                  <button
-                    key={s.value}
-                    onClick={() => {
-                      setSeason(s.value);
-                      setStep(5);
-                    }}
-                    className={`relative flex flex-col items-center justify-center gap-3 p-6 rounded-xl border-2 bg-white hover:shadow-lg transition-all duration-200 group ${
-                      isCurrent
-                        ? 'border-copper-500 shadow-md'
-                        : 'border-gray-200 hover:border-copper-500'
-                    }`}
-                  >
-                    {isCurrent && (
-                      <span className="absolute top-2 right-2 text-[10px] font-bold bg-copper-500 text-white px-2 py-0.5 rounded-full uppercase tracking-wide">
-                        Current
+            {/* 3a: Water Body Type */}
+            <div className="mb-8">
+              <h3 className="font-heading text-lg font-semibold text-water-800 mb-3">Water Body Type</h3>
+              <div className="grid grid-cols-3 md:grid-cols-4 gap-2">
+                {([
+                  { value: 'pond' as WaterBodyType, label: 'Pond', icon: CircleDot },
+                  { value: 'small-lake' as WaterBodyType, label: 'Small Lake', icon: Waves },
+                  { value: 'medium-lake' as WaterBodyType, label: 'Medium Lake', icon: Waves },
+                  { value: 'large-reservoir' as WaterBodyType, label: 'Large Reservoir', icon: Maximize2 },
+                  { value: 'major-reservoir' as WaterBodyType, label: 'Major Reservoir', icon: Maximize2 },
+                  { value: 'creek' as WaterBodyType, label: 'Creek', icon: Droplets },
+                  { value: 'small-river' as WaterBodyType, label: 'Small River', icon: Navigation },
+                  { value: 'large-river' as WaterBodyType, label: 'Large River', icon: MoveHorizontal },
+                  { value: 'saltwater-inshore' as WaterBodyType, label: 'Saltwater Inshore', icon: Anchor },
+                  { value: 'saltwater-offshore' as WaterBodyType, label: 'Saltwater Offshore', icon: Compass },
+                  { value: 'canal' as WaterBodyType, label: 'Canal', icon: Minimize2 },
+                ]).map((w) => {
+                  const Icon = w.icon;
+                  const selected = waterBody.type === w.value;
+                  return (
+                    <button
+                      key={w.value}
+                      onClick={() => setWaterBody({ ...waterBody, type: w.value })}
+                      className={`flex flex-col items-center gap-1.5 p-3 rounded-lg border-2 transition-all duration-200 text-center ${
+                        selected
+                          ? 'border-copper-500 bg-copper-50 shadow-sm'
+                          : 'border-gray-200 bg-white hover:border-copper-300'
+                      }`}
+                    >
+                      <Icon className={`w-5 h-5 ${selected ? 'text-copper-600' : 'text-water-500'}`} />
+                      <span className={`text-xs font-medium leading-tight ${selected ? 'text-copper-700' : 'text-water-900'}`}>
+                        {w.label}
                       </span>
-                    )}
-                    <Icon
-                      className={`w-10 h-10 transition-colors ${
-                        s.value === 'spring'
-                          ? 'text-green-500'
-                          : s.value === 'summer'
-                          ? 'text-amber-500'
-                          : s.value === 'fall'
-                          ? 'text-orange-500'
-                          : 'text-blue-500'
-                      } group-hover:scale-110 transition-transform`}
-                    />
-                    <span className="font-semibold text-water-900 text-lg">{s.label}</span>
-                  </button>
-                );
-              })}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
+
+            {/* 3b: Water Clarity */}
+            <div className="mb-8">
+              <h3 className="font-heading text-lg font-semibold text-water-800 mb-3">Water Clarity</h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                {([
+                  { value: 'crystal-clear' as WaterClarity, label: 'Crystal Clear', sub: '8+ ft visibility', color: 'bg-sky-50 border-sky-200 text-sky-800' },
+                  { value: 'clear' as WaterClarity, label: 'Clear', sub: '4-8 ft visibility', color: 'bg-blue-50 border-blue-200 text-blue-800' },
+                  { value: 'stained' as WaterClarity, label: 'Stained', sub: '1-4 ft visibility', color: 'bg-amber-50 border-amber-200 text-amber-800' },
+                  { value: 'muddy' as WaterClarity, label: 'Muddy', sub: '<1 ft visibility', color: 'bg-orange-50 border-orange-200 text-orange-900' },
+                ]).map((c) => {
+                  const selected = waterBody.clarity === c.value;
+                  return (
+                    <button
+                      key={c.value}
+                      onClick={() => setWaterBody({ ...waterBody, clarity: c.value })}
+                      className={`flex flex-col items-center gap-1 p-4 rounded-lg border-2 transition-all duration-200 ${
+                        selected
+                          ? 'border-copper-500 bg-copper-50 shadow-sm'
+                          : `${c.color} hover:border-copper-300`
+                      }`}
+                    >
+                      <span className={`font-semibold text-sm ${selected ? 'text-copper-700' : ''}`}>{c.label}</span>
+                      <span className={`text-xs ${selected ? 'text-copper-600' : 'opacity-70'}`}>{c.sub}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* 3c: Cover Type */}
+            <div className="mb-8">
+              <h3 className="font-heading text-lg font-semibold text-water-800 mb-3">Primary Cover</h3>
+              <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
+                {([
+                  { value: 'grass' as CoverType, label: 'Grass / Vegetation', icon: TreePine },
+                  { value: 'wood' as CoverType, label: 'Wood / Timber', icon: TreePine },
+                  { value: 'rock' as CoverType, label: 'Rock', icon: Target },
+                  { value: 'docks' as CoverType, label: 'Docks / Man-made', icon: Home },
+                  { value: 'open-water' as CoverType, label: 'Open Water', icon: Waves },
+                  { value: 'mixed' as CoverType, label: 'Mixed', icon: CircleDot },
+                ]).map((c) => {
+                  const Icon = c.icon;
+                  const selected = waterBody.coverType === c.value;
+                  return (
+                    <button
+                      key={c.value}
+                      onClick={() => setWaterBody({ ...waterBody, coverType: c.value })}
+                      className={`flex flex-col items-center gap-1.5 p-3 rounded-lg border-2 transition-all duration-200 ${
+                        selected
+                          ? 'border-copper-500 bg-copper-50 shadow-sm'
+                          : 'border-gray-200 bg-white hover:border-copper-300'
+                      }`}
+                    >
+                      <Icon className={`w-5 h-5 ${selected ? 'text-copper-600' : 'text-water-500'}`} />
+                      <span className={`text-xs font-medium text-center leading-tight ${selected ? 'text-copper-700' : 'text-water-900'}`}>
+                        {c.label}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* 3d: Depth Available */}
+            <div className="mb-8">
+              <h3 className="font-heading text-lg font-semibold text-water-800 mb-3">Depth Available</h3>
+              <div className="grid grid-cols-3 gap-3">
+                {([
+                  { value: 'shallow' as DepthAvailable, label: 'Shallow', sub: 'Under 10 ft' },
+                  { value: 'medium' as DepthAvailable, label: 'Medium', sub: '10-30 ft' },
+                  { value: 'deep' as DepthAvailable, label: 'Deep', sub: '30+ ft' },
+                ]).map((d) => {
+                  const selected = waterBody.depthAvailable === d.value;
+                  return (
+                    <button
+                      key={d.value}
+                      onClick={() => setWaterBody({ ...waterBody, depthAvailable: d.value })}
+                      className={`flex flex-col items-center gap-1 p-4 rounded-lg border-2 transition-all duration-200 ${
+                        selected
+                          ? 'border-copper-500 bg-copper-50 shadow-sm'
+                          : 'border-gray-200 bg-white hover:border-copper-300'
+                      }`}
+                    >
+                      <span className={`font-semibold ${selected ? 'text-copper-700' : 'text-water-900'}`}>{d.label}</span>
+                      <span className={`text-xs ${selected ? 'text-copper-600' : 'text-gray-500'}`}>{d.sub}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <button
+              onClick={() => setStep(4)}
+              className="w-full py-4 rounded-xl bg-copper-500 hover:bg-copper-600 text-white font-bold text-lg transition-colors shadow-lg hover:shadow-xl"
+            >
+              Continue
+            </button>
           </div>
         )}
 
-        {/* STEP 5: Time of Day */}
-        {step === 5 && (
-          <div className="animate-in fade-in duration-300">
-            <h2 className="font-heading text-2xl font-bold text-water-900 mb-2">
-              When are you fishing?
-            </h2>
-            <p className="text-gray-600 mb-6">Time of day impacts feeding activity and technique selection.</p>
-
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-              {TIMES.map((t) => {
-                const Icon = t.icon;
-                return (
-                  <button
-                    key={t.value}
-                    onClick={() => {
-                      setTimeOfDay(t.value);
-                      setStep(6);
-                    }}
-                    className="flex flex-col items-center justify-center gap-2 p-5 rounded-xl border-2 border-gray-200 bg-white hover:border-copper-500 hover:shadow-lg transition-all duration-200 group"
-                  >
-                    <Icon className="w-8 h-8 text-water-500 group-hover:text-copper-500 transition-colors" />
-                    <span className="font-semibold text-water-900 group-hover:text-copper-600 transition-colors">
-                      {t.label}
-                    </span>
-                    <span className="text-xs text-gray-500">{t.sublabel}</span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        )}
-
-        {/* STEP 6: Water Temperature */}
-        {step === 6 && !loading && (
+        {/* STEP 4: Water Temperature */}
+        {step === 4 && (
           <div className="animate-in fade-in duration-300">
             <h2 className="font-heading text-2xl font-bold text-water-900 mb-2">
               What&apos;s the water temperature?
             </h2>
             <p className="text-gray-600 mb-6">
-              Water temperature is the single biggest factor in fish behavior. If you know it, we can give a much better recommendation.
+              Water temperature is the single biggest factor in fish behavior.
             </p>
 
             <div className="bg-white border border-gray-200 rounded-xl p-8 mb-6">
               <div className="text-center mb-6">
                 <span className={`font-heading text-5xl font-bold ${tempColor} transition-colors`}>
-                  {tempSlider}
+                  {waterTemp}
                 </span>
                 <span className={`text-2xl font-semibold ${tempColor} ml-1`}>&deg;F</span>
               </div>
@@ -568,8 +680,8 @@ export default function RecommendationTool() {
                 type="range"
                 min={30}
                 max={90}
-                value={tempSlider}
-                onChange={(e) => setTempSlider(parseInt(e.target.value, 10))}
+                value={waterTemp}
+                onChange={(e) => setWaterTemp(parseInt(e.target.value, 10))}
                 className="w-full h-2 bg-gray-200 rounded-full appearance-none cursor-pointer accent-copper-500"
               />
 
@@ -580,29 +692,316 @@ export default function RecommendationTool() {
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-3">
-              <button
-                onClick={() => {
-                  setWaterTemp(tempSlider);
-                  handleSubmit();
-                }}
-                className="flex-1 py-4 rounded-xl bg-copper-500 hover:bg-copper-600 text-white font-bold text-lg transition-colors shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
-              >
-                <Target className="w-5 h-5" />
-                Get My Recommendation
-              </button>
-              <button
-                onClick={() => {
-                  setWaterTemp(null);
-                  handleSubmit();
-                }}
-                className="py-4 px-6 rounded-xl border-2 border-gray-300 text-gray-600 hover:border-copper-400 hover:text-copper-600 font-medium transition-colors"
-              >
-                I don&apos;t know
-              </button>
-            </div>
+            <button
+              onClick={() => setStep(5)}
+              className="w-full py-4 rounded-xl bg-copper-500 hover:bg-copper-600 text-white font-bold text-lg transition-colors shadow-lg hover:shadow-xl"
+            >
+              Continue
+            </button>
           </div>
         )}
+
+        {/* STEP 5: When */}
+        {step === 5 && (
+          <div className="animate-in fade-in duration-300">
+            <h2 className="font-heading text-2xl font-bold text-water-900 mb-2">
+              When are you fishing?
+            </h2>
+            <p className="text-gray-600 mb-6">Month and time of day affect feeding patterns and technique selection.</p>
+
+            {/* Month selector */}
+            <div className="mb-8">
+              <h3 className="font-heading text-lg font-semibold text-water-800 mb-3">Month</h3>
+              <div className="grid grid-cols-6 gap-2">
+                {MONTH_NAMES.map((m, i) => {
+                  const monthNum = i + 1;
+                  const selected = month === monthNum;
+                  const isCurrent = currentMonth === monthNum;
+                  return (
+                    <button
+                      key={m}
+                      onClick={() => setMonth(monthNum)}
+                      className={`relative py-3 rounded-lg border-2 font-medium text-sm transition-all duration-200 ${
+                        selected
+                          ? 'border-copper-500 bg-copper-50 text-copper-700 shadow-sm'
+                          : isCurrent
+                          ? 'border-copper-300 bg-white text-water-900'
+                          : 'border-gray-200 bg-white text-water-900 hover:border-copper-300'
+                      }`}
+                    >
+                      {m}
+                      {isCurrent && (
+                        <span className="absolute -top-1 -right-1 w-2 h-2 bg-copper-500 rounded-full" />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Time of day slider */}
+            <div className="mb-8">
+              <h3 className="font-heading text-lg font-semibold text-water-800 mb-3">Time of Day</h3>
+              <div className="bg-white border border-gray-200 rounded-xl p-6">
+                <div className="text-center mb-4">
+                  <span className="font-heading text-3xl font-bold text-water-900">
+                    {formatHour(hourOfDay)}
+                  </span>
+                </div>
+                <input
+                  type="range"
+                  min={4}
+                  max={23}
+                  value={hourOfDay}
+                  onChange={(e) => setHourOfDay(parseInt(e.target.value, 10))}
+                  className="w-full h-2 bg-gray-200 rounded-full appearance-none cursor-pointer accent-copper-500"
+                />
+                <div className="flex justify-between text-xs text-gray-500 mt-2">
+                  <span>4:00 AM</span>
+                  <span>12:00 PM</span>
+                  <span>11:00 PM</span>
+                </div>
+              </div>
+            </div>
+
+            <button
+              onClick={() => setStep(6)}
+              className="w-full py-4 rounded-xl bg-copper-500 hover:bg-copper-600 text-white font-bold text-lg transition-colors shadow-lg hover:shadow-xl"
+            >
+              Continue
+            </button>
+          </div>
+        )}
+
+        {/* STEP 6: Weather Conditions */}
+        {step === 6 && (
+          <div className="animate-in fade-in duration-300">
+            <h2 className="font-heading text-2xl font-bold text-water-900 mb-2">
+              What are the conditions?
+            </h2>
+            <p className="text-gray-600 mb-8">Weather has a major impact on fish activity and feeding patterns.</p>
+
+            {/* 6a: Sky */}
+            <div className="mb-8">
+              <h3 className="font-heading text-lg font-semibold text-water-800 mb-3">Sky Conditions</h3>
+              <div className="grid grid-cols-4 md:grid-cols-7 gap-2">
+                {([
+                  { value: 'clear' as SkyCondition, label: 'Clear / Sunny', icon: Sun },
+                  { value: 'partly-cloudy' as SkyCondition, label: 'Partly Cloudy', icon: CloudSun },
+                  { value: 'overcast' as SkyCondition, label: 'Overcast', icon: Cloud },
+                  { value: 'light-rain' as SkyCondition, label: 'Light Rain', icon: CloudRain },
+                  { value: 'heavy-rain' as SkyCondition, label: 'Heavy Rain', icon: CloudLightning },
+                  { value: 'snow' as SkyCondition, label: 'Snow', icon: Snowflake },
+                  { value: 'fog' as SkyCondition, label: 'Fog', icon: CloudFog },
+                ]).map((s) => {
+                  const Icon = s.icon;
+                  const selected = weather.sky === s.value;
+                  return (
+                    <button
+                      key={s.value}
+                      onClick={() => setWeather({ ...weather, sky: s.value })}
+                      className={`flex flex-col items-center gap-1.5 p-3 rounded-lg border-2 transition-all duration-200 ${
+                        selected
+                          ? 'border-copper-500 bg-copper-50 shadow-sm'
+                          : 'border-gray-200 bg-white hover:border-copper-300'
+                      }`}
+                    >
+                      <Icon className={`w-6 h-6 ${selected ? 'text-copper-600' : 'text-water-500'}`} />
+                      <span className={`text-[10px] font-medium text-center leading-tight ${selected ? 'text-copper-700' : 'text-water-900'}`}>
+                        {s.label}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* 6b: Wind Speed */}
+            <div className="mb-8">
+              <h3 className="font-heading text-lg font-semibold text-water-800 mb-3">Wind Speed</h3>
+              <div className="grid grid-cols-4 gap-3">
+                {([
+                  { value: 'calm' as WindSpeed, label: 'Calm', sub: '0-5 mph' },
+                  { value: 'light' as WindSpeed, label: 'Light', sub: '5-10 mph' },
+                  { value: 'moderate' as WindSpeed, label: 'Moderate', sub: '10-20 mph' },
+                  { value: 'strong' as WindSpeed, label: 'Strong', sub: '20+ mph' },
+                ]).map((w) => {
+                  const selected = weather.wind === w.value;
+                  return (
+                    <button
+                      key={w.value}
+                      onClick={() => setWeather({ ...weather, wind: w.value })}
+                      className={`flex flex-col items-center gap-1.5 p-4 rounded-lg border-2 transition-all duration-200 ${
+                        selected
+                          ? 'border-copper-500 bg-copper-50 shadow-sm'
+                          : 'border-gray-200 bg-white hover:border-copper-300'
+                      }`}
+                    >
+                      <Wind className={`w-5 h-5 ${selected ? 'text-copper-600' : 'text-water-500'}`} />
+                      <span className={`font-semibold text-sm ${selected ? 'text-copper-700' : 'text-water-900'}`}>{w.label}</span>
+                      <span className={`text-xs ${selected ? 'text-copper-600' : 'text-gray-500'}`}>{w.sub}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* 6c: Wind Direction */}
+            <div className="mb-8">
+              <h3 className="font-heading text-lg font-semibold text-water-800 mb-3">Wind Direction</h3>
+              <div className="grid grid-cols-4 md:grid-cols-8 gap-2">
+                {(['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'] as WindDirection[]).map((dir) => {
+                  const selected = weather.windDirection === dir;
+                  return (
+                    <button
+                      key={dir}
+                      onClick={() => setWeather({ ...weather, windDirection: dir })}
+                      className={`py-3 rounded-lg border-2 font-semibold text-sm transition-all duration-200 ${
+                        selected
+                          ? 'border-copper-500 bg-copper-50 text-copper-700 shadow-sm'
+                          : 'border-gray-200 bg-white text-water-900 hover:border-copper-300'
+                      }`}
+                    >
+                      {dir}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* 6d: Frontal System */}
+            <div className="mb-8">
+              <h3 className="font-heading text-lg font-semibold text-water-800 mb-3">Frontal System</h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                {([
+                  { value: 'pre-frontal' as FrontalSystem, label: 'Pre-Frontal', sub: 'Storm approaching', colorClass: 'bg-yellow-50 border-yellow-300' },
+                  { value: 'post-frontal' as FrontalSystem, label: 'Post-Frontal', sub: 'Bluebird after storm', colorClass: 'bg-blue-50 border-blue-300' },
+                  { value: 'stable' as FrontalSystem, label: 'Stable', sub: 'No change expected', colorClass: 'bg-green-50 border-green-300' },
+                  { value: 'during-front' as FrontalSystem, label: 'During Front', sub: 'Front passing through', colorClass: 'bg-red-50 border-red-300' },
+                ]).map((f) => {
+                  const selected = weather.frontalSystem === f.value;
+                  return (
+                    <button
+                      key={f.value}
+                      onClick={() => setWeather({ ...weather, frontalSystem: f.value })}
+                      className={`flex flex-col items-center gap-1 p-4 rounded-lg border-2 transition-all duration-200 ${
+                        selected
+                          ? 'border-copper-500 bg-copper-50 shadow-sm'
+                          : `${f.colorClass} hover:border-copper-300`
+                      }`}
+                    >
+                      <span className={`font-semibold text-sm ${selected ? 'text-copper-700' : 'text-water-900'}`}>{f.label}</span>
+                      <span className={`text-xs text-center ${selected ? 'text-copper-600' : 'text-gray-600'}`}>{f.sub}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* 6e: Pressure Trend */}
+            <div className="mb-8">
+              <h3 className="font-heading text-lg font-semibold text-water-800 mb-3">Pressure Trend</h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                {([
+                  { value: 'rising' as PressureTrend, label: 'Rising', icon: TrendingUp },
+                  { value: 'falling' as PressureTrend, label: 'Falling', icon: TrendingDown },
+                  { value: 'steady' as PressureTrend, label: 'Steady', icon: Minus },
+                  { value: 'rapidly-falling' as PressureTrend, label: 'Rapidly Falling', icon: ChevronsDown },
+                ]).map((p) => {
+                  const Icon = p.icon;
+                  const selected = weather.pressureTrend === p.value;
+                  return (
+                    <button
+                      key={p.value}
+                      onClick={() => setWeather({ ...weather, pressureTrend: p.value })}
+                      className={`flex flex-col items-center gap-1.5 p-4 rounded-lg border-2 transition-all duration-200 ${
+                        selected
+                          ? 'border-copper-500 bg-copper-50 shadow-sm'
+                          : 'border-gray-200 bg-white hover:border-copper-300'
+                      }`}
+                    >
+                      <Icon className={`w-5 h-5 ${selected ? 'text-copper-600' : 'text-water-500'}`} />
+                      <span className={`font-semibold text-sm ${selected ? 'text-copper-700' : 'text-water-900'}`}>{p.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <button
+              onClick={() => setStep(7)}
+              className="w-full py-4 rounded-xl bg-copper-500 hover:bg-copper-600 text-white font-bold text-lg transition-colors shadow-lg hover:shadow-xl"
+            >
+              Continue
+            </button>
+          </div>
+        )}
+
+        {/* STEP 7: Moon Phase */}
+        {step === 7 && (
+          <div className="animate-in fade-in duration-300">
+            <h2 className="font-heading text-2xl font-bold text-water-900 mb-2">
+              Moon phase (optional)
+            </h2>
+            <p className="text-gray-600 mb-6">
+              Moon phase influences feeding activity. We&apos;ve auto-detected today&apos;s phase.
+            </p>
+
+            <div className="grid grid-cols-4 gap-3 mb-8">
+              {([
+                { value: 'new' as MoonPhase, label: 'New', emoji: '\uD83C\uDF11' },
+                { value: 'waxing-crescent' as MoonPhase, label: 'Waxing Crescent', emoji: '\uD83C\uDF12' },
+                { value: 'first-quarter' as MoonPhase, label: 'First Quarter', emoji: '\uD83C\uDF13' },
+                { value: 'waxing-gibbous' as MoonPhase, label: 'Waxing Gibbous', emoji: '\uD83C\uDF14' },
+                { value: 'full' as MoonPhase, label: 'Full', emoji: '\uD83C\uDF15' },
+                { value: 'waning-gibbous' as MoonPhase, label: 'Waning Gibbous', emoji: '\uD83C\uDF16' },
+                { value: 'last-quarter' as MoonPhase, label: 'Last Quarter', emoji: '\uD83C\uDF17' },
+                { value: 'waning-crescent' as MoonPhase, label: 'Waning Crescent', emoji: '\uD83C\uDF18' },
+              ]).map((m) => {
+                const selected = moonPhase === m.value;
+                const isDetected = getMoonPhase(new Date()) === m.value;
+                return (
+                  <button
+                    key={m.value}
+                    onClick={() => setMoonPhase(m.value)}
+                    className={`relative flex flex-col items-center gap-1.5 p-4 rounded-lg border-2 transition-all duration-200 ${
+                      selected
+                        ? 'border-copper-500 bg-copper-50 shadow-sm'
+                        : 'border-gray-200 bg-white hover:border-copper-300'
+                    }`}
+                  >
+                    <span className="text-2xl">{m.emoji}</span>
+                    <span className={`text-xs font-medium text-center leading-tight ${selected ? 'text-copper-700' : 'text-water-900'}`}>
+                      {m.label}
+                    </span>
+                    {isDetected && (
+                      <span className="absolute -top-1 -right-1 w-2 h-2 bg-copper-500 rounded-full" />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+
+            <button
+              onClick={handleSubmit}
+              className="w-full py-4 rounded-xl bg-copper-500 hover:bg-copper-600 text-white font-bold text-lg transition-colors shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+            >
+              <Target className="w-5 h-5" />
+              Get My Recommendation
+            </button>
+
+            <button
+              onClick={() => {
+                handleSubmit();
+              }}
+              className="w-full mt-3 py-2 text-gray-500 hover:text-copper-600 text-sm font-medium transition-colors"
+            >
+              Skip moon phase
+            </button>
+          </div>
+        )}
+
+        {/* STEP 8: not used as a step — reserved for future */}
 
         {/* Loading */}
         {loading && (
@@ -615,76 +1014,93 @@ export default function RecommendationTool() {
           </div>
         )}
 
-        {/* STEP 7: Results */}
-        {step === 7 && result && !loading && (
+        {/* STEP 9: Results */}
+        {step === 9 && result && !loading && (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
             {/* Back to edit */}
             <button
-              onClick={() => setStep(6)}
+              onClick={() => setStep(7)}
               className="flex items-center gap-1 text-water-600 hover:text-water-800 mb-4 text-sm font-medium transition-colors"
             >
               <ChevronLeft className="w-4 h-4" />
               Adjust inputs
             </button>
 
-            {/* Results header */}
+            {/* Confidence Badge */}
+            <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold mb-4 ${
+              result.confidence === 'very-high'
+                ? 'bg-green-100 text-green-800'
+                : result.confidence === 'high'
+                ? 'bg-green-50 text-green-700'
+                : result.confidence === 'medium'
+                ? 'bg-amber-100 text-amber-800'
+                : 'bg-gray-100 text-gray-800'
+            }`}>
+              <CheckCircle2 className="w-4 h-4" />
+              {result.confidence === 'very-high' ? 'Very High Confidence' : result.confidence === 'high' ? 'High Confidence' : result.confidence === 'medium' ? 'Medium Confidence' : 'Low Confidence'}
+            </div>
+            {result.confidenceNotes && (
+              <p className="text-sm text-gray-600 mb-6">{result.confidenceNotes}</p>
+            )}
+
+            {/* Warnings */}
+            {result.warnings.length > 0 && (
+              <div className="space-y-2 mb-6">
+                {result.warnings.map((w, i) => (
+                  <div key={i} className="flex items-start gap-2 p-3 rounded-lg bg-red-50 border border-red-200">
+                    <AlertTriangle className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" />
+                    <p className="text-sm text-red-800">{w}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+
             <div className="bg-white rounded-2xl border border-gray-200 shadow-lg overflow-hidden">
-              {/* Confidence badge + species name header */}
-              <div className="bg-gradient-to-r from-water-800 to-water-700 px-6 py-5 flex items-center justify-between">
-                <div>
-                  <p className="text-white/70 text-sm font-medium">Recommendation for</p>
-                  <h2 className="font-heading text-2xl font-bold text-white">
-                    {selectedSpecies?.name ?? species}
-                  </h2>
-                </div>
-                <span
-                  className={`px-3 py-1.5 rounded-full text-sm font-bold ${
-                    result.confidence === 'high'
-                      ? 'bg-green-100 text-green-800'
-                      : result.confidence === 'medium'
-                      ? 'bg-amber-100 text-amber-800'
-                      : 'bg-gray-100 text-gray-800'
-                  }`}
-                >
-                  {result.confidence === 'high'
-                    ? 'High Confidence'
-                    : result.confidence === 'medium'
-                    ? 'Medium Confidence'
-                    : 'Low Confidence'}
-                </span>
+              {/* Results header */}
+              <div className="bg-gradient-to-r from-water-800 to-water-700 px-6 py-5">
+                <p className="text-white/70 text-sm font-medium">Recommendation for</p>
+                <h2 className="font-heading text-2xl font-bold text-white">
+                  {selectedSpecies?.name ?? species}
+                </h2>
               </div>
 
               <div className="p-6 space-y-6">
-                {/* Technique */}
+                {/* Primary Technique */}
                 <div>
                   <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">
                     Recommended Technique
                   </p>
                   <h3 className="font-heading text-2xl font-bold text-water-900 mb-1">
-                    Use a {result.technique.name}
+                    Use: {result.primary.technique.name}
                   </h3>
-                  <p className="text-gray-600 mb-2">{result.technique.description}</p>
+                  <p className="text-gray-600 mb-2">{result.primary.technique.why}</p>
                   <Link
-                    href={`/techniques/${result.technique.slug}`}
+                    href={`/techniques/${result.primary.technique.slug}`}
                     className="inline-flex items-center gap-1 text-copper-600 hover:text-copper-700 font-medium text-sm transition-colors"
                   >
                     Learn more <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
 
-                {/* Alternate technique */}
-                <div className="bg-sand-50 rounded-lg p-4 border border-sand-200">
-                  <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">
-                    Or Try
+                {/* Presentation */}
+                <div>
+                  <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
+                    Presentation
                   </p>
-                  <p className="font-semibold text-water-900">{result.alternateTechnique.name}</p>
-                  <p className="text-gray-600 text-sm">{result.alternateTechnique.description}</p>
-                  <Link
-                    href={`/techniques/${result.alternateTechnique.slug}`}
-                    className="inline-flex items-center gap-1 text-copper-600 hover:text-copper-700 font-medium text-sm mt-1 transition-colors"
-                  >
-                    Learn more <ArrowRight className="w-4 h-4" />
-                  </Link>
+                  <div className="grid grid-cols-3 gap-3">
+                    <div className="bg-sand-50 border border-sand-200 rounded-lg p-4 text-center">
+                      <p className="text-xs text-gray-500 font-medium mb-1">Speed</p>
+                      <p className="font-semibold text-water-900">{result.primary.presentation.speed}</p>
+                    </div>
+                    <div className="bg-sand-50 border border-sand-200 rounded-lg p-4 text-center">
+                      <p className="text-xs text-gray-500 font-medium mb-1">Action</p>
+                      <p className="font-semibold text-water-900">{result.primary.presentation.action}</p>
+                    </div>
+                    <div className="bg-sand-50 border border-sand-200 rounded-lg p-4 text-center">
+                      <p className="text-xs text-gray-500 font-medium mb-1">Depth</p>
+                      <p className="font-semibold text-water-900">{result.primary.presentation.depth}</p>
+                    </div>
+                  </div>
                 </div>
 
                 <hr className="border-gray-200" />
@@ -694,94 +1110,176 @@ export default function RecommendationTool() {
                   <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
                     Lure / Bait
                   </p>
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div className="bg-white border border-gray-200 rounded-lg p-4">
-                      <p className="text-xs font-bold text-copper-500 uppercase mb-1">Primary</p>
-                      <p className="font-semibold text-water-900">{result.lure.name}</p>
-                      <p className="text-sm text-gray-600">
-                        Color: <span className="font-medium">{result.lure.color}</span>
-                      </p>
-                      <p className="text-sm text-gray-600">
-                        Size: <span className="font-medium">{result.lure.size}</span>
-                      </p>
+                  <div className="bg-white border border-gray-200 rounded-lg p-5 mb-3">
+                    <p className="text-xs font-bold text-copper-500 uppercase mb-1">Primary</p>
+                    <p className="font-heading font-bold text-water-900 text-lg">{result.primary.lure.specificLure}</p>
+                    <div className="grid grid-cols-2 gap-x-4 gap-y-1 mt-2 text-sm">
+                      <div>
+                        <span className="text-gray-500">Type:</span>{' '}
+                        <span className="font-medium text-water-900">{result.primary.lure.type}</span>
+                      </div>
+                      <div>
+                        <span className="text-gray-500">Color:</span>{' '}
+                        <span className="font-medium text-water-900">{result.primary.lure.color}</span>
+                      </div>
+                      <div>
+                        <span className="text-gray-500">Size:</span>{' '}
+                        <span className="font-medium text-water-900">{result.primary.lure.size}</span>
+                      </div>
                     </div>
-                    <div className="bg-white border border-gray-200 rounded-lg p-4">
-                      <p className="text-xs font-bold text-gray-400 uppercase mb-1">Alternate</p>
-                      <p className="font-semibold text-water-900">{result.alternateLure.name}</p>
-                      <p className="text-sm text-gray-600">
-                        Color: <span className="font-medium">{result.alternateLure.color}</span>
-                      </p>
-                      <p className="text-sm text-gray-600">
-                        Size: <span className="font-medium">{result.alternateLure.size}</span>
-                      </p>
-                    </div>
+                    {result.primary.lure.why && (
+                      <p className="text-sm text-gray-600 mt-2">{result.primary.lure.why}</p>
+                    )}
+                  </div>
+                  <div className="bg-sand-50 border border-sand-200 rounded-lg p-4">
+                    <p className="text-xs font-bold text-gray-400 uppercase mb-1">Alternate</p>
+                    <p className="font-semibold text-water-900">{result.alternate.lure.specificLure}</p>
+                    <p className="text-sm text-gray-600">
+                      {result.alternate.lure.type} &mdash; {result.alternate.lure.color}, {result.alternate.lure.size}
+                    </p>
                   </div>
                 </div>
 
                 <hr className="border-gray-200" />
 
-                {/* Line */}
-                <div>
-                  <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
-                    Line
-                  </p>
-                  <div className="flex items-start gap-3">
-                    <Anchor className="w-5 h-5 text-copper-500 mt-0.5 flex-shrink-0" />
-                    <div>
-                      <p className="font-semibold text-water-900">
-                        {result.line.type} — {result.line.weight}
-                      </p>
-                      {result.line.description && (
-                        <p className="text-sm text-gray-600">{result.line.description}</p>
+                {/* Line & Rod/Reel */}
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {/* Line */}
+                  <div>
+                    <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
+                      Line
+                    </p>
+                    <div className="bg-white border border-gray-200 rounded-lg p-4 h-full">
+                      <div className="flex items-start gap-3">
+                        <Anchor className="w-5 h-5 text-copper-500 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="font-semibold text-water-900">
+                            {result.primary.line.type} &mdash; {result.primary.line.weight}
+                          </p>
+                          {result.primary.line.why && (
+                            <p className="text-sm text-gray-600 mt-1">{result.primary.line.why}</p>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Rod & Reel */}
+                  <div>
+                    <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
+                      Rod &amp; Reel
+                    </p>
+                    <div className="bg-white border border-gray-200 rounded-lg p-4 h-full">
+                      <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm">
+                        <div>
+                          <span className="text-gray-500">Length:</span>{' '}
+                          <span className="font-medium text-water-900">{result.primary.rodReel.rodLength}</span>
+                        </div>
+                        <div>
+                          <span className="text-gray-500">Power:</span>{' '}
+                          <span className="font-medium text-water-900">{result.primary.rodReel.rodPower}</span>
+                        </div>
+                        <div>
+                          <span className="text-gray-500">Action:</span>{' '}
+                          <span className="font-medium text-water-900">{result.primary.rodReel.rodAction}</span>
+                        </div>
+                        <div>
+                          <span className="text-gray-500">Reel:</span>{' '}
+                          <span className="font-medium text-water-900">{result.primary.rodReel.reelType}</span>
+                        </div>
+                        <div>
+                          <span className="text-gray-500">Speed:</span>{' '}
+                          <span className="font-medium text-water-900">{result.primary.rodReel.reelSpeed}</span>
+                        </div>
+                      </div>
+                      {result.primary.rodReel.why && (
+                        <p className="text-sm text-gray-600 mt-2">{result.primary.rodReel.why}</p>
                       )}
                     </div>
                   </div>
                 </div>
 
-                {/* Rod & Reel */}
+                {/* Hook */}
                 <div>
                   <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
-                    Rod &amp; Reel
+                    Hook
                   </p>
-                  <div className="bg-sand-50 rounded-lg p-4 border border-sand-200">
-                    <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
-                      <div>
-                        <span className="text-gray-500">Rod Type:</span>{' '}
-                        <span className="font-medium text-water-900">{result.rodReel.rodType}</span>
-                      </div>
-                      <div>
-                        <span className="text-gray-500">Power:</span>{' '}
-                        <span className="font-medium text-water-900">{result.rodReel.power}</span>
-                      </div>
-                      <div>
-                        <span className="text-gray-500">Action:</span>{' '}
-                        <span className="font-medium text-water-900">{result.rodReel.action}</span>
-                      </div>
-                      <div>
-                        <span className="text-gray-500">Reel Type:</span>{' '}
-                        <span className="font-medium text-water-900">{result.rodReel.reelType}</span>
-                      </div>
-                    </div>
-                    {result.rodReel.description && (
-                      <p className="text-sm text-gray-600 mt-2">{result.rodReel.description}</p>
-                    )}
+                  <div className="flex items-center gap-3 bg-sand-50 border border-sand-200 rounded-lg p-4">
+                    <Target className="w-5 h-5 text-copper-500 flex-shrink-0" />
+                    <p className="font-semibold text-water-900">
+                      {result.primary.hookType} &mdash; Size {result.primary.hookSize}
+                    </p>
                   </div>
                 </div>
 
                 <hr className="border-gray-200" />
 
-                {/* Target Depth */}
+                {/* Target Zone */}
                 <div>
                   <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
-                    Target Depth
+                    Target Zone
                   </p>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-water-100 flex items-center justify-center flex-shrink-0">
-                      <Waves className="w-5 h-5 text-water-600" />
+                  <div className="bg-water-50 border border-water-200 rounded-xl p-5">
+                    <div className="grid sm:grid-cols-3 gap-4">
+                      <div className="text-center">
+                        <div className="w-10 h-10 rounded-full bg-water-100 flex items-center justify-center mx-auto mb-2">
+                          <Waves className="w-5 h-5 text-water-600" />
+                        </div>
+                        <p className="text-xs text-gray-500 font-medium">Depth</p>
+                        <p className="font-semibold text-water-900">{result.primary.targetDepth}</p>
+                      </div>
+                      <div className="text-center">
+                        <div className="w-10 h-10 rounded-full bg-water-100 flex items-center justify-center mx-auto mb-2">
+                          <TreePine className="w-5 h-5 text-water-600" />
+                        </div>
+                        <p className="text-xs text-gray-500 font-medium">Structure</p>
+                        <p className="font-semibold text-water-900">{result.primary.targetStructure}</p>
+                      </div>
+                      <div className="text-center">
+                        <div className="w-10 h-10 rounded-full bg-water-100 flex items-center justify-center mx-auto mb-2">
+                          <Compass className="w-5 h-5 text-water-600" />
+                        </div>
+                        <p className="text-xs text-gray-500 font-medium">Cast Direction</p>
+                        <p className="font-semibold text-water-900">{result.primary.castDirection}</p>
+                      </div>
                     </div>
-                    <p className="font-semibold text-water-900 text-lg">
-                      Fish at {result.targetDepth}
-                    </p>
+                  </div>
+                </div>
+
+                <hr className="border-gray-200" />
+
+                {/* Feeding Window */}
+                <div>
+                  <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
+                    Feeding Window
+                  </p>
+                  <div className="bg-white border border-gray-200 rounded-lg p-5">
+                    <p className="text-gray-700 mb-3">{result.feedingWindow.description}</p>
+                    {result.feedingWindow.peakTimes.length > 0 && (
+                      <div className="mb-3">
+                        <p className="text-xs font-bold text-gray-400 uppercase mb-2">Peak Times</p>
+                        <div className="flex flex-wrap gap-2">
+                          {result.feedingWindow.peakTimes.map((t, i) => (
+                            <span key={i} className="inline-flex items-center gap-1 bg-copper-50 text-copper-700 text-sm font-medium px-3 py-1 rounded-full border border-copper-200">
+                              <Clock className="w-3.5 h-3.5" />
+                              {t}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    {result.feedingWindow.moonFeedingPeriods && result.feedingWindow.moonFeedingPeriods.length > 0 && (
+                      <div>
+                        <p className="text-xs font-bold text-gray-400 uppercase mb-2">Moon Feeding Periods</p>
+                        <div className="flex flex-wrap gap-2">
+                          {result.feedingWindow.moonFeedingPeriods.map((p, i) => (
+                            <span key={i} className="inline-flex items-center gap-1 bg-indigo-50 text-indigo-700 text-sm font-medium px-3 py-1 rounded-full border border-indigo-200">
+                              {p}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -789,7 +1287,7 @@ export default function RecommendationTool() {
                 {result.tips.length > 0 && (
                   <div>
                     <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">
-                      Contextual Tips
+                      Tips
                     </p>
                     <ul className="space-y-2">
                       {result.tips.map((tip, i) => (
@@ -831,7 +1329,7 @@ export default function RecommendationTool() {
                         <p className="text-sm text-amber-800 mb-3">{result.regulations.notes}</p>
                       )}
                       <p className="text-xs text-amber-700 font-medium">
-                        &#9888;&#65039; Always verify with your state agency
+                        &#9888;&#65039; Always verify current regulations with your state agency before fishing.
                       </p>
                       {state && (
                         <Link
@@ -897,14 +1395,14 @@ export default function RecommendationTool() {
                     href={`/species/${species}`}
                     className="flex-1 py-3 rounded-lg border-2 border-water-600 text-water-700 hover:bg-water-600 hover:text-white font-bold transition-colors flex items-center justify-center gap-2 text-center"
                   >
-                    View {selectedSpecies.name} Guide <ArrowRight className="w-4 h-4" />
+                    View Species Guide <ArrowRight className="w-4 h-4" />
                   </Link>
                 )}
                 <Link
-                  href={`/techniques/${result.technique.slug}`}
+                  href={`/techniques/${result.primary.technique.slug}`}
                   className="flex-1 py-3 rounded-lg border-2 border-copper-400 text-copper-700 hover:bg-copper-500 hover:text-white font-bold transition-colors flex items-center justify-center gap-2 text-center"
                 >
-                  View {result.technique.name} Guide <ArrowRight className="w-4 h-4" />
+                  View Technique Guide <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
             </div>
