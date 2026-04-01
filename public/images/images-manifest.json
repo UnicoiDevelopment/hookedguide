@@ -1,5 +1,186 @@
 {
-  "species": {},
+  "species": {
+    "largemouth-bass": {
+      "id": "/images/species/largemouth-bass-id.jpg",
+      "action": "/images/species/largemouth-bass-action.jpg",
+      "idCredit": "Wikimedia Commons — Largemouth bass",
+      "actionCredit": "Photo by Richard R on Unsplash"
+    },
+    "smallmouth-bass": {
+      "id": "/images/species/smallmouth-bass-id.jpg",
+      "action": "/images/species/smallmouth-bass-action.jpg",
+      "idCredit": "Wikimedia Commons — Smallmouth bass",
+      "actionCredit": "Photo by michal dziekonski on Unsplash"
+    },
+    "spotted-bass": {
+      "id": "/images/species/spotted-bass-id.jpg",
+      "action": "/images/species/spotted-bass-action.jpg",
+      "idCredit": "Wikimedia Commons — Spotted bass",
+      "actionCredit": "Photo by cody reed on Unsplash"
+    },
+    "crappie": {
+      "id": "/images/species/crappie-id.jpg",
+      "action": "/images/species/crappie-action.jpg",
+      "idCredit": "Wikimedia Commons — Black crappie",
+      "actionCredit": "Photo by Thabet Studio on Unsplash"
+    },
+    "bluegill": {
+      "id": "/images/species/bluegill-id.jpg",
+      "action": "/images/species/bluegill-action.jpg",
+      "idCredit": "Wikimedia Commons — Bluegill",
+      "actionCredit": "Photo by Josie Weiss on Unsplash"
+    },
+    "channel-catfish": {
+      "id": "/images/species/channel-catfish-id.jpg",
+      "action": "",
+      "idCredit": "Wikimedia Commons — Channel catfish",
+      "actionCredit": ""
+    },
+    "blue-catfish": {
+      "id": "/images/species/blue-catfish-id.jpg",
+      "action": "/images/species/blue-catfish-action.jpg",
+      "idCredit": "Wikimedia Commons — Blue catfish",
+      "actionCredit": "Photo by Alexandr Popadin on Unsplash"
+    },
+    "flathead-catfish": {
+      "id": "/images/species/flathead-catfish-id.jpg",
+      "action": "/images/species/flathead-catfish-action.jpg",
+      "idCredit": "Wikimedia Commons — Flathead catfish",
+      "actionCredit": "Photo by Milos Prelevic on Unsplash"
+    },
+    "walleye": {
+      "id": "/images/species/walleye-id.jpg",
+      "action": "/images/species/walleye-action.jpg",
+      "idCredit": "Wikimedia Commons — Walleye",
+      "actionCredit": "Photo by Clay Banks on Unsplash"
+    },
+    "rainbow-trout": {
+      "id": "/images/species/rainbow-trout-id.jpg",
+      "action": "/images/species/rainbow-trout-action.jpg",
+      "idCredit": "Wikimedia Commons — Rainbow trout",
+      "actionCredit": "Photo by Michael Yero on Unsplash"
+    },
+    "brown-trout": {
+      "id": "/images/species/brown-trout-id.jpg",
+      "action": "/images/species/brown-trout-action.jpg",
+      "idCredit": "Wikimedia Commons — Brown trout",
+      "actionCredit": "Photo by Hasse Lossius on Unsplash"
+    },
+    "brook-trout": {
+      "id": "/images/species/brook-trout-id.jpg",
+      "action": "/images/species/brook-trout-action.jpg",
+      "idCredit": "Wikimedia Commons — Brook trout",
+      "actionCredit": "Photo by Ian Taylor on Unsplash"
+    },
+    "musky": {
+      "id": "/images/species/musky-id.jpg",
+      "action": "/images/species/musky-action.jpg",
+      "idCredit": "Wikimedia Commons — Muskellunge",
+      "actionCredit": "Photo by Krzysztof  Niewolny on Unsplash"
+    },
+    "northern-pike": {
+      "id": "/images/species/northern-pike-id.jpg",
+      "action": "",
+      "idCredit": "Wikimedia Commons — Northern pike",
+      "actionCredit": ""
+    },
+    "yellow-perch": {
+      "id": "/images/species/yellow-perch-id.jpg",
+      "action": "/images/species/yellow-perch-action.jpg",
+      "idCredit": "Wikimedia Commons — Yellow perch",
+      "actionCredit": "Photo by www.raubfisch24.de on Unsplash"
+    },
+    "striped-bass": {
+      "id": "/images/species/striped-bass-id.jpg",
+      "action": "/images/species/striped-bass-action.jpg",
+      "idCredit": "Wikimedia Commons — Striped bass",
+      "actionCredit": "Photo by Trophy Technology on Unsplash"
+    },
+    "white-bass": {
+      "id": "/images/species/white-bass-id.jpg",
+      "action": "/images/species/white-bass-action.jpg",
+      "idCredit": "Wikimedia Commons — White bass",
+      "actionCredit": "Photo by Brady Rogers on Unsplash"
+    },
+    "carp": {
+      "id": "/images/species/carp-id.jpg",
+      "action": "/images/species/carp-action.jpg",
+      "idCredit": "Wikimedia Commons — Common carp",
+      "actionCredit": "Photo by Photography potato on Unsplash"
+    },
+    "gar": {
+      "id": "/images/species/gar-id.jpg",
+      "action": "/images/species/gar-action.jpg",
+      "idCredit": "Wikimedia Commons — Longnose gar",
+      "actionCredit": "Photo by Krzysztof  Niewolny on Unsplash"
+    },
+    "sauger": {
+      "id": "/images/species/sauger-id.jpg",
+      "action": "",
+      "idCredit": "Wikimedia Commons — Sauger",
+      "actionCredit": ""
+    },
+    "redfish": {
+      "id": "/images/species/redfish-id.jpg",
+      "action": "/images/species/redfish-action.jpg",
+      "idCredit": "Wikimedia Commons — Red drum",
+      "actionCredit": "Photo by Richard R on Unsplash"
+    },
+    "speckled-trout": {
+      "id": "/images/species/speckled-trout-id.jpg",
+      "action": "/images/species/speckled-trout-action.jpg",
+      "idCredit": "Wikimedia Commons — Cynoscion nebulosus",
+      "actionCredit": "Photo by Hasse Lossius on Unsplash"
+    },
+    "flounder": {
+      "id": "/images/species/flounder-id.jpg",
+      "action": "/images/species/flounder-action.jpg",
+      "idCredit": "Wikimedia Commons — Paralichthys lethostigma",
+      "actionCredit": "Photo by Paul Einerhand on Unsplash"
+    },
+    "snook": {
+      "id": "/images/species/snook-id.jpg",
+      "action": "",
+      "idCredit": "Wikimedia Commons — Common snook",
+      "actionCredit": ""
+    },
+    "tarpon": {
+      "id": "/images/species/tarpon-id.jpg",
+      "action": "/images/species/tarpon-action.jpg",
+      "idCredit": "Wikimedia Commons — Atlantic tarpon",
+      "actionCredit": "Photo by Hans Veth on Unsplash"
+    },
+    "mahi-mahi": {
+      "id": "/images/species/mahi-mahi-id.jpg",
+      "action": "",
+      "idCredit": "Wikimedia Commons — Mahi-mahi",
+      "actionCredit": ""
+    },
+    "king-mackerel": {
+      "id": "/images/species/king-mackerel-id.jpg",
+      "action": "/images/species/king-mackerel-action.jpg",
+      "idCredit": "Wikimedia Commons — King mackerel",
+      "actionCredit": "Photo by Patrick on Unsplash"
+    },
+    "grouper": {
+      "id": "/images/species/grouper-id.jpg",
+      "action": "",
+      "idCredit": "Wikimedia Commons — Red grouper",
+      "actionCredit": ""
+    },
+    "sheepshead": {
+      "id": "/images/species/sheepshead-id.jpg",
+      "action": "",
+      "idCredit": "Wikimedia Commons — Archosargus probatocephalus",
+      "actionCredit": ""
+    },
+    "red-snapper": {
+      "id": "/images/species/red-snapper-id.jpg",
+      "action": "",
+      "idCredit": "Wikimedia Commons — Northern red snapper",
+      "actionCredit": ""
+    }
+  },
   "hero": {
     "main": "/images/hero/hero-main.jpg",
     "credit": "Photo by Viktor SOLOMONIK on Unsplash"
