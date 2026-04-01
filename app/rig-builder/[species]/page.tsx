@@ -21,7 +21,7 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { species: string } }): Metadata {
   const sp = allSpecies.find(s => s.slug === params.species);
   if (!sp) return {};
-  const title = `${sp.name} Fishing Rig Builder — Rod, Reel, Line & Lure Setup | HookedGuide`;
+  const title = `${sp.name} Fishing Rig Builder — Rod, Reel, Line & Lure Setup | HOOKED`;
   const description = `Build the perfect ${sp.name.toLowerCase()} fishing rig. Get rod, reel, line, and lure recommendations matched to ${sp.name.toLowerCase()}.`;
   return {
     title,

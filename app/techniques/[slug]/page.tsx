@@ -54,7 +54,7 @@ export async function generateMetadata({
     })
     .join(", ");
 
-  const title = `How to Fish a ${technique.name} — Step-by-Step Guide (2026) | HookedGuide`;
+  const title = `How to Fish a ${technique.name} — Step-by-Step Guide (2026) | HOOKED`;
   const description = `${technique.description.slice(0, 120)}... Best for ${speciesNames}. Difficulty: ${difficultyLabels[technique.difficulty]}.`;
 
   return {
@@ -116,12 +116,12 @@ export default async function TechniquePage({ params }: PageProps) {
     image: technique.imagePath || undefined,
     author: {
       "@type": "Organization",
-      name: "HookedGuide",
+      name: "HOOKED",
       url: "https://hookedguide.com",
     },
     publisher: {
       "@type": "Organization",
-      name: "HookedGuide",
+      name: "HOOKED",
       url: "https://hookedguide.com",
     },
     mainEntityOfPage: `https://hookedguide.com/techniques/${slug}`,

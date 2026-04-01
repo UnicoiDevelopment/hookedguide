@@ -2,8 +2,8 @@ import { Metadata } from 'next';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 
 export const metadata: Metadata = {
-  title: 'Image Credits | HookedGuide',
-  description: 'Image attribution and credits for photos used on HookedGuide.',
+  title: 'Image Credits | HOOKED',
+  description: 'Image attribution and credits for photos used on HOOKED.',
   alternates: { canonical: 'https://hookedguide.com/credits' },
 };
 

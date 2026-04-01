@@ -20,13 +20,13 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "HookedGuide — Fish Smarter.",
-    template: "%s | HookedGuide",
+    default: "HOOKED — Fish Smarter.",
+    template: "%s | HOOKED",
   },
   description: "Fish Smarter. Species guides, gear recommendations, and fishing intelligence for every state. Find the best techniques, lures, and tackle.",
   metadataBase: new URL('https://hookedguide.com'),
   openGraph: {
-    siteName: 'HookedGuide',
+    siteName: 'HOOKED',
     type: 'website',
     locale: 'en_US',
   },
@@ -41,16 +41,16 @@ export const metadata: Metadata = {
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "HookedGuide",
+  name: "HOOKED",
   url: "https://hookedguide.com",
-  description: "Fish Smarter. Species guides, gear recommendations, and fishing intelligence for every state.",
-  logo: "https://hookedguide.com/logo.png",
+  description: "HOOKED — Fish Smarter. Species guides, gear recommendations, and fishing intelligence for every state.",
+  logo: "https://hookedguide.com/images/logo/hooked-logo-white.png",
 };
 
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "HookedGuide",
+  name: "HOOKED",
   url: "https://hookedguide.com",
   potentialAction: {
     "@type": "SearchAction",

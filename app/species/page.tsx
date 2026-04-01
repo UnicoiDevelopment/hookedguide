@@ -5,20 +5,20 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import SpeciesListClient from './SpeciesListClient';
 
 export const metadata: Metadata = {
-  title: 'All Fish Species Guides — Freshwater & Saltwater | HookedGuide',
+  title: 'All Fish Species Guides — Freshwater & Saltwater | HOOKED',
   description:
     'Browse all 30 fish species guides. Filter by freshwater, saltwater, or difficulty. Learn techniques, gear, and seasonal patterns for each species.',
   alternates: {
     canonical: 'https://hookedguide.com/species',
   },
   openGraph: {
-    title: 'All Fish Species Guides — Freshwater & Saltwater | HookedGuide',
+    title: 'All Fish Species Guides — Freshwater & Saltwater | HOOKED',
     description:
       'Browse all 30 fish species guides. Filter by freshwater, saltwater, or difficulty. Learn techniques, gear, and seasonal patterns for each species.',
     url: 'https://hookedguide.com/species',
   },
   twitter: {
-    title: 'All Fish Species Guides — Freshwater & Saltwater | HookedGuide',
+    title: 'All Fish Species Guides — Freshwater & Saltwater | HOOKED',
     description:
       'Browse all 30 fish species guides. Filter by freshwater, saltwater, or difficulty. Learn techniques, gear, and seasonal patterns for each species.',
   },

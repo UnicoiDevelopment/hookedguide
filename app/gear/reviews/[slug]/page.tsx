@@ -21,7 +21,7 @@ export function generateMetadata({
   const review = allReviews.find((r) => r.slug === params.slug);
   if (!review) return {};
 
-  const title = `${review.productName} Review (2026) — Is It Worth It? | HookedGuide`;
+  const title = `${review.productName} Review (2026) — Is It Worth It? | HOOKED`;
   const description = `In-depth review of the ${review.productName} by ${review.brand}. Rating: ${review.rating}/5. Pros, cons, specs, and who it's best for.`;
 
   return {
@@ -90,7 +90,7 @@ export default function GearReviewPage({
         },
         author: {
           '@type': 'Organization',
-          name: 'HookedGuide',
+          name: 'HOOKED',
         },
         itemReviewed: {
           '@type': 'Product',
@@ -117,7 +117,7 @@ export default function GearReviewPage({
           },
           author: {
             '@type': 'Organization',
-            name: 'HookedGuide',
+            name: 'HOOKED',
           },
         },
       },

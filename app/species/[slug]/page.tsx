@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!species) return {};
 
   const stateCount = species.statesFound.length;
-  const title = `${species.name} Fishing Guide — Tips, Techniques & Best Gear (2026) | HookedGuide`;
+  const title = `${species.name} Fishing Guide — Tips, Techniques & Best Gear (2026) | HOOKED`;
   const description = `Complete guide to ${species.name.toLowerCase()} fishing. Learn the best techniques, lures, seasonal patterns, and gear. ${species.name} found in ${stateCount} states.`;
 
   return {
@@ -106,12 +106,12 @@ export default async function SpeciesPage({ params }: PageProps) {
     image: species.imagePath || undefined,
     author: {
       "@type": "Organization",
-      name: "HookedGuide",
+      name: "HOOKED",
       url: "https://hookedguide.com",
     },
     publisher: {
       "@type": "Organization",
-      name: "HookedGuide",
+      name: "HOOKED",
       url: "https://hookedguide.com",
     },
     mainEntityOfPage: `https://hookedguide.com/species/${slug}`,

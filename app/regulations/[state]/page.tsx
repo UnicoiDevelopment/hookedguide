@@ -25,7 +25,7 @@ export function generateMetadata({
   const state = allStates.find((s) => s.slug === params.state);
   if (!state) return {};
 
-  const title = `Fishing Regulations in ${state.name} (2026) — License, Limits & Seasons | HookedGuide`;
+  const title = `Fishing Regulations in ${state.name} (2026) — License, Limits & Seasons | HOOKED`;
   const description = `Complete fishing regulations for ${state.name} including license info, bag limits, size limits, seasons, and top fishing waters.`;
 
   return {

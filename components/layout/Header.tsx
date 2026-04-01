@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
-import { Anchor, Sun, Moon, Menu, X } from 'lucide-react';
+import { Sun, Moon, Menu, X } from 'lucide-react';
 
 const navLinks = [
   { label: 'The Guide', href: '/guide', highlight: true },
@@ -38,11 +38,8 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-sand-200 dark:border-water-700 bg-sand-50/95 backdrop-blur dark:bg-water-900/95">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <Anchor className="h-6 w-6 text-copper-500" />
-          <span className="font-heading text-xl font-bold text-water-800 dark:text-sand-100">
-            HookedGuide
-          </span>
+        <Link href="/" className="font-heading text-2xl font-bold text-copper-500 tracking-wider">
+          HOOKED
         </Link>
 
         {/* Desktop Navigation */}
@@ -121,7 +118,7 @@ export default function Header() {
 
       {/* Mobile Drawer */}
       <div
-        className={`fixed right-0 top-0 z-50 h-full w-72 transform bg-white shadow-xl transition-transform duration-300 ease-in-out dark:bg-water-800 md:hidden ${
+        className={`fixed right-0 top-0 z-50 h-full w-72 transform bg-white shadow-xl transition-transform duration-300 ease-in-out dark:bg-water-900 md:hidden ${
           mobileOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -129,12 +126,9 @@ export default function Header() {
           <Link
             href="/"
             onClick={() => setMobileOpen(false)}
-            className="flex items-center gap-2"
+            className="font-heading text-xl font-bold text-copper-500 tracking-wider"
           >
-            <Anchor className="h-5 w-5 text-copper-500" />
-            <span className="font-heading text-lg font-bold text-water-800 dark:text-sand-100">
-              HookedGuide
-            </span>
+            HOOKED
           </Link>
           <button
             type="button"

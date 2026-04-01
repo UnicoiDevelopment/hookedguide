@@ -45,7 +45,7 @@ export async function generateMetadata({
     ? ` Bag limit: ${regulation.bagLimit}.`
     : "";
 
-  const title = `${species.name} Fishing in ${state.name} — Regulations, Tips & Where to Fish | HookedGuide`;
+  const title = `${species.name} Fishing in ${state.name} — Regulations, Tips & Where to Fish | HOOKED`;
   const description = `Guide to ${species.name.toLowerCase()} fishing in ${state.name}.${bagLimitSnippet} Best waters and season info.`;
 
   return {
@@ -173,12 +173,12 @@ export default async function SpeciesStatePage({ params }: PageProps) {
     description: `Guide to ${species.name.toLowerCase()} fishing in ${state.name}. Best waters, regulations, and season info.`,
     author: {
       "@type": "Organization",
-      name: "HookedGuide",
+      name: "HOOKED",
       url: "https://hookedguide.com",
     },
     publisher: {
       "@type": "Organization",
-      name: "HookedGuide",
+      name: "HOOKED",
       url: "https://hookedguide.com",
     },
     mainEntityOfPage: `https://hookedguide.com/species/${slug}/${stateSlug}`,

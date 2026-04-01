@@ -2,18 +2,18 @@ import { Metadata } from 'next';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 
 export const metadata: Metadata = {
-  title: 'About HookedGuide',
+  title: 'About HOOKED',
   description:
-    'HookedGuide was built for anglers who want to spend less time guessing and more time catching. Learn how our fishing guide, rig builder, and gear reviews work.',
+    'HOOKED was built for anglers who want to spend less time guessing and more time catching. Learn how our fishing guide, rig builder, and gear reviews work.',
   alternates: { canonical: 'https://hookedguide.com/about' },
   openGraph: {
-    title: 'About HookedGuide',
-    description: 'HookedGuide was built for anglers who want to spend less time guessing and more time catching.',
+    title: 'About HOOKED',
+    description: 'HOOKED was built for anglers who want to spend less time guessing and more time catching.',
     url: 'https://hookedguide.com/about',
   },
   twitter: {
-    title: 'About HookedGuide',
-    description: 'HookedGuide was built for anglers who want to spend less time guessing and more time catching.',
+    title: 'About HOOKED',
+    description: 'HOOKED was built for anglers who want to spend less time guessing and more time catching.',
   },
 };
 
@@ -28,11 +28,11 @@ export default function AboutPage() {
       />
 
       <h1 className="font-heading text-3xl font-bold text-water-900 dark:text-sand-50 mt-4 mb-6">
-        About HookedGuide
+        About HOOKED
       </h1>
 
       <p className="text-water-700 dark:text-sand-200 leading-relaxed text-lg mb-10">
-        HookedGuide was built for anglers who want to spend less time guessing
+        HOOKED was built for anglers who want to spend less time guessing
         and more time catching.
       </p>
 

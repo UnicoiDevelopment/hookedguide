@@ -2,18 +2,18 @@ import { Metadata } from 'next';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | HookedGuide',
+  title: 'Privacy Policy | HOOKED',
   description:
-    'HookedGuide privacy policy. Learn how we handle your data and protect your privacy.',
+    'HOOKED privacy policy. Learn how we handle your data and protect your privacy.',
   alternates: { canonical: 'https://hookedguide.com/privacy' },
   openGraph: {
-    title: 'Privacy Policy | HookedGuide',
-    description: 'HookedGuide privacy policy. Learn how we handle your data.',
+    title: 'Privacy Policy | HOOKED',
+    description: 'HOOKED privacy policy. Learn how we handle your data.',
     url: 'https://hookedguide.com/privacy',
   },
   twitter: {
-    title: 'Privacy Policy | HookedGuide',
-    description: 'HookedGuide privacy policy. Learn how we handle your data.',
+    title: 'Privacy Policy | HOOKED',
+    description: 'HOOKED privacy policy. Learn how we handle your data.',
   },
 };
 

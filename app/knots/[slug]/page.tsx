@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const lineTypesStr = knot.lineTypes.map((lt) => lineTypeLabels[lt] || lt).join(', ');
 
-  const title = `How to Tie a ${knot.name} — Step-by-Step with Diagrams | HookedGuide`;
+  const title = `How to Tie a ${knot.name} — Step-by-Step with Diagrams | HOOKED`;
   const description = `Learn to tie the ${knot.name} with ${knot.strengthRating}% line strength. Difficulty: ${knot.difficulty}/5. Works with ${lineTypesStr}. Step-by-step instructions, tips, and FAQs.`;
 
   return {

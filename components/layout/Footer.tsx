@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 const exploreLinks = [
   { label: 'The Guide', href: '/guide' },
@@ -73,8 +74,13 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         {/* Brand */}
         <div className="mb-8">
-          <p className="font-heading text-xl font-bold text-sand-100">HookedGuide</p>
-          <p className="mt-1 font-body text-sm text-sand-300">Fish Smarter.</p>
+          <Image
+            src="/images/logo/hooked-logo-white.png"
+            alt="HOOKED — Fish Smarter."
+            width={200}
+            height={109}
+            className="w-[200px] h-auto"
+          />
         </div>
 
         {/* Main Columns */}
@@ -87,7 +93,7 @@ export default function Footer() {
         {/* Disclaimers */}
         <div className="mt-10 border-t border-water-700 pt-8 space-y-3">
           <p className="font-body text-xs text-sand-300">
-            As an Amazon Associate and affiliate partner, HookedGuide earns from
+            As an Amazon Associate and affiliate partner, HOOKED earns from
             qualifying purchases.
           </p>
           <p className="font-body text-xs text-sand-300">
@@ -99,7 +105,7 @@ export default function Footer() {
             </Link>
           </p>
           <p className="font-body text-xs text-sand-300">
-            &copy; 2026 HookedGuide. All rights reserved.
+            &copy; 2026 HOOKED. All rights reserved.
           </p>
         </div>
       </div>

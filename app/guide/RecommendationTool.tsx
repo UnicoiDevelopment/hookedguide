@@ -124,6 +124,8 @@ export default function RecommendationTool() {
   const [result, setResult] = useState<DetailedRecommendationOutput | null>(null);
   const [loading, setLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [guideText, setGuideText] = useState<string | null>(null);
+  const [guideLoading, setGuideLoading] = useState(false);
 
   const [initialized, setInitialized] = useState(false);
 
@@ -249,10 +251,25 @@ export default function RecommendationTool() {
       if (rec) {
         setResult(rec);
         setStep(9);
+        fetchGuideText(rec, input);
       }
     }
     setInitialized(true);
   }, [initialized, computeResult]);
+
+  function fetchGuideText(rec: DetailedRecommendationOutput, inputData: DetailedRecommendationInput) {
+    setGuideLoading(true);
+    setGuideText(null);
+    fetch('/api/guide', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ recommendation: rec, input: inputData }),
+    })
+      .then((res) => (res.ok ? res.json() : Promise.reject(res)))
+      .then((data) => setGuideText(data.conversation || null))
+      .catch(() => setGuideText(null))
+      .finally(() => setGuideLoading(false));
+  }
 
   function handleSubmit() {
     setLoading(true);
@@ -271,6 +288,8 @@ export default function RecommendationTool() {
       setResult(rec);
       setStep(9);
       setLoading(false);
+
+      if (rec) fetchGuideText(rec, input);
 
       const params = new URLSearchParams();
       params.set('species', species);
@@ -303,6 +322,8 @@ export default function RecommendationTool() {
     setWeather({ sky: 'partly-cloudy', wind: 'light', windDirection: 'S', frontalSystem: 'stable', pressureTrend: 'steady' });
     setMoonPhase(getMoonPhase(new Date()));
     setResult(null);
+    setGuideText(null);
+    setGuideLoading(false);
     setSearchQuery('');
     window.history.replaceState({}, '', window.location.pathname);
   }
@@ -345,7 +366,7 @@ export default function RecommendationTool() {
     },
     publisher: {
       '@type': 'Organization',
-      name: 'HookedGuide',
+      name: 'HOOKED',
     },
   };
 
@@ -1066,6 +1087,27 @@ export default function RecommendationTool() {
               </div>
 
               <div className="p-6 space-y-6">
+                {/* Conversational Guide Recommendation */}
+                <div className="bg-water-50 dark:bg-water-800/50 border border-water-200 dark:border-water-700 rounded-xl p-5">
+                  <p className="text-xs font-bold text-copper-500 uppercase tracking-wider mb-3">
+                    Your Guide Says
+                  </p>
+                  {guideLoading ? (
+                    <div className="flex items-center gap-2 text-sm text-gray-500">
+                      <span className="inline-block w-2 h-2 bg-copper-400 rounded-full animate-pulse" />
+                      Your guide is analyzing conditions...
+                    </div>
+                  ) : guideText ? (
+                    <p className="text-water-800 dark:text-sand-100 leading-relaxed italic">
+                      &ldquo;{guideText}&rdquo;
+                    </p>
+                  ) : (
+                    <p className="text-water-700 dark:text-sand-200 leading-relaxed italic text-sm">
+                      &ldquo;{result.primary.technique.why} Go with a {result.primary.lure.specificLure} in {result.primary.lure.color} — it&apos;s your best bet in these conditions.&rdquo;
+                    </p>
+                  )}
+                </div>
+
                 {/* Primary Technique */}
                 <div>
                   <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">
@@ -1079,7 +1121,7 @@ export default function RecommendationTool() {
                     href={`/techniques/${result.primary.technique.slug}`}
                     className="inline-flex items-center gap-1 text-copper-600 hover:text-copper-700 font-medium text-sm transition-colors"
                   >
-                    Learn more <ArrowRight className="w-4 h-4" />
+                    Full {result.primary.technique.name} Guide <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
 
@@ -1394,20 +1436,22 @@ export default function RecommendationTool() {
                   Build This Rig <ArrowRight className="w-4 h-4" />
                 </Link>
 
-                {/* Tips */}
+                {/* Pro Tips */}
                 {result.tips.length > 0 && (
-                  <div>
-                    <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">
-                      Tips
+                  <div className="bg-sand-50 dark:bg-water-800/30 border border-sand-200 dark:border-water-700 rounded-xl p-5">
+                    <p className="text-xs font-bold text-copper-500 uppercase tracking-wider mb-3">
+                      Pro Tips
                     </p>
-                    <ul className="space-y-2">
+                    <ol className="space-y-3">
                       {result.tips.map((tip, i) => (
-                        <li key={i} className="flex items-start gap-2 text-gray-700">
-                          <CheckCircle2 className="w-4 h-4 text-copper-500 mt-0.5 flex-shrink-0" />
-                          <span className="text-sm">{tip}</span>
+                        <li key={i} className="flex items-start gap-3 text-gray-700 dark:text-sand-200">
+                          <span className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-copper-100 dark:bg-copper-900/40 text-copper-600 dark:text-copper-400 text-xs font-bold mt-0.5">
+                            {i + 1}
+                          </span>
+                          <span className="text-sm leading-relaxed">{tip}</span>
                         </li>
                       ))}
-                    </ul>
+                    </ol>
                   </div>
                 )}
 

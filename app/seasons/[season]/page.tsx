@@ -253,7 +253,7 @@ export function generateMetadata({
   const config = seasonConfig[season];
   if (!config) return {};
 
-  const title = `${config.label} Fishing Guide (2026) — Best Species, Techniques & Tips | HookedGuide`;
+  const title = `${config.label} Fishing Guide (2026) — Best Species, Techniques & Tips | HOOKED`;
   const description = config.description;
 
   return {

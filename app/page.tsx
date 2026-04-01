@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import { ChevronDown, Fish, Thermometer, Target } from "lucide-react";
 import SpeciesCard from "@/components/species/SpeciesCard";
@@ -8,20 +9,20 @@ import { allReviews } from "@/data/gear/reviews";
 import { stateMetadata } from "@/data/states";
 
 export const metadata: Metadata = {
-  title: "HookedGuide — Fish Smarter. | Species, Techniques & Gear",
+  title: "HOOKED — Fish Smarter. | Species, Techniques & Gear",
   description:
-    "Fish Smarter. Species guides, gear recommendations, and fishing intelligence for every state. Ask the Guide for personalized recommendations.",
+    "HOOKED — Fish Smarter. Species guides, gear recommendations, and fishing intelligence for every state. Ask the Guide for personalized recommendations.",
   alternates: { canonical: "https://hookedguide.com" },
   openGraph: {
-    title: "HookedGuide — Fish Smarter.",
+    title: "HOOKED — Fish Smarter.",
     description:
-      "Fish Smarter. Species guides, gear recommendations, and fishing intelligence for every state.",
+      "HOOKED — Fish Smarter. Species guides, gear recommendations, and fishing intelligence for every state.",
     url: "https://hookedguide.com",
   },
   twitter: {
-    title: "HookedGuide — Fish Smarter.",
+    title: "HOOKED — Fish Smarter.",
     description:
-      "Fish Smarter. Species guides, gear recommendations, and fishing intelligence for every state.",
+      "HOOKED — Fish Smarter. Species guides, gear recommendations, and fishing intelligence for every state.",
   },
 };
 
@@ -80,12 +81,14 @@ export default function Home() {
       >
         <div className="absolute inset-0 bg-gradient-to-b from-water-900/70 via-water-900/50 to-water-900/90" />
         <div className="relative z-10 text-center px-4">
-          <h1 className="font-heading text-4xl md:text-6xl font-bold text-copper-500 tracking-widest uppercase">
-            HOOKEDGUIDE
-          </h1>
-          <p className="font-body text-xl md:text-2xl font-light text-white mt-4">
-            Fish Smarter.
-          </p>
+          <Image
+            src="/images/logo/hooked-logo-white.png"
+            alt="HOOKED — Fish Smarter."
+            width={600}
+            height={327}
+            priority
+            className="w-[300px] md:w-[500px] lg:w-[600px] h-auto mx-auto"
+          />
           <div className="mt-8 flex gap-4 justify-center">
             <Link
               href="/guide"

@@ -6,20 +6,20 @@ import HeroSection from '@/components/ui/HeroSection';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 
 export const metadata: Metadata = {
-  title: 'Seasonal Fishing Guides (2026) — Spring, Summer, Fall & Winter | HookedGuide',
+  title: 'Seasonal Fishing Guides (2026) — Spring, Summer, Fall & Winter | HOOKED',
   description:
     'Explore seasonal fishing guides for every time of year. Learn what species to target, best techniques, and regional tips for spring, summer, fall, and winter fishing.',
   alternates: {
     canonical: 'https://hookedguide.com/seasons',
   },
   openGraph: {
-    title: 'Seasonal Fishing Guides (2026) — Spring, Summer, Fall & Winter | HookedGuide',
+    title: 'Seasonal Fishing Guides (2026) — Spring, Summer, Fall & Winter | HOOKED',
     description:
       'Explore seasonal fishing guides for every time of year. Learn what species to target, best techniques, and regional tips for spring, summer, fall, and winter fishing.',
     url: 'https://hookedguide.com/seasons',
   },
   twitter: {
-    title: 'Seasonal Fishing Guides (2026) — Spring, Summer, Fall & Winter | HookedGuide',
+    title: 'Seasonal Fishing Guides (2026) — Spring, Summer, Fall & Winter | HOOKED',
     description:
       'Explore seasonal fishing guides for every time of year. Learn what species to target, best techniques, and regional tips for spring, summer, fall, and winter fishing.',
   },

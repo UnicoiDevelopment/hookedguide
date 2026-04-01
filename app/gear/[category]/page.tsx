@@ -21,7 +21,7 @@ export function generateMetadata({
   const category = gearCategories.find((c) => c.slug === params.category);
   if (!category) return {};
 
-  const title = `Best ${category.name} (2026) — Reviews & Buyer's Guide | HookedGuide`;
+  const title = `Best ${category.name} (2026) — Reviews & Buyer's Guide | HOOKED`;
   const description = category.description;
 
   return {
@@ -86,7 +86,7 @@ export default function GearCategoryPage({
         description: category.description,
         publisher: {
           '@type': 'Organization',
-          name: 'HookedGuide',
+          name: 'HOOKED',
         },
       },
       {
