@@ -21,7 +21,7 @@ const sections = [
     title: 'APP',
     items: [
       { label: 'Settings', icon: 'settings-outline' as const, href: '/settings' },
-      { label: 'About & Disclosure', icon: 'information-circle-outline' as const, href: '/settings/about' },
+      { label: 'About & Disclosure', icon: 'information-circle-outline' as const, href: '/settings' },
     ],
   },
 ];

@@ -22,7 +22,7 @@ export interface FishingForecast {
   worstDay: { index: number; day: ForecastDay } | null;
 }
 
-const WEATHER_API_KEY = ''; // same as weather-trends.ts
+const WEATHER_API_KEY = process.env.EXPO_PUBLIC_WEATHER_API_KEY || '';
 
 export async function get7DayFishingForecast(
   lat: number,

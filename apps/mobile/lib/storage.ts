@@ -37,8 +37,12 @@ const SAVED_RIGS_KEY = 'saved_rigs';
 const SAVED_RECS_KEY = 'saved_recommendations';
 
 export async function getLogEntries(): Promise<FishingLogEntry[]> {
-  const data = await AsyncStorage.getItem(LOG_KEY);
-  return data ? JSON.parse(data) : [];
+  try {
+    const data = await AsyncStorage.getItem(LOG_KEY);
+    return data ? JSON.parse(data) : [];
+  } catch {
+    return [];
+  }
 }
 
 export async function saveLogEntry(entry: FishingLogEntry): Promise<void> {
@@ -70,8 +74,12 @@ export interface SavedRig {
 }
 
 export async function getSavedRigs(): Promise<SavedRig[]> {
-  const data = await AsyncStorage.getItem(SAVED_RIGS_KEY);
-  return data ? JSON.parse(data) : [];
+  try {
+    const data = await AsyncStorage.getItem(SAVED_RIGS_KEY);
+    return data ? JSON.parse(data) : [];
+  } catch {
+    return [];
+  }
 }
 
 export async function saveRig(rig: SavedRig): Promise<void> {
@@ -105,8 +113,12 @@ const defaultPrefs: UserPreferences = {
 };
 
 export async function getPreferences(): Promise<UserPreferences> {
-  const data = await AsyncStorage.getItem(PREFS_KEY);
-  return data ? { ...defaultPrefs, ...JSON.parse(data) } : defaultPrefs;
+  try {
+    const data = await AsyncStorage.getItem(PREFS_KEY);
+    return data ? { ...defaultPrefs, ...JSON.parse(data) } : defaultPrefs;
+  } catch {
+    return defaultPrefs;
+  }
 }
 
 export async function savePreferences(prefs: Partial<UserPreferences>): Promise<void> {
@@ -117,8 +129,12 @@ export async function savePreferences(prefs: Partial<UserPreferences>): Promise<
 // ---- Saved Recommendations ----
 
 export async function getSavedRecommendations(): Promise<any[]> {
-  const data = await AsyncStorage.getItem(SAVED_RECS_KEY);
-  return data ? JSON.parse(data) : [];
+  try {
+    const data = await AsyncStorage.getItem(SAVED_RECS_KEY);
+    return data ? JSON.parse(data) : [];
+  } catch {
+    return [];
+  }
 }
 
 export async function saveRecommendation(rec: any): Promise<void> {

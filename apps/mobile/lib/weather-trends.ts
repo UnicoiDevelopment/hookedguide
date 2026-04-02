@@ -7,7 +7,7 @@ import type {
 } from '../../../data/types';
 
 // WeatherAPI.com — free tier: 1M calls/month
-const WEATHER_API_KEY = '';
+const WEATHER_API_KEY = process.env.EXPO_PUBLIC_WEATHER_API_KEY || '';
 
 export interface WeatherTrend {
   rain: {

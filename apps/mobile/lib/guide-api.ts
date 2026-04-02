@@ -7,7 +7,7 @@ import type {
 // In production, this calls your backend API route
 // For development, it constructs a fallback paragraph from structured data
 
-const API_BASE_URL = 'https://hookedguide.com';
+const API_BASE_URL = process.env.EXPO_PUBLIC_API_BASE_URL || 'https://hookedguide.com';
 
 export async function getGuideNarrative(
   input: DetailedRecommendationInput,

@@ -28,12 +28,30 @@ export default function GuideResults() {
     const parsed = JSON.parse(params.data || '{}');
     input = parsed.input;
     recommendation = parsed.recommendation;
-    narrative = parsed.narrative;
+    narrative = parsed.narrative || '';
   } catch {
     return (
       <SafeAreaView style={[styles.container, { backgroundColor: theme.background }]}>
+        <TouchableOpacity onPress={() => router.back()} style={styles.backRow}>
+          <Ionicons name="arrow-back" size={20} color={Colors.copper[500]} />
+          <Text style={[styles.backText, { color: Colors.copper[500] }]}>Back</Text>
+        </TouchableOpacity>
         <Text style={[styles.errorText, { color: theme.text }]}>
-          Error loading results.
+          Error loading results. Please try again.
+        </Text>
+      </SafeAreaView>
+    );
+  }
+
+  if (!recommendation?.primary) {
+    return (
+      <SafeAreaView style={[styles.container, { backgroundColor: theme.background }]}>
+        <TouchableOpacity onPress={() => router.back()} style={styles.backRow}>
+          <Ionicons name="arrow-back" size={20} color={Colors.copper[500]} />
+          <Text style={[styles.backText, { color: Colors.copper[500] }]}>Back</Text>
+        </TouchableOpacity>
+        <Text style={[styles.errorText, { color: theme.text }]}>
+          Could not generate recommendation. Please try again.
         </Text>
       </SafeAreaView>
     );
@@ -41,7 +59,7 @@ export default function GuideResults() {
 
   const { primary, alternate, tips, confidence, confidenceNotes, regulations, technicalDetails } =
     recommendation;
-  const speciesName = allSpecies.find((s) => s.slug === input.species)?.name || input.species;
+  const speciesName = allSpecies.find((s: any) => s.slug === input?.species)?.name || input?.species || 'Unknown';
 
   const handleSave = async () => {
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
@@ -61,7 +79,7 @@ export default function GuideResults() {
         {/* Confidence badge */}
         <View style={[styles.badge, { backgroundColor: theme.surface }]}>
           <Text style={[styles.badgeText, { color: Colors.copper[500] }]}>
-            {confidence?.replace('-', ' ').toUpperCase()} CONFIDENCE
+            {confidence?.replaceAll('-', ' ').toUpperCase()} CONFIDENCE
           </Text>
           {confidenceNotes && (
             <Text style={[styles.badgeNote, { color: theme.textSecondary }]}>
@@ -200,7 +218,7 @@ export default function GuideResults() {
             style={[styles.actionBtn, { borderWidth: 1, borderColor: Colors.copper[500] }]}
             onPress={handleSave}
           >
-            <Text style={[styles.actionBtnText, { color: Colors.copper[500] }]}>
+            <Text style={[styles.actionBtnText, { color: Colors.copper[500], backgroundColor: 'transparent' }]}>
               {saved ? '\u2713 Saved' : 'Save'}
             </Text>
           </TouchableOpacity>

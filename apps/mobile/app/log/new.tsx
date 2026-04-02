@@ -65,48 +65,53 @@ export default function NewLogEntry() {
       return;
     }
     setSaving(true);
-    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
 
-    const loc = await getCurrentLocation();
-    const weather = loc
-      ? await getCurrentWeather(loc.latitude, loc.longitude)
-      : null;
-    const moon = getMoonPhase();
+    try {
+      const loc = await getCurrentLocation();
+      const weather = loc
+        ? await getCurrentWeather(loc.latitude, loc.longitude)
+        : null;
+      const moon = getMoonPhase();
 
-    const entry: FishingLogEntry = {
-      id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
-      timestamp: new Date().toISOString(),
-      species,
-      weight: lbs || oz ? { lbs: parseInt(lbs) || 0, oz: parseInt(oz) || 0 } : undefined,
-      length: length ? parseFloat(length) : undefined,
-      photo: photo || undefined,
-      location: {
-        lat: loc?.latitude || 0,
-        lon: loc?.longitude || 0,
-        name: loc ? `${loc.city}, ${loc.state}` : 'Unknown',
-        state: loc?.state || '',
-      },
-      conditions: {
-        waterTemp: undefined,
-        airTemp: weather?.tempF || 0,
-        sky: weather?.sky || 'clear',
-        wind: weather?.wind.category || 'calm',
-        windDirection: weather?.wind.direction || 'N',
-        pressure: weather?.pressure.value || 0,
-        pressureTrend: weather?.pressure.trend || 'steady',
-        moonPhase: moon.phase,
-      },
-      setup: {
-        technique: technique || undefined,
-        lure: lure || undefined,
-        color: color || undefined,
-      },
-      notes: notes || undefined,
-    };
+      const entry: FishingLogEntry = {
+        id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+        timestamp: new Date().toISOString(),
+        species,
+        weight: lbs || oz ? { lbs: parseInt(lbs) || 0, oz: parseInt(oz) || 0 } : undefined,
+        length: length ? parseFloat(length) : undefined,
+        photo: photo || undefined,
+        location: {
+          lat: loc?.latitude || 0,
+          lon: loc?.longitude || 0,
+          name: loc ? `${loc.city}, ${loc.state}` : 'Unknown',
+          state: loc?.state || '',
+        },
+        conditions: {
+          waterTemp: undefined,
+          airTemp: weather?.tempF || 0,
+          sky: weather?.sky || 'clear',
+          wind: weather?.wind.category || 'calm',
+          windDirection: weather?.wind.direction || 'N',
+          pressure: weather?.pressure.value || 0,
+          pressureTrend: weather?.pressure.trend || 'steady',
+          moonPhase: moon.phase,
+        },
+        setup: {
+          technique: technique || undefined,
+          lure: lure || undefined,
+          color: color || undefined,
+        },
+        notes: notes || undefined,
+      };
 
-    await saveLogEntry(entry);
-    setSaving(false);
-    router.back();
+      await saveLogEntry(entry);
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      router.back();
+    } catch {
+      Alert.alert('Error', 'Failed to save catch. Please try again.');
+    } finally {
+      setSaving(false);
+    }
   };
 
   return (
@@ -123,7 +128,7 @@ export default function NewLogEntry() {
         </TouchableOpacity>
       </View>
 
-      <ScrollView contentContainerStyle={styles.scroll}>
+      <ScrollView contentContainerStyle={styles.scroll} keyboardDismissMode="on-drag" keyboardShouldPersistTaps="handled">
         {/* Photo */}
         <View style={styles.photoRow}>
           <TouchableOpacity style={[styles.photoBtn, { backgroundColor: theme.card }]} onPress={takePhoto}>

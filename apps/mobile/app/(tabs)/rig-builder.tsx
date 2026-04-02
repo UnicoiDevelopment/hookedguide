@@ -5,7 +5,6 @@ import {
   ScrollView,
   TouchableOpacity,
   StyleSheet,
-  Linking,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -13,7 +12,6 @@ import * as Haptics from 'expo-haptics';
 import { useTheme } from '@/lib/theme-context';
 import { Colors } from '@/constants/colors';
 import { allSpecies } from '../../../../data/species';
-import { getMatchingProducts } from '../../../../lib/affiliate-matcher';
 
 type Step = 'species' | 'reel-type' | 'result';
 type ReelType = 'spinning' | 'baitcasting';

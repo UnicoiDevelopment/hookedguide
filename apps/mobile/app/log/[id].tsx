@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, StyleSheet, Alert, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -13,10 +13,12 @@ export default function LogDetail() {
   const router = useRouter();
   const { id } = useLocalSearchParams<{ id: string }>();
   const [entry, setEntry] = useState<FishingLogEntry | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getLogEntries().then((entries) => {
       setEntry(entries.find((e) => e.id === id) || null);
+      setLoading(false);
     });
   }, [id]);
 
@@ -34,10 +36,22 @@ export default function LogDetail() {
     ]);
   };
 
+  if (loading) {
+    return (
+      <SafeAreaView style={[styles.container, { backgroundColor: theme.background }]}>
+        <ActivityIndicator size="large" color={Colors.copper[500]} style={{ marginTop: 40 }} />
+      </SafeAreaView>
+    );
+  }
+
   if (!entry) {
     return (
       <SafeAreaView style={[styles.container, { backgroundColor: theme.background }]}>
-        <Text style={[styles.text, { color: theme.text }]}>Entry not found.</Text>
+        <TouchableOpacity onPress={() => router.back()} style={styles.backRow}>
+          <Ionicons name="arrow-back" size={20} color={Colors.copper[500]} />
+          <Text style={[styles.backText, { color: Colors.copper[500] }]}>Back</Text>
+        </TouchableOpacity>
+        <Text style={[styles.text, { color: theme.text, padding: 20 }]}>Entry not found.</Text>
       </SafeAreaView>
     );
   }

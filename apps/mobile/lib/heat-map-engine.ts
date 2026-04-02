@@ -55,13 +55,13 @@ export function calculateFishHeatMap(input: HeatMapInput): HeatMapZone[] {
     const reasons: string[] = [];
 
     // Windward shore bonus (20%)
-    if (dir.windFacing && windSpeed > 5) {
+    if (dir.windFacing && windSpeed > 15) {
+      // Very windy — windward still attracts bait but fish may seek calmer water
+      score += 8;
+      reasons.push('Windward but very windy \u2014 bait here but fish may hold slightly off the bank');
+    } else if (dir.windFacing && windSpeed > 5) {
       score += 20;
       reasons.push(`Windward ${dir.name.toLowerCase()} shore \u2014 bait pushed here by ${windSpeed}mph ${windDirection} wind`);
-    } else if (dir.windFacing && windSpeed > 15) {
-      // Too windy — sheltered areas better
-      score += 5;
-      reasons.push('Windward but very windy \u2014 fish may seek calmer water');
     } else if (!dir.windFacing && windSpeed > 5) {
       score -= 5;
     }

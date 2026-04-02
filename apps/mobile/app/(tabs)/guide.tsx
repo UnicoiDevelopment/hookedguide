@@ -91,18 +91,22 @@ export default function GuideScreen() {
 
   useEffect(() => {
     (async () => {
-      const loc = await getCurrentLocation();
-      setLocation(loc);
-      if (loc) {
-        const [w, wt] = await Promise.all([
-          getCurrentWeather(loc.latitude, loc.longitude),
-          getNearestWaterTemp(loc.latitude, loc.longitude),
-        ]);
-        setWeather(w);
-        if (wt) {
-          setAutoWaterTemp(wt.tempF);
-          setWaterTemp(Math.round(wt.tempF));
+      try {
+        const loc = await getCurrentLocation();
+        setLocation(loc);
+        if (loc) {
+          const [w, wt] = await Promise.all([
+            getCurrentWeather(loc.latitude, loc.longitude),
+            getNearestWaterTemp(loc.latitude, loc.longitude),
+          ]);
+          setWeather(w);
+          if (wt) {
+            setAutoWaterTemp(wt.tempF);
+            setWaterTemp(Math.round(wt.tempF));
+          }
         }
+      } catch {
+        // Graceful degradation — Guide works without auto-detection
       }
     })();
   }, []);
@@ -124,46 +128,55 @@ export default function GuideScreen() {
     setStep('water');
   };
 
+  const [submitting, setSubmitting] = useState(false);
+
   const handleAskGuide = async () => {
-    if (!selectedSpecies) return;
+    if (!selectedSpecies || submitting) return;
+    setSubmitting(true);
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     setStep('loading');
 
-    const now = new Date();
-    const moon = getMoonPhase(now);
+    try {
+      const now = new Date();
+      const moon = getMoonPhase(now);
 
-    const input: DetailedRecommendationInput = {
-      species: selectedSpecies,
-      waterTemp,
-      state: location ? stateNameToSlug(location.state) : undefined,
-      waterBody: {
-        type: waterType,
-        clarity,
-        coverType: cover,
-        depthAvailable: depth,
-      },
-      month: now.getMonth() + 1,
-      hourOfDay: now.getHours(),
-      weather: {
-        sky: weather?.sky || 'partly-cloudy',
-        wind: weather?.wind.category || 'light',
-        windDirection: weather?.wind.direction || 'S',
-        frontalSystem: weather?.frontalSystem || 'stable',
-        pressureTrend: weather?.pressure.trend || 'steady',
-      },
-      moonPhase: moon.phase,
-      date: now.toISOString().split('T')[0],
-    };
+      const input: DetailedRecommendationInput = {
+        species: selectedSpecies,
+        waterTemp,
+        state: location ? stateNameToSlug(location.state) : undefined,
+        waterBody: {
+          type: waterType,
+          clarity,
+          coverType: cover,
+          depthAvailable: depth,
+        },
+        month: now.getMonth() + 1,
+        hourOfDay: now.getHours(),
+        weather: {
+          sky: weather?.sky || 'partly-cloudy',
+          wind: weather?.wind.category || 'light',
+          windDirection: weather?.wind.direction || 'S',
+          frontalSystem: weather?.frontalSystem || 'stable',
+          pressureTrend: weather?.pressure.trend || 'steady',
+        },
+        moonPhase: moon.phase,
+        date: now.toISOString().split('T')[0],
+      };
 
-    const recommendation = getDetailedRecommendation(input);
-    const narrative = await getGuideNarrative(input, recommendation);
+      const recommendation = getDetailedRecommendation(input);
+      const narrative = await getGuideNarrative(input, recommendation);
 
-    router.push({
-      pathname: '/guide/results',
-      params: {
-        data: JSON.stringify({ input, recommendation, narrative }),
-      },
-    });
+      router.push({
+        pathname: '/guide/results',
+        params: {
+          data: JSON.stringify({ input, recommendation, narrative }),
+        },
+      });
+    } catch {
+      setStep('water');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const conditionsBar = weather ? (

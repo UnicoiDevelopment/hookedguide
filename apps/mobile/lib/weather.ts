@@ -8,7 +8,7 @@ import type {
 
 // OpenWeatherMap API — free tier: 1,000 calls/day
 // Set your key here or via environment config
-const OPENWEATHER_API_KEY = '';
+const OPENWEATHER_API_KEY = process.env.EXPO_PUBLIC_OPENWEATHER_KEY || '';
 
 export interface WeatherData {
   sky: SkyCondition;
