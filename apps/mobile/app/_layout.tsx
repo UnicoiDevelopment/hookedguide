@@ -4,6 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useFonts, BarlowCondensed_400Regular, BarlowCondensed_500Medium, BarlowCondensed_600SemiBold, BarlowCondensed_700Bold } from '@expo-google-fonts/barlow-condensed';
 import * as SplashScreen from 'expo-splash-screen';
 import { ThemeProvider, useTheme } from '@/lib/theme-context';
+import { AuthProvider } from '@/lib/auth-context';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -31,6 +32,18 @@ function RootNav() {
         <Stack.Screen
           name="log/[id]"
           options={{ headerShown: false, presentation: 'card' }}
+        />
+        <Stack.Screen
+          name="auth/sign-in"
+          options={{ headerShown: false, presentation: 'modal' }}
+        />
+        <Stack.Screen
+          name="auth/sign-up"
+          options={{ headerShown: false, presentation: 'modal' }}
+        />
+        <Stack.Screen
+          name="paywall"
+          options={{ headerShown: false, presentation: 'modal' }}
         />
         <Stack.Screen name="species/[slug]" options={{ headerShown: false }} />
         <Stack.Screen name="techniques/[slug]" options={{ headerShown: false }} />
@@ -60,7 +73,9 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider>
-      <RootNav />
+      <AuthProvider>
+        <RootNav />
+      </AuthProvider>
     </ThemeProvider>
   );
 }
