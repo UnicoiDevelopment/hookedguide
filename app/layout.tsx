@@ -92,6 +92,10 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-GCF9QXKB3C');`}
         </Script>
+        <Script
+          src="https://s.skimresources.com/js/300934X1788831.skimlinks.js"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );

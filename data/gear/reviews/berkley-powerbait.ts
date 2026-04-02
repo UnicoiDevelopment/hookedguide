@@ -26,7 +26,7 @@ export const berkleyPowerbait: GearReview = {
     { key: 'Style', value: 'Straight tail worm' },
     { key: 'Top Colors', value: 'Green pumpkin, watermelon' },
   ],
-  affiliateProductId: 'berkley-powerbait-worm',
+  affiliateProductId: 'berkley-maxscent-general',
   faq: [
     { question: 'How is MaxScent different from regular PowerBait?', answer: 'MaxScent uses a water-based formula that disperses scent into the water column 400x more effectively than oil-based formulas. Fish can detect it from further away.' },
     { question: 'Do MaxScent worms hold up on the hook?', answer: 'They are softer than standard plastics and will tear after 2-3 fish. The tradeoff is that fish hold on longer, giving you more time to set the hook.' },

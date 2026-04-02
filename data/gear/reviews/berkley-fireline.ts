@@ -25,7 +25,7 @@ export const berkleyFireline: GearReview = {
     { key: 'Stretch', value: 'Zero' },
     { key: 'Diameter (10 lb)', value: '0.008 in' },
   ],
-  affiliateProductId: 'berkley-fireline-braided',
+  affiliateProductId: 'berkley-fireline-braid',
   faq: [
     { question: 'Is FireLine a true braid or a fused line?', answer: 'FireLine is thermally fused, not woven like traditional braids. The fibers are bonded together under heat, creating a thinner, smoother profile but with similar zero-stretch properties.' },
     { question: 'Does FireLine work on spinning reels?', answer: 'Yes. Its smooth, round profile makes it one of the better braided options for spinning reels. It resists wind knots better than many traditional braids.' },

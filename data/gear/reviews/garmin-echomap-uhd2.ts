@@ -28,7 +28,7 @@ export const garminEchomapUhd2: GearReview = {
     { key: 'Max Depth', value: '2,300 ft freshwater' },
     { key: 'Networking', value: 'NMEA 2000, LiveScope compatible' },
   ],
-  affiliateProductId: 'garmin-echomap',
+  affiliateProductId: 'garmin-echomap-uhd2',
   faq: [
     { question: 'Is the ECHOMAP UHD2 worth the upgrade from a Striker?', answer: 'If you fish from a boat regularly, yes. The mapping, scanning sonar, and larger screen dramatically improve your ability to find and pattern fish.' },
     { question: 'Can I add LiveScope to this unit?', answer: 'Yes. The ECHOMAP UHD2 63sv is LiveScope compatible. You will need the LiveScope transducer and power cable, sold separately.' },

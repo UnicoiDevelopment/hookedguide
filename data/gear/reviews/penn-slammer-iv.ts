@@ -27,7 +27,7 @@ export const pennSlammerIv: GearReview = {
     { key: 'Weight', value: '15.9 oz' },
     { key: 'Sealing', value: 'IPX6' },
   ],
-  affiliateProductId: 'penn-slammer-iv',
+  affiliateProductId: 'penn-slammer-iv-4500',
   faq: [
     { question: 'Is the Slammer IV worth twice the price of the Battle III?', answer: 'For dedicated saltwater anglers who fish offshore regularly, yes. The sealed construction and stronger drag justify the price. For occasional saltwater use, the Battle III is plenty.' },
     { question: 'What species is the 4500 size best for?', answer: 'The 4500 handles striped bass, snook, redfish, grouper, and similar medium-large saltwater species. Go bigger (5500-7500) for tarpon and tuna.' },

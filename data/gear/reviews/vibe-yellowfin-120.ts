@@ -28,7 +28,7 @@ export const vibeYellowfin120: GearReview = {
     { key: 'Rod Holders', value: '4 (2 flush, 2 adjustable)' },
     { key: 'Seat', value: 'Hero seat with adjustable back' },
   ],
-  affiliateProductId: 'vibe-yellowfin-kayak',
+  affiliateProductId: 'vibe-yellowfin-120',
   faq: [
     { question: 'Can I stand up in the Yellowfin 120?', answer: 'Yes, on calm water. The 33.5-inch beam and flat hull provide enough stability for standing, though it takes some practice. Standing is easier for lighter anglers.' },
     { question: 'Will it fit a fish finder?', answer: 'Yes. The kayak has a transducer scupper hole and gear tracks for mounting a fish finder. The Garmin Striker 4 is the most popular pairing.' },

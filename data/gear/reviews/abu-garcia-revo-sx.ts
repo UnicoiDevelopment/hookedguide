@@ -27,7 +27,7 @@ export const abuGarciaRevoSx: GearReview = {
     { key: 'Weight', value: '6.75 oz' },
     { key: 'Braking System', value: 'MagTrax magnetic' },
   ],
-  affiliateProductId: 'abu-garcia-revo-reel',
+  affiliateProductId: 'abu-garcia-revo-sx',
   faq: [
     { question: 'Is the Revo SX good for beginners?', answer: 'Yes. The MagTrax magnetic brake is easy to adjust and forgiving. It is one of the best mid-range options for learning baitcasting.' },
     { question: 'How does the Revo SX compare to the Enigma Opus?', answer: 'Both are excellent mid-range baitcasters. The Revo SX has slightly more line capacity, while the Opus has a marginally smoother feel. Either is a great choice.' },

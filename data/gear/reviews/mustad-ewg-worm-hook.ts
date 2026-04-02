@@ -25,7 +25,7 @@ export const mustadEwgWormHook: GearReview = {
     { key: 'Keeper', value: 'Grip-Pin spring' },
     { key: 'Pack Size', value: '6 hooks' },
   ],
-  affiliateProductId: 'mustad-worm-hook-3-0',
+  affiliateProductId: 'mustad-grip-pin-ewg-3-0',
   faq: [
     { question: 'What size EWG hook do I need for bass?', answer: 'Use 3/0 for standard 5-7 inch worms, 4/0 for larger creature baits and big worms, and 5/0 for oversized soft plastics and swimbaits.' },
     { question: 'Why use an EWG over a standard worm hook?', answer: 'The extra wide gap provides more room between the hook point and shank, resulting in better hookup ratios. It is especially important with bulky soft plastics.' },

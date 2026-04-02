@@ -26,7 +26,7 @@ export const planoGuideSeries: GearReview = {
     { key: 'Dimensions', value: '16 x 12 x 9 in' },
     { key: 'Lid', value: 'Clear, secure-latch' },
   ],
-  affiliateProductId: 'plano-tackle-box',
+  affiliateProductId: 'plano-guide-series-3700',
   faq: [
     { question: 'What is the difference between 3600 and 3700 trays?', answer: '3700 trays are larger (14 x 9 x 2 inches) and hold more lures. 3600 trays (11 x 7 x 1.75 inches) are more compact. Most serious anglers prefer 3700 for main storage.' },
     { question: 'Are Plano boxes truly waterproof?', answer: 'The StowAway utility boxes have O-ring seals that keep water out in normal conditions. They are splashproof and resist rain but should not be submerged.' },

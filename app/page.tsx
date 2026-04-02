@@ -7,6 +7,7 @@ import AdPlacement from "@/components/ads/AdPlacement";
 import { allSpecies } from "@/data/species";
 import { allReviews } from "@/data/gear/reviews";
 import { stateMetadata } from "@/data/states";
+import { affiliateProducts } from "@/data/affiliate-products";
 
 export const metadata: Metadata = {
   title: "HOOKED — Fish Smarter. | Species, Techniques & Gear",
@@ -63,6 +64,7 @@ export default function Home() {
     .filter(Boolean);
 
   const featuredReviews = allReviews.slice(0, 4);
+  const trendingGear = affiliateProducts.filter(p => (p.isNewBrand || p.isTrending) && p.affiliateUrl !== '').slice(0, 4);
 
   const sortedStates = [...stateMetadata].sort((a, b) =>
     a.name.localeCompare(b.name)
@@ -217,7 +219,65 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. Testimonials */}
+      {/* 5. Trending Gear */}
+      {trendingGear.length > 0 && (
+        <section className="py-16 bg-sand-50 dark:bg-water-800">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="flex items-center justify-center gap-3 mb-8">
+              <span className="text-2xl">🔥</span>
+              <h2 className="font-heading uppercase tracking-wider text-water-500 text-sm font-semibold">
+                TRENDING GEAR
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {trendingGear.map((product) => (
+                <div
+                  key={product.id}
+                  className="relative bg-white dark:bg-water-700 rounded-lg p-6 hover:shadow-md transition-shadow"
+                >
+                  {product.isNewBrand && (
+                    <span className="absolute -top-2 left-4 inline-flex items-center rounded-full bg-copper-500 text-white text-xs font-bold px-2.5 py-0.5">
+                      NEW
+                    </span>
+                  )}
+                  <p className="text-xs text-copper-500 font-semibold uppercase tracking-wider mt-1">
+                    {product.brand}
+                  </p>
+                  <h3 className="font-heading font-semibold text-water-900 dark:text-white text-sm mt-1">
+                    {product.name}
+                  </h3>
+                  <p className="text-xs text-water-600 dark:text-water-300 mt-1 line-clamp-2">
+                    {product.description}
+                  </p>
+                  {product.price && (
+                    <p className="text-sm font-medium text-water-900 dark:text-sand-100 mt-2">
+                      {product.price}
+                    </p>
+                  )}
+                  <a
+                    href={product.affiliateUrl}
+                    target="_blank"
+                    rel="noopener noreferrer nofollow sponsored"
+                    className="mt-3 inline-flex items-center justify-center rounded-md bg-copper-500 px-4 py-2 text-sm font-medium text-white hover:bg-copper-600 transition-colors w-full"
+                  >
+                    Check It Out
+                  </a>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8 text-center">
+              <Link
+                href="/gear"
+                className="text-copper-500 font-medium hover:text-copper-600 transition-colors"
+              >
+                See All Gear &rarr;
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 6. Testimonials */}
       <section className="py-16 bg-sand-50 dark:bg-water-800">
         <div className="max-w-5xl mx-auto px-4">
           <h2 className="font-heading uppercase tracking-wider text-water-500 text-center text-sm font-semibold mb-8">
@@ -241,7 +301,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6. Explore by State */}
+      {/* 7. Explore by State */}
       <section className="py-16 bg-white dark:bg-water-900">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="font-heading uppercase tracking-wider text-water-500 text-center text-sm font-semibold mb-4">
@@ -269,7 +329,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 7. Ad Placement */}
+      {/* 8. Ad Placement */}
       <AdPlacement id="ad-footer" />
     </div>
   );

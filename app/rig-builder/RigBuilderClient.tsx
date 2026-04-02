@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { allSpecies } from '@/data/species';
 import { getMatchingProducts } from '@/lib/affiliate-matcher';
+import { affiliateProducts } from '@/data/affiliate-products';
 import type { AffiliateProduct } from '@/data/types';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 
@@ -733,6 +734,40 @@ function ProductCard({ product }: { product: AffiliateProduct }) {
   );
 }
 
+/* ─── Trending Product Card ─── */
+function TrendingProductCard({ product }: { product: AffiliateProduct }) {
+  return (
+    <div className="relative rounded-xl border-2 border-copper-300 dark:border-copper-700 bg-white dark:bg-water-800 p-5 hover:shadow-lg transition-shadow">
+      <div className="absolute -top-2.5 left-4">
+        {product.isNewBrand && (
+          <span className="inline-flex items-center gap-1 rounded-full bg-copper-500 text-white text-xs font-bold px-3 py-1">
+            NEW BRAND
+          </span>
+        )}
+        {!product.isNewBrand && product.isTrending && (
+          <span className="inline-flex items-center gap-1 rounded-full bg-forest-500 text-white text-xs font-bold px-3 py-1">
+            TRENDING
+          </span>
+        )}
+      </div>
+      <div className="mt-2">
+        <p className="text-xs text-copper-500 font-semibold uppercase tracking-wider">{product.brand}</p>
+        <p className="font-semibold text-sm mt-1">{product.name}</p>
+        <p className="text-xs text-muted-foreground mt-1 line-clamp-2">{product.description}</p>
+        {product.price && <p className="text-sm font-medium mt-2">{product.price}</p>}
+      </div>
+      <a
+        href={product.affiliateUrl}
+        target="_blank"
+        rel="noopener noreferrer nofollow sponsored"
+        className="mt-3 inline-flex items-center justify-center gap-1.5 rounded-md bg-copper-500 px-4 py-2 text-sm font-medium text-white hover:bg-copper-600 transition-colors w-full"
+      >
+        Check It Out
+      </a>
+    </div>
+  );
+}
+
 /* ─── Main Component ─── */
 export default function RigBuilderClient({ initialSpecies }: { initialSpecies?: string }) {
   // Phase: 'select' (species + reel type) or 'rig' (showing full rig)
@@ -771,6 +806,63 @@ export default function RigBuilderClient({ initialSpecies }: { initialSpecies?: 
   }, [species, reelType, phase, fromGuide]);
 
   useEffect(() => { syncUrl(); }, [syncUrl]);
+
+  /* Auto-select alternatives when budget tier changes */
+  useEffect(() => {
+    if (budgetTier === 'custom') return;
+    if (budgetTier === 'sweet-spot') {
+      setOverrides({});
+      return;
+    }
+
+    const newOverrides: Partial<Record<RigSlot, number>> = {};
+
+    for (const slot of RIG_SLOTS) {
+      const comp = preset[slot.key];
+      if (!comp || comp.alternatives.length === 0) continue;
+
+      if (budgetTier === 'budget') {
+        const budgetIdx = comp.alternatives.findIndex(alt =>
+          alt.tag && /budget|value/i.test(alt.tag)
+        );
+        if (budgetIdx !== -1) {
+          newOverrides[slot.key] = budgetIdx;
+        } else {
+          let cheapestIdx = -1;
+          let cheapestPrice = parseFloat(comp.price.replace(/[^0-9.]/g, '')) || 999;
+          comp.alternatives.forEach((alt, idx) => {
+            const altPrice = parseFloat(alt.price.replace(/[^0-9.]/g, '')) || 999;
+            if (altPrice < cheapestPrice) {
+              cheapestPrice = altPrice;
+              cheapestIdx = idx;
+            }
+          });
+          if (cheapestIdx !== -1) newOverrides[slot.key] = cheapestIdx;
+        }
+      } else if (budgetTier === 'tournament') {
+        const premIdx = comp.alternatives.findIndex(alt =>
+          alt.tag && /premium|upgrade/i.test(alt.tag)
+        );
+        if (premIdx !== -1) {
+          newOverrides[slot.key] = premIdx;
+        } else {
+          let expIdx = -1;
+          let expPrice = 0;
+          comp.alternatives.forEach((alt, idx) => {
+            const altPrice = parseFloat(alt.price.replace(/[^0-9.]/g, '')) || 0;
+            if (altPrice > expPrice) {
+              expPrice = altPrice;
+              expIdx = idx;
+            }
+          });
+          if (expIdx !== -1) newOverrides[slot.key] = expIdx;
+        }
+      }
+    }
+
+    setOverrides(newOverrides);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [budgetTier, species, reelType]);
 
   const speciesName = useMemo(() => {
     const sp = allSpecies.find(s => s.slug === species);
@@ -1098,9 +1190,16 @@ export default function RigBuilderClient({ initialSpecies }: { initialSpecies?: 
               <div className="border-t border-sand-200 dark:border-water-700 px-6 py-4 bg-sand-50 dark:bg-water-900">
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-sm font-medium text-muted-foreground">Estimated Total</span>
-                  <span className="font-heading text-xl font-bold text-water-900 dark:text-sand-100">
-                    ~${Math.round(estimatedTotal)}
-                  </span>
+                  <div className="text-right">
+                    <span className="font-heading text-xl font-bold text-water-900 dark:text-sand-100">
+                      ~${Math.round(estimatedTotal)}
+                    </span>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      {estimatedTotal < 200 ? 'Budget Build Range' :
+                       estimatedTotal < 500 ? 'Sweet Spot Range' :
+                       'Tournament Grade Range'}
+                    </p>
+                  </div>
                 </div>
                 <div className="flex flex-wrap gap-3">
                   <button
@@ -1132,6 +1231,24 @@ export default function RigBuilderClient({ initialSpecies }: { initialSpecies?: 
                 <h3 className="font-heading text-xl font-bold mb-4">Matching Gear</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                   {summaryProducts.map(p => <ProductCard key={p.id} product={p} />)}
+                </div>
+              </div>
+            )}
+
+            {/* New & Trending Gear */}
+            {affiliateProducts.filter(p => (p.isNewBrand || p.isTrending) && p.affiliateUrl !== '').length > 0 && (
+              <div className="mt-8">
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="text-xl">🔥</span>
+                  <h3 className="font-heading text-xl font-bold">New & Trending Gear</h3>
+                </div>
+                <p className="text-sm text-muted-foreground mb-4">Rising brands worth checking out</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                  {affiliateProducts
+                    .filter(p => (p.isNewBrand || p.isTrending) && p.affiliateUrl !== '')
+                    .slice(0, 6)
+                    .map(p => <TrendingProductCard key={p.id} product={p} />)
+                  }
                 </div>
               </div>
             )}

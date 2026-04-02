@@ -1,98 +1,278 @@
 import type { GearReview } from '../../types';
 
+import { abuGarciaMaxXCombo } from './abu-garcia-max-x-combo';
+import { abuGarciaRevoRocket } from './abu-garcia-revo-rocket';
+import { abuGarciaRevoSx } from './abu-garcia-revo-sx';
+import { abuGarciaRevoX } from './abu-garcia-revo-x';
+import { abuGarciaRevoXCombo } from './abu-garcia-revo-x-combo';
+import { abuGarciaVeritas } from './abu-garcia-veritas';
+import { bassMafiaBaitCoffin } from './bass-mafia-bait-coffin';
+import { berkleyFireline } from './berkley-fireline';
+import { berkleyGulpShrimp } from './berkley-gulp-shrimp';
+import { berkleyPowerbait } from './berkley-powerbait';
+import { berkleyTrileneMono } from './berkley-trilene-mono';
+import { berkleyTrileneXl } from './berkley-trilene-xl';
+import { bogaGrip } from './boga-grip';
+import { bonafideSs127 } from './bonafide-ss127';
+import { boomsFishingPliers } from './booms-fishing-pliers';
+import { canyonOutfitter55 } from './canyon-outfitter-55';
+import { colemanXtreme70 } from './coleman-xtreme-70';
+import { columbiaPfgBahama } from './columbia-pfg-bahama';
+import { costaFantail } from './costa-fantail';
+import { costaTunaAlley } from './costa-tuna-alley';
+import { daiwaBg } from './daiwa-bg';
+import { daiwaExist } from './daiwa-exist';
+import { daiwaTatulaSvTw } from './daiwa-tatula-sv-tw';
+import { dobynsFury } from './dobyns-fury';
+import { engelHd30 } from './engel-hd30';
+import { enigmaCentrisReel } from './enigma-centris-reel';
 import { enigmaIpponRod } from './enigma-ippon-rod';
 import { enigmaOpusReel } from './enigma-opus-reel';
-import { enigmaCentrisReel } from './enigma-centris-reel';
-import { abuGarciaRevoSx } from './abu-garcia-revo-sx';
+import { fenwickHmg } from './fenwick-hmg';
+import { flambeauTuffTainer } from './flambeau-tuff-tainer-4007';
+import { frabillConservationNet } from './frabill-conservation-net';
+import { gLoomisE6x } from './g-loomis-e6x';
+import { garminEchomapUhd2 } from './garmin-echomap-uhd2';
+import { garminLivescopePlus } from './garmin-livescope-plus';
+import { garminStriker4 } from './garmin-striker-4';
+import { garminStrikerVivid7cv } from './garmin-striker-vivid-7cv';
+import { hobieMiragePassport12 } from './hobie-mirage-passport-12';
+import { hobieMirageProAngler14 } from './hobie-mirage-pro-angler-14';
+import { humminbirdHelix7 } from './humminbird-helix-7';
+import { iglooBmx52 } from './igloo-bmx-52';
+import { kastkingSuperpower } from './kastking-superpower';
+import { lewsMachSmashCombo } from './lews-mach-smash-combo';
+import { lewsTournamentPro } from './lews-tournament-pro';
+import { lowranceHdsLive9 } from './lowrance-hds-live-9';
+import { lowranceHookReveal7 } from './lowrance-hook-reveal-7';
+import { mauiJimPeahi } from './maui-jim-peahi';
+import { mustadCircleHook } from './mustad-circle-hook';
+import { mustadEwgWormHook } from './mustad-ewg-worm-hook';
+import { mustadJigHead } from './mustad-jig-head';
+import { oakleySplitShot } from './oakley-split-shot';
+import { oldTownSportsmanPdl120 } from './old-town-sportsman-pdl-120';
+import { pelicanCatchMode110 } from './pelican-catch-mode-110';
 import { pennBattleIii } from './penn-battle-iii';
 import { pennSlammerIv } from './penn-slammer-iv';
-import { uglyStikGx2 } from './ugly-stik-gx2';
-import { berkleyTrileneXl } from './berkley-trilene-xl';
-import { berkleyFireline } from './berkley-fireline';
-import { garminStriker4 } from './garmin-striker-4';
-import { garminEchomapUhd2 } from './garmin-echomap-uhd2';
-import { vibeYellowfin120 } from './vibe-yellowfin-120';
-import { yetiTundra45 } from './yeti-tundra-45';
-import { yetiHopperFlip } from './yeti-hopper-flip';
-import { columbiaPfgBahama } from './columbia-pfg-bahama';
-import { mustadEwgWormHook } from './mustad-ewg-worm-hook';
-import { mustadCircleHook } from './mustad-circle-hook';
-import { mustadJigHead } from './mustad-jig-head';
-import { berkleyPowerbait } from './berkley-powerbait';
-import { berkleyGulpShrimp } from './berkley-gulp-shrimp';
-import { costaFantail } from './costa-fantail';
-import { simmsG3Waders } from './simms-g3-waders';
-import { planoGuideSeries } from './plano-guide-series';
-import { frabillConservationNet } from './frabill-conservation-net';
-import { rapalaFilletKnife } from './rapala-fillet-knife';
-import { kastkingSuperpower } from './kastking-superpower';
-import { sufix832 } from './sufix-832';
-import { bogaGrip } from './boga-grip';
+import { perceptionPescadorPro12 } from './perception-pescador-pro-12';
+import { pfluegerPresident } from './pflueger-president';
+import { pfluegerTrionCombo } from './pflueger-trion-combo';
 import { piscifunTackleBag } from './piscifun-tackle-bag';
-import { boomsFishingPliers } from './booms-fishing-pliers';
+import { plano3700Stowaway } from './plano-3700-stowaway';
+import { planoGuideSeries } from './plano-guide-series';
+import { planoVCrate } from './plano-v-crate';
+import { planoWeekendSeriesBag } from './plano-weekend-series-bag';
+import { planoZSeriesBackpack } from './plano-z-series-backpack';
+import { powerproSuper8Slick } from './powerpro-super-8-slick';
+import { rapalaFilletKnife } from './rapala-fillet-knife';
+import { rtic45 } from './rtic-45';
+import { seaguarInvizx } from './seaguar-invizx';
+import { seaguarTatsu } from './seaguar-tatsu';
+import { shakespeareCatchMoreFish } from './shakespeare-catch-more-fish';
+import { shimanoCuradoK } from './shimano-curado-k';
+import { shimanoExpride } from './shimano-expride';
+import { shimanoMetanium } from './shimano-metanium';
+import { shimanoSlxDc } from './shimano-slx-dc';
+import { shimanoStradicFl } from './shimano-stradic-fl';
+import { shimanoVanford } from './shimano-vanford';
+import { simmsG3Waders } from './simms-g3-waders';
+import { smithGuidesChoice } from './smith-guides-choice';
+import { stCroixBassX } from './st-croix-bass-x';
+import { strikeKingS11 } from './strike-king-s11';
+import { sufix832 } from './sufix-832';
+import { uglyStikGx2 } from './ugly-stik-gx2';
+import { uglyStikGx2CastingCombo } from './ugly-stik-gx2-casting-combo';
+import { uglyStikGx2Combo } from './ugly-stik-gx2-combo';
+import { vibeYellowfin120 } from './vibe-yellowfin-120';
+import { yetiHopperFlip } from './yeti-hopper-flip';
+import { yetiTundra45 } from './yeti-tundra-45';
 
 export const allReviews: GearReview[] = [
+  // Rods
   enigmaIpponRod,
+  stCroixBassX,
+  dobynsFury,
+  gLoomisE6x,
+  shimanoExpride,
+  abuGarciaVeritas,
+  fenwickHmg,
+  uglyStikGx2,
+  // Baitcasting Reels
+  abuGarciaRevoX,
+  shimanoSlxDc,
+  shimanoCuradoK,
+  daiwaTatulaSvTw,
+  abuGarciaRevoRocket,
+  lewsTournamentPro,
+  shimanoMetanium,
   enigmaOpusReel,
   enigmaCentrisReel,
-  abuGarciaRevoSx,
+  // Spinning Reels
+  daiwaBg,
+  shimanoStradicFl,
   pennBattleIii,
+  pfluegerPresident,
+  shimanoVanford,
+  daiwaExist,
+  abuGarciaRevoSx,
   pennSlammerIv,
-  uglyStikGx2,
-  berkleyTrileneXl,
-  berkleyFireline,
+  // Fish Finders
   garminStriker4,
+  garminStrikerVivid7cv,
+  lowranceHookReveal7,
+  humminbirdHelix7,
   garminEchomapUhd2,
+  lowranceHdsLive9,
+  garminLivescopePlus,
+  // Kayaks
+  pelicanCatchMode110,
+  perceptionPescadorPro12,
   vibeYellowfin120,
-  yetiTundra45,
-  yetiHopperFlip,
-  columbiaPfgBahama,
+  bonafideSs127,
+  hobieMiragePassport12,
+  oldTownSportsmanPdl120,
+  hobieMirageProAngler14,
+  // Line
+  berkleyTrileneXl,
+  seaguarInvizx,
+  seaguarTatsu,
+  berkleyFireline,
+  sufix832,
+  kastkingSuperpower,
+  powerproSuper8Slick,
+  berkleyTrileneMono,
+  // Lures & Hooks
+  berkleyPowerbait,
+  berkleyGulpShrimp,
   mustadEwgWormHook,
   mustadCircleHook,
   mustadJigHead,
-  berkleyPowerbait,
-  berkleyGulpShrimp,
+  // Sunglasses
   costaFantail,
-  simmsG3Waders,
+  costaTunaAlley,
+  oakleySplitShot,
+  smithGuidesChoice,
+  strikeKingS11,
+  mauiJimPeahi,
+  // Coolers
+  yetiTundra45,
+  yetiHopperFlip,
+  rtic45,
+  iglooBmx52,
+  engelHd30,
+  canyonOutfitter55,
+  colemanXtreme70,
+  // Tackle Storage
+  plano3700Stowaway,
   planoGuideSeries,
+  flambeauTuffTainer,
+  planoWeekendSeriesBag,
+  planoZSeriesBackpack,
+  planoVCrate,
+  bassMafiaBaitCoffin,
+  piscifunTackleBag,
+  // Beginner Combos
+  uglyStikGx2Combo,
+  abuGarciaMaxXCombo,
+  lewsMachSmashCombo,
+  pfluegerTrionCombo,
+  abuGarciaRevoXCombo,
+  uglyStikGx2CastingCombo,
+  shakespeareCatchMoreFish,
+  // Other Gear
+  columbiaPfgBahama,
+  simmsG3Waders,
   frabillConservationNet,
   rapalaFilletKnife,
-  kastkingSuperpower,
-  sufix832,
   bogaGrip,
-  piscifunTackleBag,
   boomsFishingPliers,
 ];
 
 export {
+  abuGarciaMaxXCombo,
+  abuGarciaRevoRocket,
+  abuGarciaRevoSx,
+  abuGarciaRevoX,
+  abuGarciaRevoXCombo,
+  abuGarciaVeritas,
+  bassMafiaBaitCoffin,
+  berkleyFireline,
+  berkleyGulpShrimp,
+  berkleyPowerbait,
+  berkleyTrileneMono,
+  berkleyTrileneXl,
+  bogaGrip,
+  bonafideSs127,
+  boomsFishingPliers,
+  canyonOutfitter55,
+  colemanXtreme70,
+  columbiaPfgBahama,
+  costaFantail,
+  costaTunaAlley,
+  daiwaBg,
+  daiwaExist,
+  daiwaTatulaSvTw,
+  dobynsFury,
+  engelHd30,
+  enigmaCentrisReel,
   enigmaIpponRod,
   enigmaOpusReel,
-  enigmaCentrisReel,
-  abuGarciaRevoSx,
+  fenwickHmg,
+  flambeauTuffTainer,
+  frabillConservationNet,
+  gLoomisE6x,
+  garminEchomapUhd2,
+  garminLivescopePlus,
+  garminStriker4,
+  garminStrikerVivid7cv,
+  hobieMiragePassport12,
+  hobieMirageProAngler14,
+  humminbirdHelix7,
+  iglooBmx52,
+  kastkingSuperpower,
+  lewsMachSmashCombo,
+  lewsTournamentPro,
+  lowranceHdsLive9,
+  lowranceHookReveal7,
+  mauiJimPeahi,
+  mustadCircleHook,
+  mustadEwgWormHook,
+  mustadJigHead,
+  oakleySplitShot,
+  oldTownSportsmanPdl120,
+  pelicanCatchMode110,
   pennBattleIii,
   pennSlammerIv,
-  uglyStikGx2,
-  berkleyTrileneXl,
-  berkleyFireline,
-  garminStriker4,
-  garminEchomapUhd2,
-  vibeYellowfin120,
-  yetiTundra45,
-  yetiHopperFlip,
-  columbiaPfgBahama,
-  mustadEwgWormHook,
-  mustadCircleHook,
-  mustadJigHead,
-  berkleyPowerbait,
-  berkleyGulpShrimp,
-  costaFantail,
-  simmsG3Waders,
-  planoGuideSeries,
-  frabillConservationNet,
-  rapalaFilletKnife,
-  kastkingSuperpower,
-  sufix832,
-  bogaGrip,
+  perceptionPescadorPro12,
+  pfluegerPresident,
+  pfluegerTrionCombo,
   piscifunTackleBag,
-  boomsFishingPliers,
+  plano3700Stowaway,
+  planoGuideSeries,
+  planoVCrate,
+  planoWeekendSeriesBag,
+  planoZSeriesBackpack,
+  powerproSuper8Slick,
+  rapalaFilletKnife,
+  rtic45,
+  seaguarInvizx,
+  seaguarTatsu,
+  shakespeareCatchMoreFish,
+  shimanoCuradoK,
+  shimanoExpride,
+  shimanoMetanium,
+  shimanoSlxDc,
+  shimanoStradicFl,
+  shimanoVanford,
+  simmsG3Waders,
+  smithGuidesChoice,
+  stCroixBassX,
+  strikeKingS11,
+  sufix832,
+  uglyStikGx2,
+  uglyStikGx2CastingCombo,
+  uglyStikGx2Combo,
+  vibeYellowfin120,
+  yetiHopperFlip,
+  yetiTundra45,
 };

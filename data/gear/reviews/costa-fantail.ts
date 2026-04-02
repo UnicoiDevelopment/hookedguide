@@ -27,7 +27,7 @@ export const costaFantail: GearReview = {
     { key: 'Lens Colors', value: 'Green mirror, copper, blue mirror, gray' },
     { key: 'Weight', value: '1.2 oz' },
   ],
-  affiliateProductId: 'costa-del-mar-sunglasses',
+  affiliateProductId: 'costa-fantail-pro-580g',
   faq: [
     { question: 'Is 580G worth the upgrade over 580P?', answer: 'For serious anglers, yes. 580G glass lenses are clearer, more scratch-resistant, and provide noticeably better sight fishing ability than 580P polycarbonate. The difference is real.' },
     { question: 'What lens color is best for fishing?', answer: 'Copper is the most versatile — it enhances contrast in variable conditions. Green mirror is best for bright, sunny flats fishing. Blue mirror for offshore and open water.' },

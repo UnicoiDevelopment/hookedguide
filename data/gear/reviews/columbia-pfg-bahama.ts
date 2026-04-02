@@ -26,7 +26,7 @@ export const columbiaPfgBahama: GearReview = {
     { key: 'Fit', value: 'Relaxed' },
     { key: 'Care', value: 'Machine washable' },
   ],
-  affiliateProductId: 'columbia-pfg-shirt',
+  affiliateProductId: 'columbia-pfg-bahama',
   faq: [
     { question: 'Does the Bahama II run true to size?', answer: 'It runs slightly large with a relaxed fit. If you prefer a trimmer look, consider ordering one size down. For layering, stick with your normal size.' },
     { question: 'Is UPF 30 enough sun protection?', answer: 'UPF 30 blocks about 97% of UV rays, which is effective for most fishing situations. UPF 50 blocks 98%. The practical difference is minimal for most anglers.' },

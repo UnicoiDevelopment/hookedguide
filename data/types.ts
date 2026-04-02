@@ -126,13 +126,16 @@ export interface AffiliateProduct {
   name: string;
   description: string;
   brand: string;
-  program: 'enigma' | 'mustad' | 'pure-fishing' | 'bass-pro' | 'yeti' | 'columbia' | 'amazon';
+  program: 'mustad' | 'pure-fishing' | 'bass-pro' | 'yeti' | 'columbia' | 'amazon' | 'simms' | 'rapala' | 'orvis' | 'huk' | 'aftco' | 'costa' | 'daiwa' | 'shimano' | 'z-man' | 'strike-king' | 'generic';
   commission: number;
   affiliateUrl: string;
   imageAlt: string;
   tags: string[];
   priority: number;
   price?: string;
+  isNewBrand?: boolean;
+  isTrending?: boolean;
+  budgetTier?: 'budget' | 'mid' | 'premium';
 }
 
 // === GEAR ===

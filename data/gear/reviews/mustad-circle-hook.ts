@@ -25,7 +25,7 @@ export const mustadCircleHook: GearReview = {
     { key: 'Wire', value: 'Heavy duty' },
     { key: 'Finish', value: 'Black nickel' },
   ],
-  affiliateProductId: 'mustad-circle-hook-8-0',
+  affiliateProductId: 'mustad-demon-circle-8-0',
   faq: [
     { question: 'What size circle hook for catfish?', answer: 'Use 6/0-8/0 for blue and flathead catfish, 3/0-5/0 for channel catfish. Match hook size to bait size — the hook should be proportional to your cut bait or live bait.' },
     { question: 'Do I set the hook with circle hooks?', answer: 'No. Let the fish run, then slowly reel tight until the rod loads up. The circle hook design causes the hook to rotate into the corner of the mouth on its own.' },

@@ -50,27 +50,52 @@ export default function AffiliateDisclosurePage() {
         </h2>
         <ul className="space-y-4 text-water-700 dark:text-sand-200 leading-relaxed">
           <li>
-            <strong>Amazon Associates</strong> — As an Amazon Associate,
-            HookedGuide earns from qualifying purchases.
+            <strong>Skimlinks</strong> — This site uses Skimlinks to
+            automatically convert product links into affiliate links across
+            multiple retailers.
           </li>
           <li>
             <strong>Mustad</strong> — We participate in the Mustad affiliate
             program.
           </li>
           <li>
-            <strong>Pure Fishing (Berkley, Abu Garcia, Penn)</strong> — We are a
+            <strong>Pure Fishing (Berkley, Abu Garcia, Penn, Ugly Stik, Pflueger, Fenwick)</strong> — We are a
             Pure Fishing affiliate partner.
+          </li>
+          <li>
+            <strong>Simms</strong> — We participate in the Simms fishing
+            affiliate program.
+          </li>
+          <li>
+            <strong>Columbia Sportswear</strong> — We participate in the Columbia
+            PFG affiliate program.
+          </li>
+          <li>
+            <strong>Rapala</strong> — We participate in the Rapala affiliate
+            program.
+          </li>
+          <li>
+            <strong>Huk</strong> — We are a Huk fishing apparel affiliate
+            partner.
+          </li>
+          <li>
+            <strong>AFTCO</strong> — We participate in the AFTCO affiliate
+            program.
+          </li>
+          <li>
+            <strong>YETI</strong> — We are a YETI affiliate partner.
+          </li>
+          <li>
+            <strong>Costa Del Mar</strong> — We participate in the Costa
+            sunglasses affiliate program.
           </li>
           <li>
             <strong>Bass Pro Shops / Cabela&apos;s</strong> — We participate in
             the Bass Pro Shops affiliate program.
           </li>
           <li>
-            <strong>YETI</strong> — We are a YETI affiliate partner.
-          </li>
-          <li>
-            <strong>Columbia Sportswear</strong> — We participate in the Columbia
-            PFG affiliate program.
+            <strong>Amazon Associates</strong> — As an Amazon Associate,
+            HookedGuide earns from qualifying purchases.
           </li>
         </ul>
       </section>
@@ -81,10 +106,10 @@ export default function AffiliateDisclosurePage() {
           How This Works
         </h2>
         <p className="text-water-700 dark:text-sand-200 leading-relaxed">
-          When you click a product link on HookedGuide and make a purchase, we
-          may receive a small commission. This does not affect the price you pay.
-          We only recommend products that we believe provide genuine value to
-          anglers.
+          This site uses Skimlinks to automatically convert product links into
+          affiliate links. When you click a product link and make a purchase, we
+          may earn a commission at no additional cost to you. We only recommend
+          products that we believe provide genuine value to anglers.
         </p>
       </section>
 

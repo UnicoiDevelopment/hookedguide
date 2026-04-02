@@ -25,7 +25,7 @@ export const frabillConservationNet: GearReview = {
     { key: 'Frame', value: 'Lightweight aluminum' },
     { key: 'Net Depth', value: '15 inches' },
   ],
-  affiliateProductId: 'frabill-landing-net',
+  affiliateProductId: 'frabill-conservation-net',
   faq: [
     { question: 'Why use a rubber net instead of nylon?', answer: 'Rubber nets protect the fish slime coat, which is their first defense against disease. Nylon nets remove slime and can damage fins. Rubber also tangles hooks less.' },
     { question: 'Is the net big enough for bass?', answer: 'The 20x23 inch hoop handles bass up to about 5-6 lbs comfortably. For trophy bass or large catfish, consider a larger hoop model.' },

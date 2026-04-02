@@ -27,7 +27,7 @@ export const uglyStikGx2: GearReview = {
     { key: 'Guides', value: 'Ugly Tuff stainless steel' },
     { key: 'Weight', value: '5.0 oz' },
   ],
-  affiliateProductId: 'shakespeare-ugly-stik',
+  affiliateProductId: 'ugly-stik-gx2-spinning',
   faq: [
     { question: 'Is the Ugly Stik good for bass fishing?', answer: 'It works fine for casual bass fishing. Tournament anglers will want more sensitivity, but for bank fishing and recreation the GX2 is a solid choice.' },
     { question: 'Why is the Ugly Stik so popular?', answer: 'It is nearly impossible to break, works for many species, and costs very little. The Clear Tip design flexes without snapping, making it extremely durable.' },

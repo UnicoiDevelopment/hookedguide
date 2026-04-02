@@ -82,16 +82,8 @@ export default function Footer() {
         {/* Disclaimers */}
         <div className="mt-10 border-t border-water-700 pt-8 space-y-3">
           <p className="font-body text-xs text-sand-300">
-            As an Amazon Associate and affiliate partner, HOOKED earns from
-            qualifying purchases.
-          </p>
-          <p className="font-body text-xs text-sand-300">
-            <Link
-              href="/disclosure"
-              className="underline transition-colors hover:text-copper-400"
-            >
-              FTC Disclosure
-            </Link>
+            HOOKED participates in affiliate programs. We earn commissions from qualifying purchases at no extra cost to you.{' '}
+            <Link href="/disclosure" className="underline transition-colors hover:text-copper-400">Affiliate Disclosure</Link>
           </p>
           <p className="font-body text-xs text-sand-300">
             &copy; 2026 HOOKED. All rights reserved.
