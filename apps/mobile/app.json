@@ -1,0 +1,39 @@
+{
+  "expo": {
+    "name": "Hooked — Fish Smarter",
+    "slug": "hooked-fish-smarter",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "scheme": "hooked",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0A1628"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.hookedguide.app",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "HOOKED uses your location to auto-detect weather, water temperature, and fishing conditions near you.",
+        "NSCameraUsageDescription": "HOOKED uses your camera to photograph your catches for your fishing log.",
+        "NSPhotoLibraryUsageDescription": "HOOKED accesses your photos to add catch photos to your fishing log."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0A1628"
+      },
+      "package": "com.hookedguide.app"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-location",
+      "expo-image-picker",
+      "expo-font"
+    ]
+  }
+}
