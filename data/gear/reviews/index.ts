@@ -13,6 +13,7 @@ import { berkleyPowerbait } from './berkley-powerbait';
 import { berkleyTrileneMono } from './berkley-trilene-mono';
 import { berkleyTrileneXl } from './berkley-trilene-xl';
 import { bogaGrip } from './boga-grip';
+import { cashionJohnCrewsCasting } from './cashion-john-crews-casting';
 import { bonafideSs127 } from './bonafide-ss127';
 import { boomsFishingPliers } from './booms-fishing-pliers';
 import { canyonOutfitter55 } from './canyon-outfitter-55';
@@ -24,10 +25,13 @@ import { daiwaBg } from './daiwa-bg';
 import { daiwaExist } from './daiwa-exist';
 import { daiwaTatulaSvTw } from './daiwa-tatula-sv-tw';
 import { dobynsFury } from './dobyns-fury';
+import { duckettGhostCasting } from './duckett-ghost-casting';
 import { engelHd30 } from './engel-hd30';
 import { enigmaCentrisReel } from './enigma-centris-reel';
 import { enigmaIpponRod } from './enigma-ippon-rod';
 import { enigmaOpusReel } from './enigma-opus-reel';
+import { favoriteFishingDefenderCasting } from './favorite-fishing-defender-casting';
+import { favoriteFishingDefenderSpinning } from './favorite-fishing-defender-spinning';
 import { fenwickHmg } from './fenwick-hmg';
 import { flambeauTuffTainer } from './flambeau-tuff-tainer-4007';
 import { frabillConservationNet } from './frabill-conservation-net';
@@ -40,6 +44,7 @@ import { hobieMiragePassport12 } from './hobie-mirage-passport-12';
 import { hobieMirageProAngler14 } from './hobie-mirage-pro-angler-14';
 import { humminbirdHelix7 } from './humminbird-helix-7';
 import { iglooBmx52 } from './igloo-bmx-52';
+import { kastkingSpeedDemonPro } from './kastking-speed-demon-pro';
 import { kastkingSuperpower } from './kastking-superpower';
 import { lewsMachSmashCombo } from './lews-mach-smash-combo';
 import { lewsTournamentPro } from './lews-tournament-pro';
@@ -57,6 +62,7 @@ import { pennSlammerIv } from './penn-slammer-iv';
 import { perceptionPescadorPro12 } from './perception-pescador-pro-12';
 import { pfluegerPresident } from './pflueger-president';
 import { pfluegerTrionCombo } from './pflueger-trion-combo';
+import { piscifunCarbonX3000 } from './piscifun-carbon-x-3000';
 import { piscifunTackleBag } from './piscifun-tackle-bag';
 import { plano3700Stowaway } from './plano-3700-stowaway';
 import { planoGuideSeries } from './plano-guide-series';
@@ -73,6 +79,7 @@ import { shimanoCuradoK } from './shimano-curado-k';
 import { shimanoExpride } from './shimano-expride';
 import { shimanoMetanium } from './shimano-metanium';
 import { shimanoSlxDc } from './shimano-slx-dc';
+import { sixgillSoulCasting } from './sixgill-soul-casting';
 import { shimanoStradicFl } from './shimano-stradic-fl';
 import { shimanoVanford } from './shimano-vanford';
 import { simmsG3Waders } from './simms-g3-waders';
@@ -80,6 +87,9 @@ import { smithGuidesChoice } from './smith-guides-choice';
 import { stCroixBassX } from './st-croix-bass-x';
 import { strikeKingS11 } from './strike-king-s11';
 import { sufix832 } from './sufix-832';
+import { thirteenFishingConceptZ3 } from './13-fishing-concept-z3';
+import { thirteenFishingOriginA } from './13-fishing-origin-a';
+import { tsunamiSaltx4000 } from './tsunami-saltx-4000';
 import { uglyStikGx2 } from './ugly-stik-gx2';
 import { uglyStikGx2CastingCombo } from './ugly-stik-gx2-casting-combo';
 import { uglyStikGx2Combo } from './ugly-stik-gx2-combo';
@@ -97,6 +107,11 @@ export const allReviews: GearReview[] = [
   abuGarciaVeritas,
   fenwickHmg,
   uglyStikGx2,
+  favoriteFishingDefenderCasting,
+  favoriteFishingDefenderSpinning,
+  cashionJohnCrewsCasting,
+  duckettGhostCasting,
+  sixgillSoulCasting,
   // Baitcasting Reels
   abuGarciaRevoX,
   shimanoSlxDc,
@@ -107,6 +122,9 @@ export const allReviews: GearReview[] = [
   shimanoMetanium,
   enigmaOpusReel,
   enigmaCentrisReel,
+  thirteenFishingConceptZ3,
+  thirteenFishingOriginA,
+  kastkingSpeedDemonPro,
   // Spinning Reels
   daiwaBg,
   shimanoStradicFl,
@@ -116,6 +134,8 @@ export const allReviews: GearReview[] = [
   daiwaExist,
   abuGarciaRevoSx,
   pennSlammerIv,
+  piscifunCarbonX3000,
+  tsunamiSaltx4000,
   // Fish Finders
   garminStriker4,
   garminStrikerVivid7cv,
@@ -204,6 +224,7 @@ export {
   bogaGrip,
   bonafideSs127,
   boomsFishingPliers,
+  cashionJohnCrewsCasting,
   canyonOutfitter55,
   colemanXtreme70,
   columbiaPfgBahama,
@@ -213,10 +234,13 @@ export {
   daiwaExist,
   daiwaTatulaSvTw,
   dobynsFury,
+  duckettGhostCasting,
   engelHd30,
   enigmaCentrisReel,
   enigmaIpponRod,
   enigmaOpusReel,
+  favoriteFishingDefenderCasting,
+  favoriteFishingDefenderSpinning,
   fenwickHmg,
   flambeauTuffTainer,
   frabillConservationNet,
@@ -229,6 +253,7 @@ export {
   hobieMirageProAngler14,
   humminbirdHelix7,
   iglooBmx52,
+  kastkingSpeedDemonPro,
   kastkingSuperpower,
   lewsMachSmashCombo,
   lewsTournamentPro,
@@ -246,6 +271,7 @@ export {
   perceptionPescadorPro12,
   pfluegerPresident,
   pfluegerTrionCombo,
+  piscifunCarbonX3000,
   piscifunTackleBag,
   plano3700Stowaway,
   planoGuideSeries,
@@ -263,12 +289,16 @@ export {
   shimanoMetanium,
   shimanoSlxDc,
   shimanoStradicFl,
+  sixgillSoulCasting,
   shimanoVanford,
   simmsG3Waders,
   smithGuidesChoice,
   stCroixBassX,
   strikeKingS11,
   sufix832,
+  thirteenFishingConceptZ3,
+  thirteenFishingOriginA,
+  tsunamiSaltx4000,
   uglyStikGx2,
   uglyStikGx2CastingCombo,
   uglyStikGx2Combo,
