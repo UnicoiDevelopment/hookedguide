@@ -6,20 +6,20 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import KnotCard from '@/components/knots/KnotCard';
 
 export const metadata: Metadata = {
-  title: 'Fishing Knots Guide — How to Tie 15 Essential Knots | HOOKED',
+  title: 'Fishing Knots Guide — How to Tie 15 Essential Knots',
   description:
     'Learn to tie 15 essential fishing knots with step-by-step instructions. Includes the Palomar, Improved Clinch, Uni knot, and more for every line type and situation.',
   alternates: {
     canonical: 'https://hookedguide.com/knots',
   },
   openGraph: {
-    title: 'Fishing Knots Guide — How to Tie 15 Essential Knots | HOOKED',
+    title: 'Fishing Knots Guide — How to Tie 15 Essential Knots',
     description:
       'Learn to tie 15 essential fishing knots with step-by-step instructions. Includes the Palomar, Improved Clinch, Uni knot, and more for every line type and situation.',
     url: 'https://hookedguide.com/knots',
   },
   twitter: {
-    title: 'Fishing Knots Guide — How to Tie 15 Essential Knots | HOOKED',
+    title: 'Fishing Knots Guide — How to Tie 15 Essential Knots',
     description:
       'Learn to tie 15 essential fishing knots with step-by-step instructions. Includes the Palomar, Improved Clinch, Uni knot, and more for every line type and situation.',
   },

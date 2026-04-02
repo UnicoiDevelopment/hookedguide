@@ -2,18 +2,18 @@ import { Metadata } from 'next';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 
 export const metadata: Metadata = {
-  title: 'Affiliate Disclosure | HOOKED',
+  title: 'Affiliate Disclosure',
   description:
     'HOOKED affiliate disclosure. Learn how we earn commissions through affiliate partnerships.',
   alternates: { canonical: 'https://hookedguide.com/disclosure' },
   openGraph: {
-    title: 'Affiliate Disclosure | HOOKED',
+    title: 'Affiliate Disclosure',
     description:
       'HOOKED affiliate disclosure and FTC compliance statement.',
     url: 'https://hookedguide.com/disclosure',
   },
   twitter: {
-    title: 'Affiliate Disclosure | HOOKED',
+    title: 'Affiliate Disclosure',
     description:
       'HOOKED affiliate disclosure and FTC compliance statement.',
   },

@@ -2,17 +2,17 @@ import { Metadata } from 'next';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 
 export const metadata: Metadata = {
-  title: 'Terms of Use | HOOKED',
+  title: 'Terms of Use',
   description:
     'Terms of use for HOOKED. Read our terms and conditions before using the site.',
   alternates: { canonical: 'https://hookedguide.com/terms' },
   openGraph: {
-    title: 'Terms of Use | HOOKED',
+    title: 'Terms of Use',
     description: 'Terms of use for HOOKED.',
     url: 'https://hookedguide.com/terms',
   },
   twitter: {
-    title: 'Terms of Use | HOOKED',
+    title: 'Terms of Use',
     description: 'Terms of use for HOOKED.',
   },
 };

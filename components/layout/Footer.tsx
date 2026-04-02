@@ -28,17 +28,6 @@ const infoLinks = [
   { label: 'Image Credits', href: '/credits' },
 ];
 
-// Cross-links commented out per brand revision — can re-enable later
-// const freeToolsSites = [
-//   { label: 'UtilFox', href: 'https://utilfox.dev' },
-//   { label: 'FramingCalc', href: 'https://framingcalc.com' },
-//   { label: 'ConvertMath', href: 'https://convertmath.com' },
-//   { label: 'ChartsAndCodes', href: 'https://chartsandcodes.com' },
-//   { label: 'SymbolCrunch', href: 'https://symbolcrunch.com' },
-//   { label: 'RandoFox', href: 'https://randofox.com' },
-//   { label: 'LifestyleCalc', href: 'https://lifestylecalc.com' },
-//   { label: 'ParlayMath', href: 'https://parlaymath.com' },
-// ];
 
 function FooterColumn({
   title,

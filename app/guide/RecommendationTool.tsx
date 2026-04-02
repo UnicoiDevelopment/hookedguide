@@ -41,6 +41,7 @@ import {
 } from 'lucide-react';
 import { allSpecies } from '@/data/species';
 import { allStates } from '@/data/states';
+import { allTechniques } from '@/data/techniques';
 import { getDetailedRecommendation } from '@/data/recommendations/detailed-engine';
 import { getMatchingProducts } from '@/lib/affiliate-matcher';
 import type {
@@ -1117,12 +1118,14 @@ export default function RecommendationTool() {
                     Use: {result.primary.technique.name}
                   </h3>
                   <p className="text-gray-600 mb-2">{result.primary.technique.why}</p>
-                  <Link
-                    href={`/techniques/${result.primary.technique.slug}`}
-                    className="inline-flex items-center gap-1 text-copper-600 hover:text-copper-700 font-medium text-sm transition-colors"
-                  >
-                    Full {result.primary.technique.name} Guide <ArrowRight className="w-4 h-4" />
-                  </Link>
+                  {allTechniques.some(t => t.slug === result.primary.technique.slug) && (
+                    <Link
+                      href={`/techniques/${result.primary.technique.slug}`}
+                      className="inline-flex items-center gap-1 text-copper-600 hover:text-copper-700 font-medium text-sm transition-colors"
+                    >
+                      Full {result.primary.technique.name} Guide <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  )}
                 </div>
 
                 {/* Presentation */}
@@ -1553,12 +1556,14 @@ export default function RecommendationTool() {
                     View Species Guide <ArrowRight className="w-4 h-4" />
                   </Link>
                 )}
-                <Link
-                  href={`/techniques/${result.primary.technique.slug}`}
-                  className="flex-1 py-3 rounded-lg border-2 border-copper-400 text-copper-700 hover:bg-copper-500 hover:text-white font-bold transition-colors flex items-center justify-center gap-2 text-center"
-                >
-                  View Technique Guide <ArrowRight className="w-4 h-4" />
-                </Link>
+                {allTechniques.some(t => t.slug === result.primary.technique.slug) && (
+                  <Link
+                    href={`/techniques/${result.primary.technique.slug}`}
+                    className="flex-1 py-3 rounded-lg border-2 border-copper-400 text-copper-700 hover:bg-copper-500 hover:text-white font-bold transition-colors flex items-center justify-center gap-2 text-center"
+                  >
+                    View Technique Guide <ArrowRight className="w-4 h-4" />
+                  </Link>
+                )}
               </div>
             </div>
           </div>

@@ -45,7 +45,7 @@ export async function generateMetadata({
     ? ` Bag limit: ${regulation.bagLimit}.`
     : "";
 
-  const title = `${species.name} Fishing in ${state.name} — Regulations, Tips & Where to Fish | HOOKED`;
+  const title = `${species.name} Fishing in ${state.name} — Regulations, Tips & Where to Fish`;
   const description = `Guide to ${species.name.toLowerCase()} fishing in ${state.name}.${bagLimitSnippet} Best waters and season info.`;
 
   return {
@@ -78,6 +78,7 @@ export default async function SpeciesStatePage({ params }: PageProps) {
   const species = allSpecies.find((s) => s.slug === slug);
   const state = allStates.find((s) => s.slug === stateSlug);
   if (!species || !state) notFound();
+  if (!species.statesFound.includes(stateSlug)) notFound();
 
   /* Override data */
   const override = speciesStateOverrides.find(

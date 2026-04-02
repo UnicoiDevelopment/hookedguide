@@ -208,7 +208,7 @@ export default function Home() {
           </div>
           <div className="mt-8 text-center">
             <Link
-              href="/gear/reviews"
+              href="/gear"
               className="text-copper-500 font-medium hover:text-copper-600 transition-colors"
             >
               See All Gear Reviews &rarr;

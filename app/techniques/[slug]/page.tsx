@@ -54,7 +54,7 @@ export async function generateMetadata({
     })
     .join(", ");
 
-  const title = `How to Fish a ${technique.name} — Step-by-Step Guide (2026) | HOOKED`;
+  const title = `How to Fish a ${technique.name} — Step-by-Step Guide (2026)`;
   const description = `${technique.description.slice(0, 120)}... Best for ${speciesNames}. Difficulty: ${difficultyLabels[technique.difficulty]}.`;
 
   return {

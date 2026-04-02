@@ -21,7 +21,7 @@ export function generateMetadata({
   const category = gearCategories.find((c) => c.slug === params.category);
   if (!category) return {};
 
-  const title = `Best ${category.name} (2026) — Reviews & Buyer's Guide | HOOKED`;
+  const title = `Best ${category.name} (2026) — Reviews & Buyer's Guide`;
   const description = category.description;
 
   return {

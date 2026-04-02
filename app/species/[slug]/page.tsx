@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!species) return {};
 
   const stateCount = species.statesFound.length;
-  const title = `${species.name} Fishing Guide — Tips, Techniques & Best Gear (2026) | HOOKED`;
+  const title = `${species.name} Fishing Guide — Tips, Techniques & Best Gear (2026)`;
   const description = `Complete guide to ${species.name.toLowerCase()} fishing. Learn the best techniques, lures, seasonal patterns, and gear. ${species.name} found in ${stateCount} states.`;
 
   return {

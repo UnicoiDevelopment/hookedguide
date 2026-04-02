@@ -21,7 +21,7 @@ export function generateMetadata({
   const review = allReviews.find((r) => r.slug === params.slug);
   if (!review) return {};
 
-  const title = `${review.productName} Review (2026) — Is It Worth It? | HOOKED`;
+  const title = `${review.productName} Review (2026) — Is It Worth It?`;
   const description = `In-depth review of the ${review.productName} by ${review.brand}. Rating: ${review.rating}/5. Pros, cons, specs, and who it's best for.`;
 
   return {
