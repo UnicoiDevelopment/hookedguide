@@ -9,8 +9,9 @@ const sections = [
   {
     title: 'EXPLORE',
     items: [
+      { label: 'Fishing Log', icon: 'book-outline' as const, href: '/(tabs)/log' },
       { label: 'Species', icon: 'fish-outline' as const, href: '/species' },
-      { label: 'Techniques', icon: 'book-outline' as const, href: '/techniques' },
+      { label: 'Techniques', icon: 'reader-outline' as const, href: '/techniques' },
       { label: 'Knots', icon: 'link-outline' as const, href: '/knots' },
       { label: 'Gear Reviews', icon: 'star-outline' as const, href: '/gear' },
       { label: 'Regulations', icon: 'document-text-outline' as const, href: '/regulations' },
