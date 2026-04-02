@@ -36,7 +36,7 @@ export default function MobileNav() {
   return (
     <>
       {/* Bottom Navigation Bar */}
-      <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-sand-200 bg-white dark:border-water-700 dark:bg-water-800 md:hidden">
+      <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-sand-200 bg-white dark:border-water-700 dark:bg-water-900 md:hidden">
         <div className="mx-auto flex h-16 max-w-lg items-center justify-around px-2">
           {/* Home */}
           <Link
@@ -123,7 +123,7 @@ export default function MobileNav() {
 
       {/* More Sheet */}
       <div
-        className={`fixed bottom-0 left-0 right-0 z-50 transform rounded-t-2xl bg-white shadow-xl transition-transform duration-300 ease-in-out dark:bg-water-800 md:hidden ${
+        className={`fixed bottom-0 left-0 right-0 z-50 transform rounded-t-2xl bg-white shadow-xl transition-transform duration-300 ease-in-out dark:bg-water-900 md:hidden ${
           sheetOpen ? 'translate-y-0' : 'translate-y-full'
         }`}
       >

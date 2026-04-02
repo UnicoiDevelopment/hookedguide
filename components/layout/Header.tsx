@@ -35,7 +35,7 @@ export default function Header() {
   }, [mobileOpen]);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-sand-200 dark:border-water-700 bg-sand-50/95 backdrop-blur dark:bg-water-900/95">
+    <header className="sticky top-0 z-50 w-full border-b border-sand-200 dark:border-water-700 bg-white dark:bg-water-900">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="font-heading text-2xl font-bold text-copper-500 tracking-wider">
