@@ -95,6 +95,17 @@ export default function PrivacyPolicyPage() {
             Enigma Fishing, Mustad, Pure Fishing, Bass Pro Shops, YETI, and
             Columbia Sportswear
           </li>
+          <li>
+            <strong>Supabase</strong> — for user authentication and data storage
+            (mobile app)
+          </li>
+          <li>
+            <strong>RevenueCat</strong> — for subscription management (mobile
+            app)
+          </li>
+          <li>
+            <strong>OpenWeather API</strong> — for weather data (mobile app)
+          </li>
         </ul>
       </section>
 
@@ -119,6 +130,52 @@ export default function PrivacyPolicyPage() {
           collect any personal information from children under the age of 13. If
           you believe we have inadvertently collected such information, please
           contact us immediately.
+        </p>
+      </section>
+
+      {/* Mobile App Data */}
+      <section className="mb-8">
+        <h2 className="font-heading text-2xl font-semibold text-water-900 dark:text-sand-50 mt-8 mb-4">
+          Mobile App Data
+        </h2>
+        <p className="text-water-700 dark:text-sand-200 leading-relaxed mb-4">
+          The HOOKED mobile app collects the following data:
+        </p>
+        <ul className="list-disc list-inside space-y-2 text-water-700 dark:text-sand-200 leading-relaxed mb-4">
+          <li>
+            <strong>Location data</strong> (with your permission) — to provide
+            local weather, water temperature, and fishing conditions
+          </li>
+          <li>
+            <strong>Email address</strong> (if you create an account) — for
+            authentication and subscription management
+          </li>
+          <li>
+            <strong>Fishing log entries</strong> — stored securely in your
+            account
+          </li>
+        </ul>
+        <p className="text-water-700 dark:text-sand-200 leading-relaxed mb-4">
+          Third-party services used by the mobile app:
+        </p>
+        <ul className="list-disc list-inside space-y-2 text-water-700 dark:text-sand-200 leading-relaxed mb-4">
+          <li>
+            <strong>Supabase</strong> — authentication and data storage
+          </li>
+          <li>
+            <strong>RevenueCat</strong> — subscription management
+          </li>
+          <li>
+            <strong>OpenWeather API</strong> — weather data
+          </li>
+          <li>
+            <strong>Apple</strong> — Sign In with Apple, App Store subscriptions
+          </li>
+        </ul>
+        <p className="text-water-700 dark:text-sand-200 leading-relaxed">
+          All data is processed in accordance with applicable privacy laws. You
+          can delete your account and all associated data at any time from the
+          app settings.
         </p>
       </section>
 

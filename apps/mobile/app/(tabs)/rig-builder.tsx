@@ -5,6 +5,7 @@ import {
   ScrollView,
   TouchableOpacity,
   StyleSheet,
+  Linking,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -12,6 +13,7 @@ import * as Haptics from 'expo-haptics';
 import { useTheme } from '@/lib/theme-context';
 import { Colors } from '@/constants/colors';
 import { allSpecies } from '../../../../data/species';
+import { trackRigBuild } from '@/lib/review-prompt';
 
 type Step = 'species' | 'reel-type' | 'result';
 type ReelType = 'spinning' | 'baitcasting';
@@ -91,6 +93,7 @@ export default function RigBuilderScreen() {
     if (lightSpecies.includes(slug)) {
       setReelType('spinning');
       setStep('result');
+      trackRigBuild();
     } else {
       setStep('reel-type');
     }
@@ -100,6 +103,7 @@ export default function RigBuilderScreen() {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     setReelType(type);
     setStep('result');
+    trackRigBuild();
   };
 
   const reset = () => {
@@ -160,7 +164,16 @@ export default function RigBuilderScreen() {
             const comp = rig[key];
             if (!comp) return null;
             return (
-              <View key={key} style={[styles.compCard, { backgroundColor: theme.card }]}>
+              <TouchableOpacity
+                key={key}
+                style={[styles.compCard, { backgroundColor: theme.card }]}
+                onPress={() => {
+                  if (comp.affiliateUrl) {
+                    Linking.openURL(comp.affiliateUrl);
+                  }
+                }}
+                activeOpacity={comp.affiliateUrl ? 0.7 : 1}
+              >
                 <View style={styles.compHeader}>
                   <Text style={styles.compIcon}>{icon}</Text>
                   <Text style={[styles.compLabel, { color: theme.textMuted }]}>{label}</Text>
@@ -168,9 +181,14 @@ export default function RigBuilderScreen() {
                 <Text style={[styles.compName, { color: theme.text }]}>{comp.label}</Text>
                 <View style={styles.compDetailRow}>
                   <Text style={[styles.compDetail, { color: theme.textSecondary }]}>{comp.detail}</Text>
-                  <Text style={[styles.compPrice, { color: Colors.copper[500] }]}>{comp.price}</Text>
+                  <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <Text style={[styles.compPrice, { color: Colors.copper[500] }]}>{comp.price}</Text>
+                    {comp.affiliateUrl && (
+                      <Ionicons name="open-outline" size={14} color={Colors.copper[500]} style={{ marginLeft: 6 }} />
+                    )}
+                  </View>
                 </View>
-              </View>
+              </TouchableOpacity>
             );
           })}
 

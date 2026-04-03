@@ -107,7 +107,7 @@ export default function PaywallScreen() {
             </View>
             <Text style={styles.planName}>Yearly</Text>
             <Text style={styles.planPrice}>{yearlyPrice}/year</Text>
-            <Text style={styles.planSavings}>Save 40% \u2014 just $4.17/mo</Text>
+            <Text style={styles.planSavings}>Save 40% — just $4.17/mo</Text>
           </View>
           <Text style={styles.planCta}>{purchasing ? '...' : 'Subscribe'}</Text>
         </TouchableOpacity>
@@ -134,6 +134,13 @@ export default function PaywallScreen() {
           </Text>
         </TouchableOpacity>
 
+        {/* Promo code */}
+        <TouchableOpacity onPress={() => router.push('/promo')} style={{ marginTop: 12, alignItems: 'center' }}>
+          <Text style={{ color: Colors.copper[500], textAlign: 'center', fontFamily: 'BarlowCondensed_600SemiBold', fontSize: 14 }}>
+            Have a promo code?
+          </Text>
+        </TouchableOpacity>
+
         {/* Maybe Later */}
         <TouchableOpacity onPress={() => router.back()} style={styles.laterBtn}>
           <Text style={[styles.laterText, { color: theme.textMuted }]}>Maybe Later</Text>
@@ -151,7 +158,7 @@ export default function PaywallScreen() {
           <TouchableOpacity onPress={() => Linking.openURL('https://hookedguide.com/terms')}>
             <Text style={[styles.legalLink, { color: Colors.copper[500] }]}>Terms of Use</Text>
           </TouchableOpacity>
-          <Text style={[styles.legalDot, { color: theme.textMuted }]}> \u00B7 </Text>
+          <Text style={[styles.legalDot, { color: theme.textMuted }]}> ·</Text>
           <TouchableOpacity onPress={() => Linking.openURL('https://hookedguide.com/privacy')}>
             <Text style={[styles.legalLink, { color: Colors.copper[500] }]}>Privacy Policy</Text>
           </TouchableOpacity>

@@ -1,0 +1,5 @@
+Primary: Sports
+Secondary: Weather
+Age Rating: 4+
+Privacy Policy URL: https://hookedguide.com/privacy
+Support URL: https://hookedguide.com/about

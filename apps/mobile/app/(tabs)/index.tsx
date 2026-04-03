@@ -121,7 +121,7 @@ export default function HomeScreen() {
             )}
             {waterBody && (
               <Text style={[styles.waterSubtext, { color: theme.textSecondary }]}>
-                {waterBody.type} \u00B7 {location?.city}, {location?.state}
+                {waterBody.type} · {location?.city}, {location?.state}
               </Text>
             )}
           </View>
@@ -132,18 +132,18 @@ export default function HomeScreen() {
           <View style={styles.conditionsGrid}>
             {weather && (
               <>
-                <CondItem emoji={skyEmoji(weather.sky)} value={`${weather.tempF}\u00B0F`} theme={theme} />
+                <CondItem emoji={skyEmoji(weather.sky)} value={`${weather.tempF}°F`} theme={theme} />
                 <CondItem emoji={'\uD83D\uDCA8'} value={`${weather.wind.speed}mph ${weather.wind.direction}`} theme={theme} />
                 <CondItem
                   emoji={'\uD83D\uDCCA'}
-                  value={`${weather.pressure.value}" ${weather.pressure.trend === 'falling' ? '\u2193' : weather.pressure.trend === 'rising' ? '\u2191' : ''}`}
+                  value={`${weather.pressure.value}" ${weather.pressure.trend === 'falling' ? '↓' : weather.pressure.trend === 'rising' ? '↑' : ''}`}
                   theme={theme}
                 />
               </>
             )}
             <CondItem emoji={moonPhase.emoji} value={moonPhase.phaseName} theme={theme} />
             {waterTemp && (
-              <CondItem emoji={'\uD83C\uDF0A'} value={`${waterTemp.tempF}\u00B0F water`} theme={theme} />
+              <CondItem emoji={'\uD83C\uDF0A'} value={`${waterTemp.tempF}°F water`} theme={theme} />
             )}
           </View>
 
@@ -167,7 +167,7 @@ export default function HomeScreen() {
               </Text>
               {weatherTrend?.bestFishingWindows.today[0] && (
                 <Text style={[styles.bestWindow, { color: Colors.copper[500] }]}>
-                  Best window: {weatherTrend.bestFishingWindows.today[0].start} \u2014{' '}
+                  Best window: {weatherTrend.bestFishingWindows.today[0].start} —{' '}
                   {weatherTrend.bestFishingWindows.today[0].end}
                 </Text>
               )}
@@ -180,9 +180,14 @@ export default function HomeScreen() {
           )}
 
           {!weather && !loading && (
-            <Text style={[styles.noData, { color: theme.textMuted }]}>
-              {'\uD83D\uDCE1'} Enable location for auto-detected conditions
-            </Text>
+            <View style={{ alignItems: 'center', marginBottom: 16 }}>
+              <Text style={[styles.noData, { color: theme.textMuted }]}>
+                {'\uD83D\uDCE1'} Weather unavailable
+              </Text>
+              <Text style={[styles.noData, { color: theme.textMuted, marginTop: 2 }]}>
+                {location ? 'Check your connection and pull to refresh' : 'Enable location for auto-detected conditions'}
+              </Text>
+            </View>
           )}
 
           {/* Two CTA buttons */}
@@ -224,7 +229,7 @@ export default function HomeScreen() {
                   </Text>
                   <Text style={styles.forecastEmoji}>{day.conditionEmoji}</Text>
                   <Text style={[styles.forecastTemp, { color: theme.text }]}>
-                    {day.highF}\u00B0
+                    {day.highF}°
                   </Text>
                   <View style={styles.forecastStarsRow}>
                     {Array(day.fishingRating).fill(0).map((_, j) => (
@@ -267,7 +272,7 @@ export default function HomeScreen() {
           </View>
           <TouchableOpacity onPress={() => router.push('/(tabs)/guide')}>
             <Text style={[styles.moreLink, { color: Colors.copper[500] }]}>
-              More species \u2192
+              More species →
             </Text>
           </TouchableOpacity>
         </View>

@@ -108,7 +108,7 @@ export default function SignInScreen() {
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => router.back()} style={styles.link}>
-          <Text style={[styles.skipText, { color: theme.textMuted }]}>Skip for now \u2192</Text>
+          <Text style={[styles.skipText, { color: theme.textMuted }]}>Skip for now →</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

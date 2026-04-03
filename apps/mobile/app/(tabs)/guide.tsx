@@ -33,6 +33,7 @@ import type {
 } from '../../../../data/types';
 import { getDetailedRecommendation } from '../../../../data/recommendations/detailed-engine';
 import { getGuideNarrative } from '@/lib/guide-api';
+import { trackGuideUse } from '@/lib/review-prompt';
 
 type Step = 'species' | 'water' | 'loading';
 
@@ -164,14 +165,15 @@ export default function GuideScreen() {
       };
 
       const recommendation = getDetailedRecommendation(input);
-      const narrative = await getGuideNarrative(input, recommendation);
+      const result = await getGuideNarrative(input, recommendation);
 
       router.push({
         pathname: '/guide/results',
         params: {
-          data: JSON.stringify({ input, recommendation, narrative }),
+          data: JSON.stringify({ input, recommendation, narrative: result.narrative, isOffline: result.isOffline }),
         },
       });
+      trackGuideUse();
     } catch {
       setStep('water');
     } finally {
@@ -187,7 +189,7 @@ export default function GuideScreen() {
         </Text>
       )}
       <Text style={[styles.condBarItem, { color: theme.textSecondary }]}>
-        {skyEmoji(weather.sky)} {weather.tempF}\u00B0F
+        {skyEmoji(weather.sky)} {weather.tempF}°F
       </Text>
       <Text style={[styles.condBarItem, { color: theme.textSecondary }]}>
         {'\uD83D\uDCA8'} {weather.wind.speed}mph
@@ -215,7 +217,7 @@ export default function GuideScreen() {
     return (
       <SafeAreaView style={[styles.container, { backgroundColor: theme.background }]}>
         {conditionsBar}
-        <ScrollView contentContainerStyle={styles.scroll}>
+        <ScrollView style={{ flex: 1 }} contentContainerStyle={[styles.scroll, { paddingBottom: 100 }]}>
           <TouchableOpacity onPress={() => setStep('species')} style={styles.backRow}>
             <Ionicons name="arrow-back" size={20} color={Colors.copper[500]} />
             <Text style={[styles.backText, { color: Colors.copper[500] }]}>
@@ -234,23 +236,23 @@ export default function GuideScreen() {
           {/* Water Temp */}
           <Text style={[styles.fieldLabel, { color: theme.textMuted }]}>
             WATER TEMPERATURE
-            {autoWaterTemp ? ` (auto: ${autoWaterTemp}\u00B0F)` : ''}
+            {autoWaterTemp ? ` (auto: ${autoWaterTemp}°F)` : ''}
           </Text>
           <View style={styles.tempRow}>
             <TouchableOpacity
-              onPress={() => setWaterTemp((t) => Math.max(30, t - 5))}
+              onPress={() => setWaterTemp((t) => Math.max(30, t - 1))}
               style={[styles.tempBtn, { backgroundColor: theme.surface }]}
             >
-              <Text style={[styles.tempBtnText, { color: theme.text }]}>-5</Text>
+              <Text style={[styles.tempBtnText, { color: theme.text }]}>-1</Text>
             </TouchableOpacity>
             <Text style={[styles.tempValue, { color: theme.text }]}>
-              {waterTemp}\u00B0F
+              {waterTemp}°F
             </Text>
             <TouchableOpacity
-              onPress={() => setWaterTemp((t) => Math.min(95, t + 5))}
+              onPress={() => setWaterTemp((t) => Math.min(95, t + 1))}
               style={[styles.tempBtn, { backgroundColor: theme.surface }]}
             >
-              <Text style={[styles.tempBtnText, { color: theme.text }]}>+5</Text>
+              <Text style={[styles.tempBtnText, { color: theme.text }]}>+1</Text>
             </TouchableOpacity>
           </View>
 
@@ -353,17 +355,16 @@ export default function GuideScreen() {
               </TouchableOpacity>
             ))}
           </View>
-
-          {/* Ask Button */}
+        </ScrollView>
+        {/* Sticky bottom button */}
+        <View style={{ padding: 16, backgroundColor: theme.background, borderTopWidth: 1, borderTopColor: theme.border }}>
           <TouchableOpacity
             style={[styles.askButton, { backgroundColor: Colors.copper[500] }]}
             onPress={handleAskGuide}
           >
             <Text style={styles.askButtonText}>Ask the Guide</Text>
           </TouchableOpacity>
-
-          <View style={{ height: 40 }} />
-        </ScrollView>
+        </View>
       </SafeAreaView>
     );
   }
@@ -398,7 +399,7 @@ export default function GuideScreen() {
                   {species.name}
                 </Text>
                 <Text style={[styles.speciesRowType, { color: theme.textSecondary }]}>
-                  {species.type} \u00B7 Difficulty {species.difficultyRating}/5
+                  {species.type} · Difficulty {species.difficultyRating}/5
                 </Text>
               </View>
               <Ionicons name="chevron-forward" size={18} color={theme.textMuted} />

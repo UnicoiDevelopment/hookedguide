@@ -1,0 +1,33 @@
+HOOKED — Fish Smarter.
+
+Get personalized fishing recommendations based on real-time weather, water conditions, moon phase, and barometric pressure. HOOKED tells you exactly what to throw, how to rig it, and where to focus — right now, for your species, at your location.
+
+FEATURES:
+
+THE GUIDE — AI-Powered Fishing Intelligence
+Select your target species and water conditions. The Guide analyzes real-time weather, water temperature, barometric pressure, wind, and moon phase to recommend the exact technique, lure, color, line, and presentation. Includes detailed rigging instructions and retrieve patterns.
+
+RIG BUILDER
+Build complete fishing rigs for 8+ species. See every component — rod, reel, line, hook, weight, and lure — with specific product recommendations and pricing.
+
+FISH HEAT MAP
+See where fish are most likely active around your location based on current conditions. Color-coded zones show the hottest areas to focus your efforts.
+
+SPECIES DATABASE
+Detailed profiles for 30+ freshwater and saltwater species with identification, habitat, seasonal patterns, and state-by-state regulations.
+
+FISHING LOG
+Track your catches with photos, conditions, and notes. Build a personal database of what works.
+
+KNOT GUIDE
+Step-by-step instructions for 15+ essential fishing knots with difficulty ratings and best-use recommendations.
+
+STATE REGULATIONS
+Up-to-date bag limits, size limits, and season information for all 50 states.
+
+HOOKED PRO SUBSCRIPTION:
+- Unlimited AI Guide recommendations
+- Advanced weather trend analysis
+- Premium features and priority updates
+
+Free users get 3 Guide recommendations per month plus full access to the species database, rig builder, knot guide, and regulations.

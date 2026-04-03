@@ -1,16 +1,20 @@
-import { View, Text, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, StyleSheet, Linking } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '@/lib/theme-context';
 import { Colors } from '@/constants/colors';
 import { allReviews } from '../../../../data/gear/reviews';
+import { affiliateProducts } from '../../../../data/affiliate-products';
 
 export default function GearDetail() {
   const { theme } = useTheme();
   const router = useRouter();
   const { slug } = useLocalSearchParams<{ slug: string }>();
   const review = allReviews.find((r) => r.slug === slug);
+  const affiliateProduct = review
+    ? affiliateProducts.find((p) => p.id === review.affiliateProductId)
+    : undefined;
 
   if (!review) {
     return (
@@ -31,8 +35,20 @@ export default function GearDetail() {
         <Text style={[styles.brand, { color: theme.textSecondary }]}>{review.brand}</Text>
         <Text style={[styles.title, { color: theme.text }]}>{review.productName}</Text>
         <Text style={[styles.rating, { color: Colors.copper[500] }]}>
-          {'\u2605'.repeat(Math.round(review.rating))} {review.rating}/5
+          {'★'.repeat(Math.round(review.rating))} {review.rating}/5
         </Text>
+
+        {affiliateProduct?.affiliateUrl && (
+          <TouchableOpacity
+            style={styles.checkPriceBtn}
+            onPress={() => Linking.openURL(affiliateProduct.affiliateUrl)}
+          >
+            <Ionicons name="cart-outline" size={20} color="#fff" style={{ marginRight: 8 }} />
+            <Text style={styles.checkPriceText}>
+              Check Price {affiliateProduct.price ? `- ${affiliateProduct.price}` : ''}
+            </Text>
+          </TouchableOpacity>
+        )}
 
         <Text style={[styles.desc, { color: theme.text }]}>{review.description}</Text>
 
@@ -56,7 +72,7 @@ export default function GearDetail() {
         <View style={[styles.card, { backgroundColor: theme.card }]}>
           <Text style={[styles.cardTitle, { color: theme.textMuted }]}>CONS</Text>
           {review.cons.map((c, i) => (
-            <Text key={i} style={[styles.procon, { color: theme.text }]}>{'\u274C'} {c}</Text>
+            <Text key={i} style={[styles.procon, { color: theme.text }]}>{'❌'} {c}</Text>
           ))}
         </View>
 
@@ -81,4 +97,15 @@ const styles = StyleSheet.create({
   specKey: { fontFamily: 'BarlowCondensed_500Medium', fontSize: 14 },
   specVal: { fontFamily: 'BarlowCondensed_600SemiBold', fontSize: 14 },
   procon: { fontFamily: 'BarlowCondensed_400Regular', fontSize: 14, lineHeight: 22, marginBottom: 4 },
+  checkPriceBtn: {
+    backgroundColor: Colors.copper[500],
+    paddingVertical: 14,
+    paddingHorizontal: 24,
+    borderRadius: 12,
+    marginBottom: 16,
+    alignItems: 'center',
+    flexDirection: 'row' as const,
+    justifyContent: 'center',
+  },
+  checkPriceText: { color: '#fff', fontSize: 16, fontFamily: 'BarlowCondensed_700Bold' },
 });

@@ -1,0 +1,24 @@
+App Store Screenshot Guide
+==========================
+
+Required device sizes:
+- 6.7" iPhone (iPhone 15 Pro Max): 1290 x 2796
+- 6.5" iPhone (iPhone 14 Plus): 1284 x 2778
+- iPad Pro 12.9" (6th gen): 2048 x 2732
+
+Screenshots to capture (in order):
+1. Home screen with weather conditions and fishing rating stars
+2. The Guide — species selection grid
+3. The Guide — water details form (showing temp, water type, clarity)
+4. Guide results with full AI recommendation narrative
+5. Rig Builder with complete rig (sweet spot tier)
+6. Fish Heat Map with colored zone overlays on MapView
+7. Species detail page (e.g., Largemouth Bass)
+8. Gear review with "Check Price" affiliate button
+
+Steps:
+1. Build to TestFlight: eas build --platform ios --profile production
+2. Install on device from TestFlight
+3. Take screenshots on each required device size
+4. Optionally frame with device bezels using Fastlane Frameit or screenshots.pro
+5. Upload to App Store Connect under each device size tab

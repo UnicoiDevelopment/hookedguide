@@ -35,7 +35,7 @@ export default function StateRegulations() {
           style={[styles.licenseBtn, { backgroundColor: Colors.copper[500] }]}
           onPress={() => Linking.openURL(state.licenseUrl)}
         >
-          <Text style={styles.licenseBtnText}>Get Fishing License \u2192</Text>
+          <Text style={styles.licenseBtnText}>Get Fishing License →</Text>
         </TouchableOpacity>
 
         <Text style={[styles.licenseInfo, { color: theme.textSecondary }]}>{state.licenseInfo}</Text>
@@ -49,7 +49,7 @@ export default function StateRegulations() {
                 {reg.species.replace(/-/g, ' ')}
               </Text>
               <Text style={[styles.regDetail, { color: theme.textSecondary }]}>
-                Bag: {reg.bagLimit} \u00B7 Size: {reg.sizeLimit} \u00B7 Season: {reg.season}
+                Bag: {reg.bagLimit} · Size: {reg.sizeLimit} · Season: {reg.season}
               </Text>
               {reg.notes && (
                 <Text style={[styles.regNotes, { color: theme.textMuted }]}>{reg.notes}</Text>

@@ -18,6 +18,7 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.hookedguide.app",
       "buildNumber": "2",
+      "associatedDomains": ["applinks:hookedguide.com"],
       "config": {
         "usesNonExemptEncryption": false
       },

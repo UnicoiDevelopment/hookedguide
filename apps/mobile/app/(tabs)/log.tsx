@@ -98,7 +98,7 @@ export default function LogScreen() {
                   {entry.species.replace(/-/g, ' ')}
                 </Text>
                 <Text style={[styles.entryMeta, { color: theme.textSecondary }]}>
-                  {new Date(entry.timestamp).toLocaleDateString()} \u00B7{' '}
+                  {new Date(entry.timestamp).toLocaleDateString()} ·{' '}
                   {entry.location.name || entry.location.state}
                 </Text>
                 {entry.notes && (

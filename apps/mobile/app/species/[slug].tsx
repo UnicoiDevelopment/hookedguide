@@ -36,7 +36,7 @@ export default function SpeciesDetail() {
           <Stat label="Difficulty" value={`${species.difficultyRating}/5`} theme={theme} />
           <Stat label="Fight" value={`${species.fightRating}/5`} theme={theme} />
           <Stat label="Taste" value={`${species.tasteRating}/5`} theme={theme} />
-          <Stat label="Temp" value={`${species.preferredTemp.min}-${species.preferredTemp.max}\u00B0F`} theme={theme} />
+          <Stat label="Temp" value={`${species.preferredTemp.min}-${species.preferredTemp.max}°F`} theme={theme} />
         </View>
 
         <Section title="DESCRIPTION" content={species.description} theme={theme} />
@@ -70,7 +70,7 @@ export default function SpeciesDetail() {
           style={[styles.cta, { backgroundColor: Colors.copper[500] }]}
           onPress={() => router.push({ pathname: '/(tabs)/guide', params: { species: species.slug } })}
         >
-          <Text style={styles.ctaText}>Ask the Guide for {species.name} \u2192</Text>
+          <Text style={styles.ctaText}>Ask the Guide for {species.name} →</Text>
         </TouchableOpacity>
 
         <View style={{ height: 40 }} />

@@ -45,6 +45,10 @@ function RootNav() {
           name="paywall"
           options={{ headerShown: false, presentation: 'modal' }}
         />
+        <Stack.Screen
+          name="promo"
+          options={{ headerShown: false, presentation: 'modal' }}
+        />
         <Stack.Screen name="species/[slug]" options={{ headerShown: false }} />
         <Stack.Screen name="techniques/[slug]" options={{ headerShown: false }} />
         <Stack.Screen name="knots/[slug]" options={{ headerShown: false }} />

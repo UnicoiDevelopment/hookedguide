@@ -9,10 +9,15 @@ import type {
 
 const API_BASE_URL = process.env.EXPO_PUBLIC_API_BASE_URL || 'https://hookedguide.com';
 
+export interface GuideNarrativeResult {
+  narrative: string;
+  isOffline: boolean;
+}
+
 export async function getGuideNarrative(
   input: DetailedRecommendationInput,
   recommendation: DetailedRecommendationOutput
-): Promise<string> {
+): Promise<GuideNarrativeResult> {
   try {
     const response = await fetch(`${API_BASE_URL}/api/guide`, {
       method: 'POST',
@@ -23,9 +28,15 @@ export async function getGuideNarrative(
     if (!response.ok) throw new Error('API error');
 
     const data = await response.json();
-    return data.narrative || data.message || buildFallbackNarrative(input, recommendation);
+    return {
+      narrative: data.narrative || data.message || buildFallbackNarrative(input, recommendation),
+      isOffline: false,
+    };
   } catch {
-    return buildFallbackNarrative(input, recommendation);
+    return {
+      narrative: buildFallbackNarrative(input, recommendation),
+      isOffline: true,
+    };
   }
 }
 
@@ -60,7 +71,7 @@ function buildFallbackNarrative(
         : 'steady pressure';
 
   return (
-    `With ${input.waterTemp}\u00B0F water that's ${tempDesc} and ${skyDesc}, ` +
+    `With ${input.waterTemp}°F water that's ${tempDesc} and ${skyDesc}, ` +
     `a ${primary.technique.name} is your best play right now. ` +
     `Rig up a ${primary.lure.specificLure} in ${primary.lure.color} ` +
     `on ${primary.line.weight} ${primary.line.type}. ` +

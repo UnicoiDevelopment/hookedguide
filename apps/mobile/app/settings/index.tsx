@@ -69,7 +69,7 @@ export default function SettingsScreen() {
                     {user.email || 'Apple ID User'}
                   </Text>
                   <Text style={[styles.accountMeta, { color: theme.textSecondary }]}>
-                    {isPro ? 'HOOKED Pro' : 'Free Plan'} \u00B7{' '}
+                    {isPro ? 'HOOKED Pro' : 'Free Plan'} ·{' '}
                     {isPro ? 'Unlimited Guide' : `${guideUsesRemaining} Guide uses left this month`}
                   </Text>
                 </View>
@@ -79,7 +79,7 @@ export default function SettingsScreen() {
                   style={[styles.upgradeBtn, { backgroundColor: Colors.copper[500] }]}
                   onPress={() => router.push('/paywall')}
                 >
-                  <Text style={styles.upgradeBtnText}>Upgrade to Pro \u2192</Text>
+                  <Text style={styles.upgradeBtnText}>Upgrade to Pro →</Text>
                 </TouchableOpacity>
               )}
             </>
@@ -147,6 +147,20 @@ export default function SettingsScreen() {
             </View>
           </>
         )}
+
+        {/* Promo */}
+        <View style={[styles.group, { backgroundColor: theme.card, marginTop: 16 }]}>
+          <TouchableOpacity
+            style={styles.row}
+            onPress={() => router.push('/promo')}
+          >
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+              <Ionicons name="gift-outline" size={20} color={Colors.copper[500]} />
+              <Text style={[styles.rowLabel, { color: theme.text }]}>Redeem Promo Code</Text>
+            </View>
+            <Ionicons name="chevron-forward" size={16} color={theme.textMuted} />
+          </TouchableOpacity>
+        </View>
 
         {/* Support */}
         <Text style={[styles.sectionLabel, { color: theme.textMuted }]}>SUPPORT</Text>

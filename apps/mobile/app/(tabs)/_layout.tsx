@@ -3,11 +3,14 @@ import { Ionicons } from '@expo/vector-icons';
 import { View, Platform } from 'react-native';
 import { useTheme } from '@/lib/theme-context';
 import { Colors } from '@/constants/colors';
+import { OfflineBanner } from '@/components/OfflineBanner';
 
 export default function TabLayout() {
   const { theme, isDark } = useTheme();
 
   return (
+    <>
+    <OfflineBanner />
     <Tabs
       screenOptions={{
         headerShown: false,
@@ -43,13 +46,13 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => (
             <View
               style={{
-                width: 44,
-                height: 44,
-                borderRadius: 22,
+                width: 36,
+                height: 36,
+                borderRadius: 18,
                 backgroundColor: focused ? Colors.copper[600] : Colors.copper[500],
                 alignItems: 'center',
                 justifyContent: 'center',
-                marginBottom: 4,
+                marginBottom: 0,
                 shadowColor: '#000',
                 shadowOffset: { width: 0, height: 2 },
                 shadowOpacity: 0.25,
@@ -57,7 +60,7 @@ export default function TabLayout() {
                 elevation: 4,
               }}
             >
-              <Ionicons name="compass-outline" size={24} color="#fff" />
+              <Ionicons name="compass-outline" size={18} color="#fff" />
             </View>
           ),
           tabBarLabel: 'The Guide',
@@ -102,5 +105,6 @@ export default function TabLayout() {
         }}
       />
     </Tabs>
+    </>
   );
 }

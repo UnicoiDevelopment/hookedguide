@@ -30,7 +30,7 @@ export default function KnotsIndex() {
             <View style={{ flex: 1 }}>
               <Text style={[styles.name, { color: theme.text }]}>{k.name}</Text>
               <Text style={[styles.meta, { color: theme.textSecondary }]}>
-                Strength: {k.strengthRating}% \u00B7 Difficulty: {k.difficulty}/5
+                Strength: {k.strengthRating}% · Difficulty: {k.difficulty}/5
               </Text>
             </View>
             <Ionicons name="chevron-forward" size={16} color={theme.textMuted} />

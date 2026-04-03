@@ -101,11 +101,11 @@ export default function LogDetail() {
         <View style={[styles.card, { backgroundColor: theme.card }]}>
           <Text style={[styles.cardTitle, { color: theme.textMuted }]}>CONDITIONS</Text>
           <Text style={[styles.text, { color: theme.text }]}>
-            {entry.conditions.airTemp}\u00B0F \u00B7 {entry.conditions.sky} \u00B7{' '}
+            {entry.conditions.airTemp}°F · {entry.conditions.sky} ·{' '}
             {entry.conditions.wind} wind {entry.conditions.windDirection}
           </Text>
           <Text style={[styles.text, { color: theme.text }]}>
-            Pressure: {entry.conditions.pressure}&quot; {entry.conditions.pressureTrend} \u00B7{' '}
+            Pressure: {entry.conditions.pressure}&quot; {entry.conditions.pressureTrend} ·{' '}
             Moon: {entry.conditions.moonPhase}
           </Text>
         </View>

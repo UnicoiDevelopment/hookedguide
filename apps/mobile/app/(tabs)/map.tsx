@@ -2,7 +2,6 @@ import { useState, useEffect, useCallback } from 'react';
 import {
   View,
   Text,
-  ScrollView,
   TouchableOpacity,
   StyleSheet,
   ActivityIndicator,
@@ -11,6 +10,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
+import MapView, { Circle, Marker } from 'react-native-maps';
 import { useTheme } from '@/lib/theme-context';
 import { Colors } from '@/constants/colors';
 import { getCurrentLocation, type LocationData } from '@/lib/location';
@@ -28,6 +28,43 @@ import {
   type HeatMapInput,
 } from '@/lib/heat-map-engine';
 import { getWeatherTrends, type WeatherTrend } from '@/lib/weather-trends';
+
+function generateZoneCoordinates(centerLat: number, centerLng: number) {
+  const directions = [
+    { name: 'N', bearing: 0 },
+    { name: 'NE', bearing: 45 },
+    { name: 'E', bearing: 90 },
+    { name: 'SE', bearing: 135 },
+    { name: 'S', bearing: 180 },
+    { name: 'SW', bearing: 225 },
+    { name: 'W', bearing: 270 },
+    { name: 'NW', bearing: 315 },
+  ];
+  const distances = [0.005, 0.012, 0.02];
+
+  return directions.flatMap((dir, _i) =>
+    distances.map((_dist, j) => ({
+      id: `${dir.name}-${j}`,
+      lat: centerLat + distances[j] * Math.cos((dir.bearing * Math.PI) / 180),
+      lng: centerLng + distances[j] * Math.sin((dir.bearing * Math.PI) / 180),
+      radius: 150 + j * 100,
+    }))
+  );
+}
+
+function getHeatFill(score: number): string {
+  if (score >= 80) return 'rgba(255, 0, 0, 0.35)';
+  if (score >= 60) return 'rgba(255, 140, 0, 0.30)';
+  if (score >= 40) return 'rgba(255, 255, 0, 0.25)';
+  return 'rgba(0, 100, 255, 0.15)';
+}
+
+function getHeatStroke(score: number): string {
+  if (score >= 80) return 'rgba(255, 0, 0, 0.6)';
+  if (score >= 60) return 'rgba(255, 140, 0, 0.5)';
+  if (score >= 40) return 'rgba(255, 255, 0, 0.4)';
+  return 'rgba(0, 100, 255, 0.3)';
+}
 
 export default function MapScreen() {
   const { theme } = useTheme();
@@ -133,138 +170,125 @@ export default function MapScreen() {
     );
   }
 
+  // Generate map overlay zones by combining heat map scores with coordinates
+  const heatZones = location
+    ? generateZoneCoordinates(location.latitude, location.longitude).map((coord, i) => {
+        const zone = zones[i % zones.length];
+        return {
+          ...coord,
+          score: zone?.score ?? 30,
+          label: zone ? getHeatMapLabel(zone.score) : 'Low',
+          reasons: zone?.reasons ?? [],
+        };
+      })
+    : [];
+
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: theme.background }]}>
-      <ScrollView contentContainerStyle={styles.scroll}>
-        <Text style={[styles.title, { color: theme.text }]}>Where Should I Fish?</Text>
+      {/* Conditions bar at top */}
+      {weather && (
+        <View style={[styles.condBar, { backgroundColor: theme.surface }]}>
+          <Text style={[styles.condText, { color: theme.textSecondary }]}>
+            {skyEmoji(weather.sky)} {weather.tempF}°F ·
+            {' '}{'\uD83D\uDCA8'} {weather.wind.speed}mph {weather.wind.direction} ·
+            {' '}{'\uD83D\uDCCA'} {weather.pressure.value}"
+            {weather.pressure.trend === 'falling' ? '↓' : weather.pressure.trend === 'rising' ? '↑' : ''}
+          </Text>
+        </View>
+      )}
 
-        {/* Water body detection */}
-        {waterBody ? (
-          <View style={[styles.waterCard, { backgroundColor: theme.card }]}>
-            <Ionicons name="water" size={20} color={Colors.copper[500]} />
-            <View style={{ flex: 1 }}>
-              <Text style={[styles.waterName, { color: theme.text }]}>{waterBody.name}</Text>
-              <Text style={[styles.waterType, { color: theme.textSecondary }]}>
-                {waterBody.type} \u00B7 {Math.round(waterBody.distanceFromUser)}m away
-              </Text>
-            </View>
-          </View>
-        ) : (
-          <View style={[styles.waterCard, { backgroundColor: theme.card }]}>
-            <Ionicons name="help-circle-outline" size={20} color={theme.textMuted} />
+      {/* Water body info */}
+      {waterBody && (
+        <View style={[styles.waterCard, { backgroundColor: theme.card }]}>
+          <Ionicons name="water" size={20} color={Colors.copper[500]} />
+          <View style={{ flex: 1 }}>
+            <Text style={[styles.waterName, { color: theme.text }]}>{waterBody.name}</Text>
             <Text style={[styles.waterType, { color: theme.textSecondary }]}>
-              No water body detected nearby. Move closer to a lake or river.
+              {waterBody.type} · {Math.round(waterBody.distanceFromUser)}m away
             </Text>
           </View>
-        )}
+        </View>
+      )}
 
-        {/* Current conditions bar */}
-        {weather && (
-          <View style={[styles.condBar, { backgroundColor: theme.surface }]}>
-            <Text style={[styles.condText, { color: theme.textSecondary }]}>
-              {skyEmoji(weather.sky)} {weather.tempF}\u00B0F \u00B7
-              {' '}{'\uD83D\uDCA8'} {weather.wind.speed}mph {weather.wind.direction} \u00B7
-              {' '}{'\uD83D\uDCCA'} {weather.pressure.value}"
-              {weather.pressure.trend === 'falling' ? '\u2193' : weather.pressure.trend === 'rising' ? '\u2191' : ''}
-            </Text>
-          </View>
-        )}
-
-        {/* Weather trend insights */}
-        {weatherTrend && (
-          <View style={[styles.trendCard, { backgroundColor: theme.card }]}>
-            <Text style={[styles.sectionLabel, { color: theme.textMuted }]}>CONDITIONS ANALYSIS</Text>
-            <Text style={[styles.trendScore, { color: Colors.copper[500] }]}>
-              {'\u2B50'.repeat(weatherTrend.overallScore.rating)} {weatherTrend.overallScore.label}
-            </Text>
-            <Text style={[styles.trendSummary, { color: theme.text }]}>
-              {weatherTrend.overallScore.summary}
-            </Text>
-
-            {weatherTrend.rain.pattern !== 'normal' && (
-              <View style={styles.trendRow}>
-                <Text style={[styles.trendIcon]}>{'\uD83C\uDF27\uFE0F'}</Text>
-                <Text style={[styles.trendDetail, { color: theme.textSecondary }]}>
-                  {weatherTrend.rain.fishingImpact}
-                </Text>
-              </View>
-            )}
-            {weatherTrend.frontalAnalysis.status !== 'stable' && (
-              <View style={styles.trendRow}>
-                <Text style={[styles.trendIcon]}>{'\uD83C\uDF2A\uFE0F'}</Text>
-                <Text style={[styles.trendDetail, { color: theme.textSecondary }]}>
-                  {weatherTrend.frontalAnalysis.fishingImpact}
-                </Text>
-              </View>
-            )}
-
-            {weatherTrend.bestFishingWindows.today.length > 0 && (
-              <View style={[styles.windowCard, { backgroundColor: theme.surfaceAlt }]}>
-                <Text style={[styles.windowLabel, { color: theme.textMuted }]}>BEST WINDOW TODAY</Text>
-                <Text style={[styles.windowTime, { color: Colors.copper[500] }]}>
-                  {weatherTrend.bestFishingWindows.today[0].start} \u2014 {weatherTrend.bestFishingWindows.today[0].end}
-                </Text>
-                <Text style={[styles.windowReason, { color: theme.textSecondary }]}>
-                  {weatherTrend.bestFishingWindows.today[0].reason}
-                </Text>
-              </View>
-            )}
-          </View>
-        )}
-
-        {/* Heat Map Zones */}
-        {zones.length > 0 && (
-          <>
-            <Text style={[styles.sectionLabel, { color: theme.textMuted, marginTop: 16, marginBottom: 8 }]}>
-              FISH HEAT MAP
-            </Text>
-            <Text style={[styles.heatNote, { color: theme.textSecondary }]}>
-              Based on wind, depth, season, weather trends, and structure
-            </Text>
-
-            {zones.filter(z => z.score >= 40).map((zone, i) => (
-              <TouchableOpacity
-                key={i}
-                style={[styles.zoneCard, { backgroundColor: theme.card }]}
+      {/* Map with heat zones */}
+      {location && (
+        <MapView
+          style={{ flex: 1 }}
+          initialRegion={{
+            latitude: location.latitude,
+            longitude: location.longitude,
+            latitudeDelta: 0.05,
+            longitudeDelta: 0.05,
+          }}
+          showsUserLocation
+          showsMyLocationButton
+        >
+          {heatZones.map((zone) => (
+            <Circle
+              key={zone.id}
+              center={{ latitude: zone.lat, longitude: zone.lng }}
+              radius={zone.radius}
+              fillColor={getHeatFill(zone.score)}
+              strokeColor={getHeatStroke(zone.score)}
+              strokeWidth={1}
+            />
+          ))}
+          {heatZones
+            .filter((z) => z.score >= 60)
+            .map((zone) => (
+              <Marker
+                key={`marker-${zone.id}`}
+                coordinate={{ latitude: zone.lat, longitude: zone.lng }}
+                title={zone.label}
+                description={`Score: ${zone.score}/100`}
                 onPress={() => {
                   Haptics.selectionAsync();
-                  setSelectedZone(selectedZone === zone ? null : zone);
+                  const matched = zones.find((z) => z.score === zone.score) ?? null;
+                  setSelectedZone(selectedZone === matched ? null : matched);
                 }}
-              >
-                <View style={styles.zoneHeader}>
-                  <View
-                    style={[styles.zoneDot, { backgroundColor: getHeatMapColor(zone.score) }]}
-                  />
-                  <View style={{ flex: 1 }}>
-                    <Text style={[styles.zoneLabel, { color: theme.text }]}>
-                      Zone {i + 1} \u2014 {getHeatMapLabel(zone.score)}
-                    </Text>
-                    <Text style={[styles.zoneScore, { color: theme.textSecondary }]}>
-                      Score: {zone.score}/100
-                    </Text>
-                  </View>
-                  <Ionicons
-                    name={selectedZone === zone ? 'chevron-up' : 'chevron-down'}
-                    size={16}
-                    color={theme.textMuted}
-                  />
-                </View>
-
-                {selectedZone === zone && (
-                  <View style={styles.zoneDetails}>
-                    {zone.reasons.map((reason, j) => (
-                      <Text key={j} style={[styles.zoneReason, { color: theme.text }]}>
-                        {'\u2705'} {reason}
-                      </Text>
-                    ))}
-                  </View>
-                )}
-              </TouchableOpacity>
+              />
             ))}
-          </>
-        )}
+        </MapView>
+      )}
 
-        {/* CTA to The Guide */}
+      {!location && !waterBody && (
+        <View style={[styles.waterCard, { backgroundColor: theme.card, margin: 16 }]}>
+          <Ionicons name="help-circle-outline" size={20} color={theme.textMuted} />
+          <Text style={[styles.waterType, { color: theme.textSecondary }]}>
+            No water body detected nearby. Move closer to a lake or river.
+          </Text>
+        </View>
+      )}
+
+      {/* Selected zone detail modal */}
+      {selectedZone && (
+        <View style={[styles.zoneDetailOverlay, { backgroundColor: theme.card }]}>
+          <View style={styles.zoneHeader}>
+            <View style={[styles.zoneDot, { backgroundColor: getHeatMapColor(selectedZone.score) }]} />
+            <View style={{ flex: 1 }}>
+              <Text style={[styles.zoneLabel, { color: theme.text }]}>
+                {getHeatMapLabel(selectedZone.score)}
+              </Text>
+              <Text style={[styles.zoneScore, { color: theme.textSecondary }]}>
+                Score: {selectedZone.score}/100
+              </Text>
+            </View>
+            <TouchableOpacity onPress={() => setSelectedZone(null)}>
+              <Ionicons name="close" size={20} color={theme.textMuted} />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.zoneDetails}>
+            {selectedZone.reasons.map((reason, j) => (
+              <Text key={j} style={[styles.zoneReason, { color: theme.text }]}>
+                {'\u2705'} {reason}
+              </Text>
+            ))}
+          </View>
+        </View>
+      )}
+
+      {/* CTA to The Guide */}
+      <View style={{ padding: 16, backgroundColor: theme.background }}>
         <TouchableOpacity
           style={[styles.guideCta, { backgroundColor: Colors.copper[500] }]}
           onPress={() => {
@@ -272,11 +296,9 @@ export default function MapScreen() {
             router.push('/(tabs)/guide');
           }}
         >
-          <Text style={styles.guideCtaText}>Get Full Setup from The Guide \u2192</Text>
+          <Text style={styles.guideCtaText}>Get Full Setup from The Guide →</Text>
         </TouchableOpacity>
-
-        <View style={{ height: 40 }} />
-      </ScrollView>
+      </View>
     </SafeAreaView>
   );
 }
@@ -321,7 +343,19 @@ const styles = StyleSheet.create({
   windowTime: { fontFamily: 'BarlowCondensed_700Bold', fontSize: 18 },
   windowReason: { fontFamily: 'BarlowCondensed_400Regular', fontSize: 13, marginTop: 2 },
   heatNote: { fontFamily: 'BarlowCondensed_400Regular', fontSize: 13, marginBottom: 8 },
-  zoneCard: { borderRadius: 12, padding: 14, marginBottom: 6 },
+  zoneDetailOverlay: {
+    position: 'absolute',
+    bottom: 80,
+    left: 16,
+    right: 16,
+    borderRadius: 12,
+    padding: 14,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+    elevation: 6,
+  },
   zoneHeader: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   zoneDot: { width: 14, height: 14, borderRadius: 7 },
   zoneLabel: { fontFamily: 'BarlowCondensed_600SemiBold', fontSize: 16 },

@@ -23,12 +23,13 @@ export default function GuideResults() {
   const [showAlternate, setShowAlternate] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  let input: any, recommendation: any, narrative: string;
+  let input: any, recommendation: any, narrative: string, isOffline: boolean;
   try {
     const parsed = JSON.parse(params.data || '{}');
     input = parsed.input;
     recommendation = parsed.recommendation;
     narrative = parsed.narrative || '';
+    isOffline = parsed.isOffline || false;
   } catch {
     return (
       <SafeAreaView style={[styles.container, { backgroundColor: theme.background }]}>
@@ -76,6 +77,15 @@ export default function GuideResults() {
           <Text style={[styles.backText, { color: Colors.copper[500] }]}>Back</Text>
         </TouchableOpacity>
 
+        {/* Offline indicator */}
+        {isOffline && (
+          <View style={[styles.badge, { backgroundColor: '#FEF3C7', marginBottom: 8 }]}>
+            <Text style={{ color: '#92400E', fontFamily: 'BarlowCondensed_500Medium', fontSize: 13 }}>
+              {'\u26A0\uFE0F'} Offline recommendation — connect for AI-powered analysis
+            </Text>
+          </View>
+        )}
+
         {/* Confidence badge */}
         <View style={[styles.badge, { backgroundColor: theme.surface }]}>
           <Text style={[styles.badgeText, { color: Colors.copper[500] }]}>
@@ -107,7 +117,7 @@ export default function GuideResults() {
           <SetupRow label="Technique" value={primary.technique.name} theme={theme} />
           <SetupRow
             label="Lure"
-            value={`${primary.lure.specificLure} \u2014 ${primary.lure.color}`}
+            value={`${primary.lure.specificLure} — ${primary.lure.color}`}
             theme={theme}
           />
           <SetupRow
@@ -159,7 +169,7 @@ export default function GuideResults() {
             <SetupRow label="Technique" value={alternate.technique.name} theme={theme} />
             <SetupRow
               label="Lure"
-              value={`${alternate.lure.specificLure} \u2014 ${alternate.lure.color}`}
+              value={`${alternate.lure.specificLure} — ${alternate.lure.color}`}
               theme={theme}
             />
             {alternate.technique.why && (

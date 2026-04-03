@@ -8,7 +8,7 @@ import { allReviews } from '../../../../data/gear/reviews';
 
 function renderStars(rating: number): string {
   const full = Math.round(rating);
-  return '\u2605'.repeat(full) + '\u2606'.repeat(5 - full);
+  return '★'.repeat(full) + '☆'.repeat(5 - full);
 }
 
 export default function GearIndex() {
