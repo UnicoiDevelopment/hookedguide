@@ -2,7 +2,7 @@ import type { GearReview } from '../../types';
 
 export const garminStriker4: GearReview = {
   slug: 'garmin-striker-4',
-  productName: 'Garmin Striker 4 Fish Finder',
+  productName: 'Garmin Striker Vivid 4cv Fish Finder',
   brand: 'Garmin',
   category: 'best-fish-finders-2026',
   rating: 4.0,
@@ -27,7 +27,7 @@ export const garminStriker4: GearReview = {
     { key: 'Max Depth', value: '1,600 ft freshwater' },
     { key: 'Power', value: '200W RMS' },
   ],
-  affiliateProductId: 'garmin-striker-4',
+  affiliateProductId: 'garmin-striker-vivid-4cv',
   faq: [
     { question: 'Can the Striker 4 show individual fish?', answer: 'Yes. CHIRP sonar clearly shows fish arches, and you can turn on Fish Symbols mode for easier interpretation. Individual fish down to panfish size are visible in shallow water.' },
     { question: 'What transducer comes with the Striker 4?', answer: 'It includes a dual-beam transducer with transom and trolling motor mount hardware. It works well for boats and kayaks.' },

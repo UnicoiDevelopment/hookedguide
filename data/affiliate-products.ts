@@ -213,14 +213,14 @@ export const affiliateProducts: AffiliateProduct[] = [
     price: '$129.99'
   },
   {
-    id: 'penn-battle-iii',
-    name: 'Penn Battle III Spinning Reel — 3000',
-    description: 'Rugged saltwater spinning reel with full metal body and HT-100 carbon fiber drag. Built for the salt.',
+    id: 'penn-battle-iv',
+    name: 'Penn Battle IV Spinning Reel — 3000',
+    description: 'Full metal body with Hydro Armor sealing system, CNC gearing, and HT-100 carbon fiber drag. Built for harsh saltwater conditions.',
     brand: 'Penn',
     program: 'pure-fishing',
     commission: 10,
-    affiliateUrl: 'https://www.basspro.com/p/penn-battle-iii-spinning-reel',
-    imageAlt: 'Penn Battle III Spinning Reel 3000',
+    affiliateUrl: 'https://www.basspro.com/p/penn-battle-iv-spinning-reel',
+    imageAlt: 'Penn Battle IV Spinning Reel 3000',
     tags: ['reel', 'spinning', 'saltwater', 'surf-fishing', 'inshore', 'redfish'],
     priority: 10,
     price: '$89.99'
@@ -308,17 +308,17 @@ export const affiliateProducts: AffiliateProduct[] = [
 
   // Bass Pro / Cabela's Products (5% commission, priority: 5)
   {
-    id: 'garmin-striker-4',
-    name: 'Garmin Striker 4 Fish Finder',
-    description: 'Budget-friendly fish finder with CHIRP sonar and built-in GPS. Perfect for kayaks and small boats.',
+    id: 'garmin-striker-vivid-4cv',
+    name: 'Garmin Striker Vivid 4cv Fish Finder',
+    description: 'Budget-friendly fish finder with CHIRP traditional and ClearVu scanning sonar, built-in GPS, and Quickdraw Contours mapping. Perfect for kayaks and small boats.',
     brand: 'Garmin',
     program: 'bass-pro',
     commission: 5,
-    affiliateUrl: 'https://www.basspro.com/p/garmin-striker-4-sonar-fish-finder-and-gps-plotter',
-    imageAlt: 'Garmin Striker 4 Fish Finder',
+    affiliateUrl: 'https://www.basspro.com/p/garmin-striker-vivid-4cv-fish-finder',
+    imageAlt: 'Garmin Striker Vivid 4cv Fish Finder',
     tags: ['electronics', 'fish-finder', 'kayak', 'boat', 'budget', 'sonar'],
     priority: 5,
-    price: '$129.99'
+    price: '$149.99'
   },
   {
     id: 'garmin-echomap',
@@ -710,14 +710,14 @@ export const affiliateProducts: AffiliateProduct[] = [
     price: '$5.99'
   },
   {
-    id: 'penn-battle-iii-3000',
-    name: 'Penn Battle III Spinning Reel — 3000',
-    description: 'Full metal body spinning reel with HT-100 drag. Built for saltwater abuse.',
+    id: 'penn-battle-iv-3000',
+    name: 'Penn Battle IV Spinning Reel — 3000',
+    description: 'Full metal body with Hydro Armor sealing and CNC gearing. HT-100 carbon fiber drag handles serious saltwater abuse.',
     brand: 'Penn',
     program: 'pure-fishing',
     commission: 10,
-    affiliateUrl: 'https://www.basspro.com/p/penn-battle-iii-spinning-reel',
-    imageAlt: 'Penn Battle III Spinning Reel 3000',
+    affiliateUrl: 'https://www.basspro.com/p/penn-battle-iv-spinning-reel',
+    imageAlt: 'Penn Battle IV Spinning Reel 3000',
     tags: ['reel', 'spinning', 'saltwater', 'inshore'],
     priority: 10,
     price: '$89.99'
@@ -887,17 +887,17 @@ export const affiliateProducts: AffiliateProduct[] = [
 
   // --- Shimano ---
   {
-    id: 'shimano-curado-k',
-    name: 'Shimano Curado K Baitcasting Reel',
-    description: 'Micro Module Gear and SVS Infinity brake. One of the best all-around baitcasters made.',
+    id: 'shimano-curado-mgl-k',
+    name: 'Shimano Curado MGL K Baitcasting Reel',
+    description: 'Lightest Curado ever with MagnumLite spool for exceptional casting distance. HAGANE body, MicroModule gearing, and Cross Carbon drag.',
     brand: 'Shimano',
     program: 'shimano',
     commission: 4,
-    affiliateUrl: 'https://www.basspro.com/p/shimano-curado-k-baitcast-reel',
-    imageAlt: 'Shimano Curado K Baitcasting Reel',
+    affiliateUrl: 'https://www.basspro.com/p/shimano-curado-mgl-baitcast-reel-101026383',
+    imageAlt: 'Shimano Curado MGL K Baitcasting Reel',
     tags: ['reel', 'baitcasting', 'bass', 'versatile', 'premium'],
     priority: 4,
-    price: '$199.99'
+    price: '$229.99'
   },
   {
     id: 'shimano-expride',
@@ -914,8 +914,8 @@ export const affiliateProducts: AffiliateProduct[] = [
   },
   {
     id: 'shimano-metanium',
-    name: 'Shimano Metanium Baitcasting Reel',
-    description: 'Ultra-lightweight magnesium frame with Micro Module Gear II. Elite-level performance.',
+    name: 'Shimano Metanium MGL 150 Baitcasting Reel',
+    description: 'Ultra-lightweight magnesium frame with MGL spool, MicroModule Gear II, and FTB (Fall Through Braking). Elite tournament performance.',
     brand: 'Shimano',
     program: 'shimano',
     commission: 4,
@@ -939,22 +939,22 @@ export const affiliateProducts: AffiliateProduct[] = [
     price: '$199.99'
   },
   {
-    id: 'shimano-stradic-fl-3000',
-    name: 'Shimano Stradic FL Spinning Reel — 3000',
-    description: 'Hagane body with long stroke spool for exceptional casting. Premium spinning performance.',
+    id: 'shimano-stradic-fm-3000',
+    name: 'Shimano Stradic FM Spinning Reel — 3000',
+    description: 'HAGANE body with InfinityXross gear mesh, InfinityDrive, and Anti-Twist Fin. The most versatile performance spinning reel Shimano makes.',
     brand: 'Shimano',
     program: 'shimano',
     commission: 4,
-    affiliateUrl: 'https://www.basspro.com/p/shimano-stradic-fl-spinning-reel',
-    imageAlt: 'Shimano Stradic FL Spinning Reel 3000',
+    affiliateUrl: 'https://www.basspro.com/shop/en/shimano-stradic-fm-spinning-reel',
+    imageAlt: 'Shimano Stradic FM Spinning Reel 3000',
     tags: ['reel', 'spinning', 'bass', 'premium', 'versatile'],
     priority: 4,
     price: '$219.99'
   },
   {
-    id: 'shimano-vanford',
-    name: 'Shimano Vanford Spinning Reel — 2500',
-    description: 'Ultra-lightweight CI4+ body with Magnumlite Rotor. Incredibly smooth and responsive.',
+    id: 'shimano-vanford-a',
+    name: 'Shimano Vanford A Spinning Reel — 2500',
+    description: '2024 ICAST Best Freshwater Reel winner. Ultra-lightweight CI4+ body with InfinityXross and InfinityDrive. The gold standard for finesse spinning.',
     brand: 'Shimano',
     program: 'shimano',
     commission: 4,
@@ -1075,17 +1075,17 @@ export const affiliateProducts: AffiliateProduct[] = [
     price: '$89.99'
   },
   {
-    id: 'g-loomis-e6x',
-    name: 'G. Loomis E6X Bass Casting Rod',
-    description: 'Multi-taper design for versatile bass fishing. Incredible sensitivity and power.',
+    id: 'g-loomis-gcx',
+    name: 'G. Loomis GCX Bass Casting Rod',
+    description: 'Multi-taper design with 23 technique-specific models. Ultra-lightweight SeaGuide Hero One guides. Made in USA. Replaces the legendary E6X.',
     brand: 'G. Loomis',
     program: 'shimano',
     commission: 4,
-    affiliateUrl: 'https://www.basspro.com/p/g-loomis-e6x-bass-casting-rod',
-    imageAlt: 'G. Loomis E6X Bass Casting Rod',
+    affiliateUrl: 'https://www.basspro.com/p/gloomis-gcx-casting-rod',
+    imageAlt: 'G. Loomis GCX Bass Casting Rod',
     tags: ['rod', 'casting', 'bass', 'premium', 'sensitivity'],
     priority: 4,
-    price: '$200.00'
+    price: '$220.00'
   },
   {
     id: 'dobyns-fury-casting',
@@ -1361,14 +1361,14 @@ export const affiliateProducts: AffiliateProduct[] = [
     price: '$699.99'
   },
   {
-    id: 'lowrance-hds-live-9',
-    name: 'Lowrance HDS Live 9 Fish Finder',
-    description: 'Active Imaging 3-in-1 with FishReveal for clear fish targeting. Touchscreen interface.',
+    id: 'lowrance-hds-pro-9',
+    name: 'Lowrance HDS PRO 9 Fish Finder',
+    description: 'SolarMAX HD touchscreen with ActiveTarget 2 compatibility, Active Imaging HD, and preloaded C-MAP charts. The tournament standard.',
     brand: 'Lowrance',
     program: 'bass-pro',
     commission: 5,
-    affiliateUrl: 'https://www.basspro.com/p/lowrance-hds-live-9-fish-finder',
-    imageAlt: 'Lowrance HDS Live 9 Fish Finder',
+    affiliateUrl: 'https://www.basspro.com/p/lowrance-hds-pro-9-fish-finder-chartplotter',
+    imageAlt: 'Lowrance HDS PRO 9 Fish Finder',
     tags: ['electronics', 'fish-finder', 'boat', 'premium', 'touchscreen'],
     priority: 5,
     price: '$1,499.99'

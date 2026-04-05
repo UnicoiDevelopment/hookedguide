@@ -2,7 +2,7 @@ import type { GearReview } from '../../types';
 
 export const lowranceHdsLive9: GearReview = {
   slug: 'lowrance-hds-live-9',
-  productName: 'Lowrance HDS Live 9 Fish Finder',
+  productName: 'Lowrance HDS PRO 9 Fish Finder',
   brand: 'Lowrance',
   category: 'best-fish-finders-2026',
   rating: 4.8,
@@ -28,7 +28,7 @@ export const lowranceHdsLive9: GearReview = {
     { key: 'Connectivity', value: 'Wi-Fi, Bluetooth, Ethernet, NMEA 2000' },
     { key: 'Mapping', value: 'C-MAP, Navionics, Genesis Live' },
   ],
-  affiliateProductId: 'lowrance-hds-live-9',
+  affiliateProductId: 'lowrance-hds-pro-9',
   faq: [
     { question: 'Do I need Active Target to make the HDS Live 9 worth it?', answer: 'No. The HDS Live 9 is an excellent fish finder on its own with traditional CHIRP, DownScan, and StructureScan. Active Target is a powerful add-on, but the unit stands on its own merits without it.' },
     { question: 'What is the total cost for an Active Target setup?', answer: 'Expect to spend around $2,700-3,000 total: roughly $1,200 for the HDS Live 9 head unit and $1,500 for the Active Target transducer. It is a significant investment but transformative for competitive fishing.' },

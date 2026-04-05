@@ -2,7 +2,7 @@ import type { GearReview } from '../../types';
 
 export const shimanoVanford: GearReview = {
   slug: 'shimano-vanford',
-  productName: 'Shimano Vanford Spinning Reel — 2500',
+  productName: 'Shimano Vanford A Spinning Reel — 2500',
   brand: 'Shimano',
   category: 'best-spinning-reels-2026',
   rating: 4.7,
@@ -27,7 +27,7 @@ export const shimanoVanford: GearReview = {
     { key: 'Weight', value: '6.0 oz' },
     { key: 'Body Material', value: 'CI4+ carbon composite' },
   ],
-  affiliateProductId: 'shimano-vanford',
+  affiliateProductId: 'shimano-vanford-a',
   faq: [
     { question: 'Is the Vanford better than the Stradic FL?', answer: 'It depends on your priorities. The Vanford is lighter and has better gearing. The Stradic FL is more rigid and durable. For finesse fishing, the Vanford wins. For all-around use, the Stradic FL is more versatile.' },
     { question: 'Can the Vanford handle saltwater?', answer: 'It can handle light inshore saltwater with proper maintenance. However, the CI4+ body is not as corrosion-resistant as a full metal reel. For dedicated saltwater use, a Stradic FL or Saragosa is a safer bet.' },

@@ -29,7 +29,7 @@ const rigProductMap: Record<string, string> = {
   'Shimano Vanford': 'shimano-vanford',
   'Seaguar InvizX': 'seaguar-invizx-12',
   'Mustad Grip-Pin': 'mustad-grip-pin-ewg-3-0',
-  'G. Loomis E6X': 'g-loomis-e6x',
+  'G. Loomis E6X': 'g-loomis-gcx',
   'Shimano Expride': 'shimano-expride',
   'Shimano Metanium': 'shimano-metanium',
   'Daiwa Exist': 'daiwa-exist',

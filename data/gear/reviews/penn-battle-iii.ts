@@ -2,7 +2,7 @@ import type { GearReview } from '../../types';
 
 export const pennBattleIii: GearReview = {
   slug: 'penn-battle-iii',
-  productName: 'Penn Battle III Spinning Reel — 3000',
+  productName: 'Penn Battle IV Spinning Reel — 3000',
   brand: 'Penn',
   category: 'best-spinning-reels-2026',
   rating: 4.5,
@@ -27,7 +27,7 @@ export const pennBattleIii: GearReview = {
     { key: 'Weight', value: '10.3 oz' },
     { key: 'Body Material', value: 'Full metal' },
   ],
-  affiliateProductId: 'penn-battle-iii-3000',
+  affiliateProductId: 'penn-battle-iv-3000',
   faq: [
     { question: 'Can I use the Battle III in freshwater?', answer: 'Absolutely. It works great for freshwater, though it is heavier than dedicated freshwater reels. Many anglers use the 2500 size for bass and walleye.' },
     { question: 'What size Battle III for surf fishing?', answer: 'The 4000-5000 size is ideal for most surf fishing. The 6000-8000 handles heavy surf conditions and large fish like striped bass and sharks.' },

@@ -5,7 +5,7 @@ export const gearCategories: GearCategory[] = [
     slug: 'best-bass-rods-2026',
     name: 'Best Bass Rods 2026',
     description: 'Our picks for the best bass fishing rods in 2026, covering baitcasting and spinning setups for every budget and technique.',
-    products: ['st-croix-bass-x', 'dobyns-fury', 'g-loomis-e6x', 'shimano-expride', 'abu-garcia-veritas', 'fenwick-hmg', 'ugly-stik-gx2', 'favorite-fishing-defender-casting', 'cashion-john-crews-casting', 'duckett-ghost-casting', 'favorite-fishing-defender-spinning'],
+    products: ['st-croix-bass-x', 'dobyns-fury', 'g-loomis-gcx', 'shimano-expride', 'abu-garcia-veritas', 'fenwick-hmg', 'ugly-stik-gx2', 'favorite-fishing-defender-casting', 'cashion-john-crews-casting', 'duckett-ghost-casting', 'favorite-fishing-defender-spinning'],
     faq: [
       { question: 'What power and action rod is best for bass fishing?', answer: 'A medium-heavy power, fast action rod is the most versatile bass rod. It handles Texas rigs, jigs, spinnerbaits, and most other bass techniques.' },
       { question: 'Should I use a baitcasting or spinning rod for bass?', answer: 'Baitcasting rods are preferred for most bass techniques due to better accuracy and power. Spinning rods are better for finesse techniques like drop shot and ned rig.' },
@@ -16,7 +16,7 @@ export const gearCategories: GearCategory[] = [
     slug: 'best-spinning-reels-2026',
     name: 'Best Spinning Reels 2026',
     description: 'Top spinning reels for freshwater and saltwater fishing, from budget-friendly to premium options.',
-    products: ['daiwa-bg', 'shimano-stradic-fl', 'penn-battle-iii', 'pflueger-president', 'shimano-vanford', 'daiwa-exist', 'abu-garcia-revo-sx', 'piscifun-carbon-x-3000', 'tsunami-saltx-4000'],
+    products: ['daiwa-bg', 'shimano-stradic-fm', 'penn-battle-iv', 'pflueger-president', 'shimano-vanford-a', 'daiwa-exist', 'abu-garcia-revo-sx', 'piscifun-carbon-x-3000', 'tsunami-saltx-4000'],
     faq: [
       { question: 'What size spinning reel do I need?', answer: 'Size 2500 for bass/trout/crappie, 3000-4000 for inshore saltwater, 5000+ for offshore and surf fishing.' },
       { question: 'What gear ratio is best for a spinning reel?', answer: '6.2:1 is the most versatile. Higher ratios (7:1+) for finesse, lower (5.2:1) for cranking and saltwater.' },
@@ -27,7 +27,7 @@ export const gearCategories: GearCategory[] = [
     slug: 'best-baitcasting-reels-2026',
     name: 'Best Baitcasting Reels 2026',
     description: 'The best baitcasting reels for bass fishing and beyond, with options for beginners through pros.',
-    products: ['abu-garcia-revo-x', 'shimano-slx-dc', 'shimano-curado-k', 'daiwa-tatula-sv-tw', 'abu-garcia-revo-rocket', 'lews-tournament-pro', 'shimano-metanium', '13-fishing-concept-z3', '13-fishing-origin-a', 'kastking-speed-demon-pro'],
+    products: ['abu-garcia-revo-x', 'shimano-slx-dc', 'shimano-curado-mgl-k', 'daiwa-tatula-sv-tw', 'abu-garcia-revo-rocket', 'lews-tournament-pro', 'shimano-metanium', '13-fishing-concept-z3', '13-fishing-origin-a', 'kastking-speed-demon-pro'],
     faq: [
       { question: 'Why do baitcasting reels backlash?', answer: 'Backlash occurs when the spool spins faster than line leaves. Modern reels have braking systems to minimize this. Start with brakes set high and reduce as you improve.' },
       { question: 'What gear ratio should I choose?', answer: '7.1:1 is versatile for most bass techniques. 6.3:1 for crankbaits and spinnerbaits. 8.1:1+ for pitching, flipping, and topwater.' },
@@ -38,7 +38,7 @@ export const gearCategories: GearCategory[] = [
     slug: 'best-fish-finders-2026',
     name: 'Best Fish Finders 2026',
     description: 'Fish finders and depth finders for every budget, from kayak-friendly units to full-featured boat electronics.',
-    products: ['garmin-striker-4', 'garmin-striker-vivid-7cv', 'lowrance-hook-reveal-7', 'humminbird-helix-7', 'garmin-echomap-uhd2', 'lowrance-hds-live-9', 'garmin-livescope-plus'],
+    products: ['garmin-striker-vivid-4cv', 'garmin-striker-vivid-7cv', 'lowrance-hook-reveal-7', 'humminbird-helix-7', 'garmin-echomap-uhd2', 'lowrance-hds-pro-9', 'garmin-livescope-plus'],
     faq: [
       { question: 'Do I really need a fish finder?', answer: 'A fish finder dramatically improves your ability to locate fish, structure, and depth changes. Even a basic unit is a game-changer, especially on unfamiliar water.' },
       { question: 'What is CHIRP sonar?', answer: 'CHIRP sends a range of frequencies rather than a single frequency, providing clearer and more detailed images of fish and structure below your boat.' },

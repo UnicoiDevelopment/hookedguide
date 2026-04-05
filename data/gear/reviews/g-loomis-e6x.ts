@@ -2,7 +2,7 @@ import type { GearReview } from '../../types';
 
 export const gLoomisE6x: GearReview = {
   slug: 'g-loomis-e6x',
-  productName: 'G. Loomis E6X Bass Casting Rod',
+  productName: 'G. Loomis GCX Bass Casting Rod',
   brand: 'G. Loomis',
   category: 'best-bass-rods-2026',
   rating: 4.7,
@@ -28,7 +28,7 @@ export const gLoomisE6x: GearReview = {
     { key: 'Handle', value: 'Premium cork with Fuji reel seat' },
     { key: 'Warranty', value: 'Limited lifetime' },
   ],
-  affiliateProductId: 'g-loomis-e6x',
+  affiliateProductId: 'g-loomis-gcx',
   faq: [
     { question: 'Is the E6X worth the upgrade over a St. Croix Bass X?', answer: 'If sensitivity is your priority, yes. The E6X transmits significantly more information through the blank. If you fish primarily with moving baits where sensitivity matters less, the savings may not be justified.' },
     { question: 'How does the E6X compare to the G. Loomis NRX+?', answer: 'The NRX+ is lighter, more sensitive, and more powerful, but costs $400+. The E6X provides about 80% of the NRX+ feel at roughly half the price. For most anglers, the E6X is the better value.' },

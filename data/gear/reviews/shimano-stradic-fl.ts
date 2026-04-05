@@ -2,7 +2,7 @@ import type { GearReview } from '../../types';
 
 export const shimanoStradicFl: GearReview = {
   slug: 'shimano-stradic-fl',
-  productName: 'Shimano Stradic FL Spinning Reel — 3000',
+  productName: 'Shimano Stradic FM Spinning Reel — 3000',
   brand: 'Shimano',
   category: 'best-spinning-reels-2026',
   rating: 4.7,
@@ -27,7 +27,7 @@ export const shimanoStradicFl: GearReview = {
     { key: 'Weight', value: '7.8 oz' },
     { key: 'Body Material', value: 'Hagane (cold-forged aluminum)' },
   ],
-  affiliateProductId: 'shimano-stradic-fl-3000',
+  affiliateProductId: 'shimano-stradic-fm-3000',
   faq: [
     { question: 'Is the Stradic FL worth the upgrade from a Nasci?', answer: 'Yes, if you fish frequently. The Stradic FL is smoother, lighter, more durable, and casts farther. If you fish only a few times a year, the Nasci is fine. For regular anglers, the Stradic FL is a meaningful upgrade.' },
     { question: 'Can I use the Stradic FL in saltwater?', answer: 'Yes. The X-Protect water resistance handles saltwater well. It is not as fully sealed as a Saragosa or Slammer, but for inshore work with proper rinsing, it holds up great.' },
