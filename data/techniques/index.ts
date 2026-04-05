@@ -20,8 +20,12 @@ import { liveBait } from './live-bait';
 import { artificialLureSelection } from './artificial-lure-selection';
 import { nightFishing } from './night-fishing';
 import { noodling } from './noodling';
+import { spinningVsBaitcasting } from './spinning-vs-baitcasting';
+import { rodSelectionGuide } from './rod-selection-guide';
 
 export const allTechniques: Technique[] = [
+  spinningVsBaitcasting,
+  rodSelectionGuide,
   texasRig,
   carolinaRig,
   dropShot,

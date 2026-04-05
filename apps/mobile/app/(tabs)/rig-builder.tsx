@@ -13,7 +13,41 @@ import * as Haptics from 'expo-haptics';
 import { useTheme } from '@/lib/theme-context';
 import { Colors } from '@/constants/colors';
 import { allSpecies } from '../../../../data/species';
+import { affiliateProducts } from '../../../../data/affiliate-products';
 import { trackRigBuild } from '@/lib/review-prompt';
+
+// Explicit mapping from rig builder labels to affiliate product IDs
+const rigProductMap: Record<string, string> = {
+  'Ugly Stik GX2': 'ugly-stik-gx2-spinning',
+  'Abu Garcia Max X': 'abu-garcia-max-x-combo',
+  'Pflueger President': 'pflueger-president-30',
+  'Berkley Trilene XL': 'berkley-trilene-xl',
+  'Mustad EWG': 'mustad-grip-pin-ewg-3-0',
+  'Dobyns Fury 703C': 'dobyns-fury-casting',
+  'St. Croix Bass X': 'st-croix-bass-x-casting',
+  'Shimano SLX DC': 'shimano-slx-dc',
+  'Shimano Vanford': 'shimano-vanford',
+  'Seaguar InvizX': 'seaguar-invizx-12',
+  'Mustad Grip-Pin': 'mustad-grip-pin-ewg-3-0',
+  'G. Loomis E6X': 'g-loomis-e6x',
+  'Shimano Expride': 'shimano-expride',
+  'Shimano Metanium': 'shimano-metanium',
+  'Daiwa Exist': 'daiwa-exist',
+  'Seaguar Tatsu': 'seaguar-tatsu',
+};
+
+function findAffiliateUrl(label: string): string | undefined {
+  // Try explicit map first
+  const id = rigProductMap[label];
+  if (id) {
+    const product = affiliateProducts.find(p => p.id === id);
+    if (product) return product.affiliateUrl;
+  }
+  // Fallback: fuzzy match by name
+  const lower = label.toLowerCase();
+  const match = affiliateProducts.find(p => p.name.toLowerCase().includes(lower));
+  return match?.affiliateUrl;
+}
 
 type Step = 'species' | 'reel-type' | 'result';
 type ReelType = 'spinning' | 'baitcasting';
@@ -66,7 +100,15 @@ function getRigPreset(species: string, reelType: ReelType, tier: BudgetTier): Ri
     },
   };
 
-  return tiers[tier];
+  // Attach affiliate URLs to each component
+  const rig = tiers[tier];
+  for (const key of Object.keys(rig) as (keyof Rig)[]) {
+    const comp = rig[key];
+    if (comp && !comp.affiliateUrl) {
+      comp.affiliateUrl = findAffiliateUrl(comp.label);
+    }
+  }
+  return rig;
 }
 
 function calcTotal(rig: Rig): number {

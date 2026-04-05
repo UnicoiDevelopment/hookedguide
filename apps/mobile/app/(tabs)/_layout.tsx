@@ -74,10 +74,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="map"
         options={{
-          title: 'Map',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="map-outline" size={size} color={color} />
-          ),
+          href: null, // Hidden — heat map deferred until underwater depth maps available
         }}
       />
       <Tabs.Screen
