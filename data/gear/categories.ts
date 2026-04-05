@@ -5,7 +5,7 @@ export const gearCategories: GearCategory[] = [
     slug: 'best-bass-rods-2026',
     name: 'Best Bass Rods 2026',
     description: 'Our picks for the best bass fishing rods in 2026, covering baitcasting and spinning setups for every budget and technique.',
-    products: ['st-croix-bass-x', 'dobyns-fury', 'g-loomis-e6x', 'shimano-expride', 'abu-garcia-veritas', 'fenwick-hmg', 'ugly-stik-gx2', 'favorite-fishing-defender-casting', 'cashion-john-crews-casting', 'duckett-ghost-casting', 'sixgill-soul-casting', 'favorite-fishing-defender-spinning'],
+    products: ['st-croix-bass-x', 'dobyns-fury', 'g-loomis-e6x', 'shimano-expride', 'abu-garcia-veritas', 'fenwick-hmg', 'ugly-stik-gx2', 'favorite-fishing-defender-casting', 'cashion-john-crews-casting', 'duckett-ghost-casting', 'favorite-fishing-defender-spinning'],
     faq: [
       { question: 'What power and action rod is best for bass fishing?', answer: 'A medium-heavy power, fast action rod is the most versatile bass rod. It handles Texas rigs, jigs, spinnerbaits, and most other bass techniques.' },
       { question: 'Should I use a baitcasting or spinning rod for bass?', answer: 'Baitcasting rods are preferred for most bass techniques due to better accuracy and power. Spinning rods are better for finesse techniques like drop shot and ned rig.' },

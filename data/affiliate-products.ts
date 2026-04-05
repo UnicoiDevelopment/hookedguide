@@ -1163,21 +1163,6 @@ export const affiliateProducts: AffiliateProduct[] = [
     isTrending: true
   },
   {
-    id: 'sixgill-soul-casting',
-    name: 'Sixgill Soul Casting Rod',
-    description: 'Direct-to-consumer premium rod with Toray carbon blank. Premium quality at mid-range pricing.',
-    brand: 'Sixgill',
-    program: 'amazon',
-    commission: 3,
-    affiliateUrl: 'https://www.amazon.com/s?k=Sixgill+Soul+Casting+Rod',
-    imageAlt: 'Sixgill Soul Casting Rod',
-    tags: ['rod', 'casting', 'bass', 'value', 'premium', 'trending'],
-    priority: 3,
-    price: '$109.99',
-    isNewBrand: true,
-    isTrending: true
-  },
-  {
     id: '13-fishing-concept-z3',
     name: '13 Fishing Concept Z3 Baitcast Reel',
     description: 'Zero ball bearing design with Concept Z polymer system. Ultra-smooth and maintenance-free.',

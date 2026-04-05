@@ -27,9 +27,7 @@ import { daiwaTatulaSvTw } from './daiwa-tatula-sv-tw';
 import { dobynsFury } from './dobyns-fury';
 import { duckettGhostCasting } from './duckett-ghost-casting';
 import { engelHd30 } from './engel-hd30';
-import { enigmaCentrisReel } from './enigma-centris-reel';
 import { enigmaIpponRod } from './enigma-ippon-rod';
-import { enigmaOpusReel } from './enigma-opus-reel';
 import { favoriteFishingDefenderCasting } from './favorite-fishing-defender-casting';
 import { favoriteFishingDefenderSpinning } from './favorite-fishing-defender-spinning';
 import { fenwickHmg } from './fenwick-hmg';
@@ -79,7 +77,6 @@ import { shimanoCuradoK } from './shimano-curado-k';
 import { shimanoExpride } from './shimano-expride';
 import { shimanoMetanium } from './shimano-metanium';
 import { shimanoSlxDc } from './shimano-slx-dc';
-import { sixgillSoulCasting } from './sixgill-soul-casting';
 import { shimanoStradicFl } from './shimano-stradic-fl';
 import { shimanoVanford } from './shimano-vanford';
 import { simmsG3Waders } from './simms-g3-waders';
@@ -111,7 +108,6 @@ export const allReviews: GearReview[] = [
   favoriteFishingDefenderSpinning,
   cashionJohnCrewsCasting,
   duckettGhostCasting,
-  sixgillSoulCasting,
   // Baitcasting Reels
   abuGarciaRevoX,
   shimanoSlxDc,
@@ -120,8 +116,6 @@ export const allReviews: GearReview[] = [
   abuGarciaRevoRocket,
   lewsTournamentPro,
   shimanoMetanium,
-  enigmaOpusReel,
-  enigmaCentrisReel,
   thirteenFishingConceptZ3,
   thirteenFishingOriginA,
   kastkingSpeedDemonPro,
@@ -236,9 +230,7 @@ export {
   dobynsFury,
   duckettGhostCasting,
   engelHd30,
-  enigmaCentrisReel,
   enigmaIpponRod,
-  enigmaOpusReel,
   favoriteFishingDefenderCasting,
   favoriteFishingDefenderSpinning,
   fenwickHmg,
@@ -289,7 +281,6 @@ export {
   shimanoMetanium,
   shimanoSlxDc,
   shimanoStradicFl,
-  sixgillSoulCasting,
   shimanoVanford,
   simmsG3Waders,
   smithGuidesChoice,
